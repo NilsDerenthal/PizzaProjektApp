@@ -10,6 +10,7 @@ public class MainController {
 
     public MainController(){
         new ViewWindow(this);
+        // Im Konstruktor von ViewWindow beginnt das Programm
     }
 
 }
