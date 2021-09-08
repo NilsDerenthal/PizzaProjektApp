@@ -27,7 +27,7 @@ public class App {
         File userDataFile = new File("src/Database-impostor/Users.txt");
         String usersString = getFileContent(userDataFile);
 
-        String[] usersFromFile = usersString.split("\r\n");
+        String[] usersFromFile = usersString.split("\n");
         users = new Guest[usersFromFile.length];
 
         for (int i = 0; i < usersFromFile.length; i++) {
@@ -40,6 +40,8 @@ public class App {
 
             users[i] = new Guest(name, password);
         }
+
+        System.out.println(Arrays.toString(users));
     }
 
     private String getFileContent (File f){
