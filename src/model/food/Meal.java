@@ -1,5 +1,7 @@
 package model.food;
 
+import control.App;
+
 public abstract class Meal {
 
     protected int price;

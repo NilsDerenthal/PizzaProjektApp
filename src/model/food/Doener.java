@@ -1,4 +1,5 @@
 package model.food;
+import control.App;
 
 public class Doener extends Meal {
 
