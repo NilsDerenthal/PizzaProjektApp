@@ -12,7 +12,7 @@ public class MainWindow extends JFrame {
         this.mainController = control;
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setContentPane(new LoginPanel(mainController,this).getMainPanel());
+        setContentPane(new StartPanel(mainController,this).getMainPanel());
         setVisible(true);
         setSize(800,800);
     }

@@ -18,7 +18,7 @@ public class PizzaPanel extends ViewPanel {
             //TODO Actually make this add pizza to "the cart"
         });
         /**
-         * Opens order Panel, resets Pizza Panel when Go back button is pressed
+         * Opens order Panel when go back button is pressed
          */
         backButton.addActionListener(e -> mainWindow.setNewPanel(orderPanel.getMainPanel()));
     }

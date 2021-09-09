@@ -4,13 +4,13 @@ import control.App;
 
 import javax.swing.*;
 
-public class LoginPanel extends ViewPanel{
+public class StartPanel extends ViewPanel{
 
     private JButton logInButton;
     private JButton signUpButton;
     private JPanel mainPanel;
 
-    public LoginPanel(App mainController, MainWindow parent) {
+    public StartPanel(App mainController, MainWindow parent) {
         super(mainController, parent);
         logInButton.addActionListener(e -> {
 
