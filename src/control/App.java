@@ -3,7 +3,6 @@ package control;
 import model.food.Pizza;
 import model.people.Guest;
 import model.utility.Storage;
-import org.apache.commons.lang3.StringUtils;
 import view.MainWindow;
 
 import java.io.*;
@@ -44,11 +43,6 @@ public class App {
 
             users[i] = new Guest(name, password);
         }
-
-        addUserToDatabase(new Guest("TEST", "fsddsfsdf"));
-        addUserToDatabase(new Guest("ZZZZ", "434"));
-        addUserToDatabase(new Guest("Q", "434"));
-        addUserToDatabase(new Guest("ZQZZ", "434"));
 
     }
 
