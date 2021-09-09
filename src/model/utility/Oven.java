@@ -19,8 +19,10 @@ public class Oven {
     }
 
     public boolean bakePizza () {
+
         // testet ob schon etwas gebacken wird oder pizza nicht existiert
         // wenn ja -> returns false
+
         if (baking || pizza == null)
             return false;
 
