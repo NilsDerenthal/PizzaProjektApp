@@ -44,11 +44,6 @@ public class App {
             users[i] = new Guest(name, password);
         }
 
-        addUserToDatabase(new Guest("TEST", "fsddsfsdf"));
-        addUserToDatabase(new Guest("ZZZZ", "434"));
-        addUserToDatabase(new Guest("Q", "434"));
-        addUserToDatabase(new Guest("ZQZZ", "434"));
-
     }
 
     private String getFileContent (File f){

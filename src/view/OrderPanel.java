@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class OrderPanel extends ViewPanel {
+
     private JPanel orderPanel;
     private JButton pizzaButton;
     private JButton doenerButton;
