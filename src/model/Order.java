@@ -12,6 +12,8 @@ public class Order {
 
     public double getTotalPrice(){ return totalPrice; }
 
+    public void increasPrice(double price){ totalPrice=totalPrice+price; }
+
     public Meal[] getMealsInOrder(){ return mealsInOrder; }
 
     public void addMeal(Meal newMeal){

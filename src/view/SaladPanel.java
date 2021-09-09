@@ -8,13 +8,21 @@ import java.awt.event.ActionListener;
 
 public class SaladPanel extends ViewPanel{
     private JButton addToCartButten;
-    private JButton backButten;
+    private JButton backButton;
     private JComboBox saladSelectionBox;
     private JPanel SaladPanel;
 
-    public SaladPanel(App maincontroller, MainWindow mainWindow) {
+
+    public SaladPanel(App maincontroller, MainWindow mainWindow, OrderPanel orderPanel) {
         super(maincontroller, mainWindow);
 
+        backButton.addActionListener(e -> mainWindow.setNewPanel(orderPanel.getMainPanel()));
+        addToCartButten.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     public JPanel getMainPanel() {

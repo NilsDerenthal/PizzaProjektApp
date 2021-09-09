@@ -14,8 +14,8 @@ public class FinalOrderPanel extends ViewPanel{
     public FinalOrderPanel(App mainController, MainWindow parent){
         super(mainController,parent);
         label1.setText("Order:");
-    }
 
+    }
 
     public JPanel getMainPanel() {
         return finalOrderPanel;
