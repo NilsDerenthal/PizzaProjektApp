@@ -18,8 +18,6 @@ public class App {
 
     public static void main(String[] args) {
         new App();
-
-
     }
 
     public App(){
@@ -108,5 +106,9 @@ public class App {
 
     public double getMoney () {
         return money;
+    }
+
+    public Guest[] getUsers() {
+        return users;
     }
 }
