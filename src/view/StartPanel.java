@@ -19,7 +19,7 @@ public class StartPanel extends ViewPanel{
         });
 
         signUpButton.addActionListener(e -> {
-
+            parent.setNewPanel(new SignUpPanel(mainController, parent, getMainPanel()).getMainPanel());
         });
 
     }
