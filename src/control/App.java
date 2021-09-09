@@ -24,13 +24,15 @@ public class App {
 
     public App(){
         new MainWindow(this);
-
         storage = new Storage(this);
-
         userDataFile = new File("src/Database-impostor/Users.txt");
-        String usersString = getFileContent(userDataFile);
 
-        String[] usersFromFile = usersString.split("\n");
+        String usersString = getFileContent(userDataFile);
+        parseRawData(usersString);
+    }
+
+    private void parseRawData (String rawData) {
+        String[] usersFromFile = rawData.split("\n");
         users = new Guest[usersFromFile.length];
 
         for (int i = 0; i < usersFromFile.length; i++) {
@@ -43,7 +45,6 @@ public class App {
 
             users[i] = new Guest(name, password);
         }
-
     }
 
     private String getFileContent (File f){
