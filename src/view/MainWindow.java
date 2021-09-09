@@ -11,12 +11,13 @@ public class MainWindow extends JFrame {
 
         this.mainController = control;
 
-        setContentPane(new LoginPanel(mainController,this).getMainPanel());
+        setContentPane(new OrderPanel(mainController,this).getMainPanel());
         setVisible(true);
         setSize(800,800);
     }
 
     public void setNewPanel (JPanel newPanel) {
         setContentPane(newPanel);
+        revalidate();
     }
 }
