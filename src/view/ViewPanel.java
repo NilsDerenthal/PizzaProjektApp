@@ -4,7 +4,7 @@ import control.App;
 
 public abstract class ViewPanel {
 
-    private final App mainController;
+    protected App mainController;
     private final MainWindow parent;
 
     public ViewPanel (App MainController, MainWindow parent){

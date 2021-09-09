@@ -25,7 +25,7 @@ public class SignUpPanel extends ViewPanel{
         signUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                app.addUserToDatabase(new Guest(usernameField.getText(),passwordField.getText()));
+                mainController.addUserToDatabase(new Guest(usernameField.getText(),passwordField.getText()));
             }
         });
         backButton.addActionListener(e -> mainWindow.setNewPanel(parent));
