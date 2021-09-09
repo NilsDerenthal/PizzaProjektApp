@@ -2,7 +2,7 @@ package control;
 
 import model.food.Pizza;
 import model.people.Guest;
-import model.utility.*;
+import model.utility.Storage;
 import view.MainWindow;
 
 import java.io.*;

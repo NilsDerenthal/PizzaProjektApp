@@ -3,18 +3,20 @@ package view;
 import control.App;
 import javax.swing.*;
 
-public class MainWindow {
+public class MainWindow extends JFrame {
 
-    private final JFrame frame;
     private final App mainController;
 
     public MainWindow(App control){
 
         this.mainController = control;
 
-        frame = new JFrame();
-        //frame.setContentPane(null); //TODO panel hinzufügen
-        frame.setVisible(true);
-        frame.setSize(800,800);
+        setContentPane(new LoginPanel(this).getMainPanel());
+        setVisible(true);
+        setSize(800,800);
+    }
+
+    public void setNewPanel (JPanel newPanel) {
+        setContentPane(newPanel);
     }
 }
