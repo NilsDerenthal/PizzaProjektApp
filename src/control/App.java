@@ -70,7 +70,7 @@ public class App {
 
     public void addUserToDatabase (Guest guest) {
         Guest[] newUsers = new Guest[users.length + 1];
-        //TODO UNFINISHED AS OF NOW
+
     }
 
     public void subtractMoney(double amount) {
