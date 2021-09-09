@@ -26,4 +26,17 @@ public class Guest {
         tmpNewMeals[lastMeals.length] = newMeal;
         lastMeals = tmpNewMeals;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

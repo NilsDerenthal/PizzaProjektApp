@@ -3,6 +3,7 @@ package control;
 import model.food.Pizza;
 import model.people.Guest;
 import model.utility.Storage;
+import org.apache.commons.lang3.StringUtils;
 import view.MainWindow;
 
 import java.io.*;
@@ -14,8 +15,12 @@ public class App {
     private Guest[] users;
     private Storage storage;
 
+    private File userDataFile;
+
     public static void main(String[] args) {
         new App();
+
+
     }
 
     public App(){
@@ -23,7 +28,7 @@ public class App {
 
         storage = new Storage(this);
 
-        File userDataFile = new File("src/Database-impostor/Users.txt");
+        userDataFile = new File("src/Database-impostor/Users.txt");
         String usersString = getFileContent(userDataFile);
 
         String[] usersFromFile = usersString.split("\n");
@@ -40,7 +45,11 @@ public class App {
             users[i] = new Guest(name, password);
         }
 
-        System.out.println(Arrays.toString(users));
+        addUserToDatabase(new Guest("TEST", "fsddsfsdf"));
+        addUserToDatabase(new Guest("ZZZZ", "434"));
+        addUserToDatabase(new Guest("Q", "434"));
+        addUserToDatabase(new Guest("ZQZZ", "434"));
+
     }
 
     private String getFileContent (File f){
@@ -71,6 +80,30 @@ public class App {
     public void addUserToDatabase (Guest guest) {
         Guest[] newUsers = new Guest[users.length + 1];
 
+        StringBuilder newFileDataString = new StringBuilder();
+        boolean inserted = false;
+
+        for (int i = 0; i < newUsers.length; i++) {
+
+            int offset = inserted || i == newUsers.length - 1 ? -1:0;
+
+            if ((guest.getName().compareToIgnoreCase(users[i + offset].getName()) < 0 || i == newUsers.length - 1) && !inserted){
+                inserted = true;
+                newUsers[i] = guest;
+            } else {
+                newUsers[i] = users[i + offset];
+            }
+
+            newFileDataString.append(String.format("%s:%s%n", newUsers[i].getName(), newUsers[i].getPassword()));
+        }
+
+        users = newUsers;
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(userDataFile))) {
+            writer.write(newFileDataString.toString());
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
     }
 
     public void subtractMoney(double amount) {
