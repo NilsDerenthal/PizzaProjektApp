@@ -15,10 +15,13 @@ public class OrderPanel extends ViewPanel {
 
     public OrderPanel(App maincontroller, MainWindow mainWindow) {
         super(maincontroller, mainWindow);
+        /**
+         * Opens pizzaPanel when the Pizza button is pressed
+         */
         pizzaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainWindow.setNewPanel(new PizzaPanel().getMainPanel());
+                mainWindow.setNewPanel(new PizzaPanel(maincontroller, mainWindow, OrderPanel.this).getMainPanel());
             }
         });
     }
