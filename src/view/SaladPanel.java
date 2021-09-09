@@ -3,6 +3,8 @@ package view;
 import control.App;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SaladPanel extends ViewPanel{
     private JButton addToCartButten;
@@ -12,6 +14,7 @@ public class SaladPanel extends ViewPanel{
 
     public SaladPanel(App maincontroller, MainWindow mainWindow) {
         super(maincontroller, mainWindow);
+
     }
 
     public JPanel getMainPanel() {

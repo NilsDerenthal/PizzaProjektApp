@@ -14,7 +14,8 @@
         </constraints>
         <properties>
           <model>
-            <item value="Salad"/>
+            <item value="Salad with Dressing"/>
+            <item value="Salad without Dressing"/>
           </model>
         </properties>
       </component>
