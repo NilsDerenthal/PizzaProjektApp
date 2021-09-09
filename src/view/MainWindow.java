@@ -11,7 +11,7 @@ public class MainWindow extends JFrame {
 
         this.mainController = control;
 
-        setContentPane(new LoginPanel(this).getMainPanel());
+        setContentPane(new LoginPanel(mainController,this).getMainPanel());
         setVisible(true);
         setSize(800,800);
     }

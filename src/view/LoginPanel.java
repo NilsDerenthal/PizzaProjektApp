@@ -1,15 +1,17 @@
 package view;
 
+import control.App;
+
 import javax.swing.*;
 
-public class LoginPanel {
+public class LoginPanel extends ViewPanel{
 
     private JButton logInButton;
     private JButton signUpButton;
     private JPanel mainPanel;
 
-    public LoginPanel(JFrame parent) {
-
+    public LoginPanel(App mainController, MainWindow parent) {
+        super(mainController, parent);
         logInButton.addActionListener(e -> {
 
         });

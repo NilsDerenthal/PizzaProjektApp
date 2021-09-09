@@ -8,7 +8,6 @@ import view.MainWindow;
 import java.io.*;
 import java.util.Arrays;
 
-
 public class App {
 
     private double money = 0;
@@ -69,6 +68,10 @@ public class App {
         return sb.toString();
     }
 
+    public void addUserToDatabase (Guest guest) {
+        Guest[] newUsers = new Guest[users.length + 1];
+        //TODO UNFINISHED AS OF NOW
+    }
 
     public void subtractMoney(double amount) {
         money -= amount;
