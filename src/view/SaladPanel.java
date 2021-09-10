@@ -20,7 +20,7 @@ public class SaladPanel extends ViewPanel{
         addToCartButten.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                //Todo
             }
         });
     }

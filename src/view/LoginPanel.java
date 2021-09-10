@@ -1,6 +1,7 @@
 package view;
 
 import control.App;
+import model.Order;
 import model.people.Guest;
 
 import javax.swing.*;
@@ -17,17 +18,17 @@ public class LoginPanel extends ViewPanel{
     private JButton goBackButton;
     private JButton logInButton;
 
-    public LoginPanel (App mainController, MainWindow mainWindow, JPanel parent, boolean signUpPanel) {
+    public LoginPanel (App mainController, MainWindow mainWindow, JPanel parent, boolean signUpPanel/*, OrderPanel orderpanel*/) {
         super(mainController, mainWindow);
 
         logInButton.setText(signUpPanel ? "Sign up" : "Log in");
 
         this.signUpPanel = signUpPanel;
-        logInButton.addActionListener(signUpPanel ? e -> checkLogIn() : e -> addUser());
+        logInButton.addActionListener(signUpPanel ? e -> checkLogIn() : e -> addUser(mainWindow/*,orderpanel*/));
         goBackButton.addActionListener(e -> mainWindow.setNewPanel(parent));
     }
 
-    private void addUser() {
+    private void addUser(MainWindow mainWindow/*,OrderPanel orderPanel*/) {
         if(usernameTextField.getText() != null && passwordField.getPassword() != null) {
             String[] usernames = Arrays.stream(mainController.getUsers()).map(Guest::getName).toArray(String[]::new);
             int index = Arrays.binarySearch(usernames, usernameTextField.getText());
@@ -35,6 +36,7 @@ public class LoginPanel extends ViewPanel{
             if(index == -1) {
                 Guest newUser = new Guest(usernameTextField.getText(), new String(passwordField.getPassword()));
                 mainController.addUserToDatabase(newUser);
+                //mainWindow.setNewPanel(orderPanel.getMainPanel());
             }
         }
     }
