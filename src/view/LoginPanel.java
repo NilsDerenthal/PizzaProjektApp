@@ -18,17 +18,19 @@ public class LoginPanel extends ViewPanel{
     private JButton goBackButton;
     private JButton logInButton;
 
-    public LoginPanel (App mainController, MainWindow mainWindow, JPanel parent, boolean signUpPanel/*, OrderPanel orderpanel*/) {
+    private final OrderPanel orderPanel;
+
+    public LoginPanel (App mainController, MainWindow mainWindow, JPanel parent, boolean signUpPanel, OrderPanel orderPanel) {
         super(mainController, mainWindow);
 
         logInButton.setText(signUpPanel ? "Sign up" : "Log in");
-
         this.signUpPanel = signUpPanel;
+        this.orderPanel = orderPanel;
         logInButton.addActionListener(signUpPanel ? e -> checkLogIn() : e -> addUser(mainWindow/*,orderpanel*/));
         goBackButton.addActionListener(e -> mainWindow.setNewPanel(parent));
     }
 
-    private void addUser(MainWindow mainWindow/*,OrderPanel orderPanel*/) {
+    private void addUser(MainWindow mainWindow) {
         if(usernameTextField.getText() != null && passwordField.getPassword() != null) {
             String[] usernames = Arrays.stream(mainController.getUsers()).map(Guest::getName).toArray(String[]::new);
             int index = Arrays.binarySearch(usernames, usernameTextField.getText());
@@ -36,7 +38,7 @@ public class LoginPanel extends ViewPanel{
             if(index == -1) {
                 Guest newUser = new Guest(usernameTextField.getText(), new String(passwordField.getPassword()));
                 mainController.addUserToDatabase(newUser);
-                //mainWindow.setNewPanel(orderPanel.getMainPanel());
+                mainWindow.setNewPanel(orderPanel.getMainPanel());
             }
         }
     }
@@ -48,6 +50,7 @@ public class LoginPanel extends ViewPanel{
         if (correspondingPassword.equals(new String(passwordField.getPassword()))) {
             // correct password
             //TODO
+            parent.setNewPanel(orderPanel.getMainPanel());
         } else {
             // incorrect password
         }
