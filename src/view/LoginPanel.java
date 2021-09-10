@@ -35,15 +35,26 @@ public class LoginPanel extends ViewPanel{
 
     private void addUser(MainWindow mainWindow) {
         if(usernameTextField.getText() != null && passwordField.getPassword() != null) {
-            String[] usernames = Arrays.stream(mainController.getUsers()).map(Guest::getName).toArray(String[]::new);
-            int index = Arrays.binarySearch(usernames, usernameTextField.getText());
+            //String[] usernames = Arrays.stream(mainController.getUsers()).map(Guest::getName).toArray(String[]::new);
+            //int index = Arrays.binarySearch(usernames, usernameTextField.getText());
+            int index = binarySearch(usernameTextField.getText());
 
-            if(index == -1) {
+            if(index == -1 && isUserNameValid()) {
                 Guest newUser = new Guest(usernameTextField.getText(), new String(passwordField.getPassword()));
                 mainController.addUserToDatabase(newUser);
                 mainWindow.setNewPanel(orderPanel.getMainPanel());
+            }else{
+                //JOptionPane.showMessageDialog(this.getMainPanel(),"Wrong password or username entered");
+                JOptionPane.showMessageDialog(this.getMainPanel(),"Username is invalid, try another one");
             }
         }
+    }
+
+    private boolean isUserNameValid(){
+        if(usernameTextField.getText() != null && passwordField.getPassword() != null) {
+            return !usernameTextField.getText().isEmpty() && !usernameTextField.getText().contains(":");
+        }
+        return false;
     }
 
     private void checkLogIn() {
