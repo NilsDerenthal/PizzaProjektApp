@@ -1,17 +1,18 @@
 package control;
 
-import model.food.Pizza;
 import model.people.Guest;
 import model.utility.Storage;
 import view.MainWindow;
 
 import java.io.*;
-import java.util.Arrays;
 
 public class App {
 
     private double money = 0;
+
     private Guest[] users;
+    private Guest currentUser;
+
     private Storage storage;
 
     private File userDataFile;
@@ -110,5 +111,9 @@ public class App {
 
     public Guest[] getUsers() {
         return users;
+    }
+
+    public void setCurrentUser(Guest currentUser) {
+        this.currentUser = currentUser;
     }
 }

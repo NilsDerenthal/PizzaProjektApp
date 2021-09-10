@@ -6,7 +6,10 @@ import model.people.Guest;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.time.Instant;
+import java.time.Year;
 import java.util.Arrays;
+import java.util.Date;
 
 public class LoginPanel extends ViewPanel{
 
@@ -26,7 +29,7 @@ public class LoginPanel extends ViewPanel{
         logInButton.setText(signUpPanel ? "Sign up" : "Log in");
         this.signUpPanel = signUpPanel;
         this.orderPanel = orderPanel;
-        logInButton.addActionListener(signUpPanel ? e -> checkLogIn() : e -> addUser(mainWindow/*,orderpanel*/));
+        logInButton.addActionListener(!signUpPanel ? e -> checkLogIn() : e -> addUser(mainWindow));
         goBackButton.addActionListener(e -> mainWindow.setNewPanel(parent));
     }
 
@@ -44,15 +47,17 @@ public class LoginPanel extends ViewPanel{
     }
 
     private void checkLogIn() {
+
+        System.out.println("checking login");
+
         int index = binarySearch(usernameTextField.getText());
         String correspondingPassword = mainController.getUsers()[index].getPassword();
 
         if (correspondingPassword.equals(new String(passwordField.getPassword()))) {
-            // correct password
-            //TODO
+            mainController.setCurrentUser(mainController.getUsers()[index]);
             parent.setNewPanel(orderPanel.getMainPanel());
         } else {
-            // incorrect password
+            JOptionPane.showMessageDialog(this.getMainPanel(),"Wrong password entered");
         }
     }
 
@@ -71,7 +76,9 @@ public class LoginPanel extends ViewPanel{
             if (comp == 0)
                 return m;
 
-            if (comp < 0) {
+            System.out.println(m);
+
+            if (comp > 0) {
                 l = m;
             } else {
                 r = m;
