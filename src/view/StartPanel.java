@@ -15,11 +15,11 @@ public class StartPanel extends ViewPanel{
         super(mainController, parent);
 
         logInButton.addActionListener(e -> {
-            parent.setNewPanel(new LoginPanel(mainController, parent, getMainPanel()).getMainPanel());
+            parent.setNewPanel(new LoginPanel(mainController, parent, getMainPanel(), false).getMainPanel());
         });
 
         signUpButton.addActionListener(e -> {
-            parent.setNewPanel(new SignUpPanel(mainController, parent, getMainPanel()).getMainPanel());
+            parent.setNewPanel(new LoginPanel(mainController, parent, getMainPanel(), true).getMainPanel());
         });
 
     }
