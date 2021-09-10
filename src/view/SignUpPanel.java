@@ -6,6 +6,7 @@ import model.people.Guest;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class SignUpPanel extends ViewPanel{
 
@@ -18,17 +19,22 @@ public class SignUpPanel extends ViewPanel{
     private JPanel mainPanel;
     private JButton backButton;
     private StartPanel startpannel;
-    private App app;
 
     public SignUpPanel(App maincontroller, MainWindow mainWindow, JPanel parent){
         super(maincontroller,mainWindow);
-        signUpButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mainController.addUserToDatabase(new Guest(usernameField.getText(),passwordField.getText()));
-            }
-        });
+        signUpButton.addActionListener( e -> addUser() );
         backButton.addActionListener(e -> mainWindow.setNewPanel(parent));
+    }
+
+    private void addUser(){
+        if(usernameField.getText() != null && passwordField.getText() != null) {
+            String[] usernames = Arrays.stream(mainController.getUsers()).map(Guest::getName).toArray(String[]::new);
+            int index = Arrays.binarySearch(usernames,usernameField.getText());
+            if(index==-1) {
+                Guest newUser = new Guest(usernameField.getText(), passwordField.getText());
+                mainController.addUserToDatabase(newUser);
+            }
+        }
     }
 
     public JPanel getMainPanel() {
