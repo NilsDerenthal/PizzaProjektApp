@@ -1,1 +1,1 @@
-abc:testpw
+abc:test

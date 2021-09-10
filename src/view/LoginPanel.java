@@ -48,16 +48,24 @@ public class LoginPanel extends ViewPanel{
 
     private void checkLogIn() {
 
-        System.out.println("checking login");
+        boolean wrongPasswordOrUser = false;
 
         int index = binarySearch(usernameTextField.getText());
-        String correspondingPassword = mainController.getUsers()[index].getPassword();
+        if (index != -1) {
+            String correspondingPassword = mainController.getUsers()[index].getPassword();
 
-        if (correspondingPassword.equals(new String(passwordField.getPassword()))) {
-            mainController.setCurrentUser(mainController.getUsers()[index]);
-            parent.setNewPanel(orderPanel.getMainPanel());
+            if (correspondingPassword.equals(new String(passwordField.getPassword()))) {
+                mainController.setCurrentUser(mainController.getUsers()[index]);
+                parent.setNewPanel(orderPanel.getMainPanel());
+            } else {
+                wrongPasswordOrUser = true;
+            }
         } else {
-            JOptionPane.showMessageDialog(this.getMainPanel(),"Wrong password entered");
+            wrongPasswordOrUser = true;
+        }
+
+        if (wrongPasswordOrUser) {
+            JOptionPane.showMessageDialog(this.getMainPanel(),"Wrong password or username entered");
         }
     }
 
@@ -79,9 +87,9 @@ public class LoginPanel extends ViewPanel{
             System.out.println(m);
 
             if (comp > 0) {
-                l = m;
+                l = m + 1;
             } else {
-                r = m;
+                r = m - 1;
             }
         }
 
