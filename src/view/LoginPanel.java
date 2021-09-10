@@ -40,8 +40,7 @@ public class LoginPanel extends ViewPanel{
     }
 
     private void checkLogIn() {
-        String[] usernames = Arrays.stream(mainController.getUsers()).map(Guest::getName).toArray(String[]::new);
-        int index = Arrays.binarySearch(usernames, usernameTextField.getText(), String::compareTo);
+        int index = binarySearch(usernameTextField.getText());
         String correspondingPassword = mainController.getUsers()[index].getPassword();
 
         if (correspondingPassword.equals(new String(passwordField.getPassword()))) {
@@ -50,6 +49,31 @@ public class LoginPanel extends ViewPanel{
         } else {
             // incorrect password
         }
+    }
+
+    private int binarySearch (String key) {
+        Guest[] users = mainController.getUsers();
+
+        int l = users.length - 1;
+        int r = 0;
+
+        while (l <= r) {
+
+            int m = (l+r)/2;
+
+            int comp = key.compareTo(users[m].getName());
+
+            if (comp == 0)
+                return m;
+
+            if (comp < 0) {
+                l = m;
+            } else {
+                r = m;
+            }
+        }
+
+        return -1;
     }
 
     public JPanel getMainPanel() {
