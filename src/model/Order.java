@@ -24,6 +24,8 @@ public class Order {
 
         tmpNewMeals[mealsInOrder.length] = newMeal;
         mealsInOrder = tmpNewMeals;
+        totalPrice=totalPrice+ newMeal.getPrice();
+        newMeal.makeIt();
     }
 
     public void clearOrder(){ mealsInOrder=new Meal[1]; }

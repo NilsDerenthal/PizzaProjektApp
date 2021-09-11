@@ -20,7 +20,7 @@ public class OrderPanel extends ViewPanel {
         pizzaButton.addActionListener( e ->  mainWindow.setNewPanel(new PizzaPanel(maincontroller, mainWindow, OrderPanel.this).getMainPanel()));
         doenerButton.addActionListener( e -> mainWindow.setNewPanel(new DoenerPanel(maincontroller,mainWindow,OrderPanel.this).getMainPanel()));
         beverageButton.addActionListener( e -> mainWindow.setNewPanel(new SaladPanel(maincontroller,mainWindow,OrderPanel.this).getMainPanel()));
-        buyButton.addActionListener(e -> mainWindow.setNewPanel(new FinalOrderPanel(mainController,mainWindow,mainWindow).getMainPanel()));
+        buyButton.addActionListener(e -> mainWindow.setNewPanel(new FinalOrderPanel(mainController,mainWindow,mainWindow,this).getMainPanel()));
     }
 
     public JPanel getMainPanel() {

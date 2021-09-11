@@ -7,7 +7,7 @@ public class Pizza extends Meal {
 
     private final String[] availibleTypes = {
             "Salami",
-            "Margherita",
+            "Margerita",
             "Pepperoni",
             "Four Seasons",
             "Hawaii"
@@ -26,6 +26,7 @@ public class Pizza extends Meal {
      */
     public Pizza (App app, String type) {
         this(app, type, null);
+        price=7;
     }
 
     /**
@@ -37,5 +38,16 @@ public class Pizza extends Meal {
         super(app);
         this.typeOfPizza = type;
         this.oven = oven;
+    }
+
+    public void makeIt(){
+        super.makeIt();
+        //Todo
+    }
+
+    @Override
+    public double getPrice() {
+        if(typeOfPizza.equals("Margerita")){ return price-1; }
+        return price;
     }
 }

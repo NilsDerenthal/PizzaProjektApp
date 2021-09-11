@@ -4,10 +4,14 @@ import control.App;
 
 public abstract class Meal {
 
-    protected int price;
+    protected double price;
     protected App mainController;
 
     public Meal (App mainController) {
         this.mainController = mainController;
     }
+
+    public double getPrice(){ return price; }
+
+    public void makeIt(){}
 }

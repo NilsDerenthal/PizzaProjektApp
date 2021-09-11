@@ -5,7 +5,6 @@ import control.App;
 public class Storage {
     private int saladkit;
     private double dressingTankfill;
-    private App app;
     private App mainController;
 
     public Storage(App mainController) {
@@ -14,7 +13,7 @@ public class Storage {
 
     public void refillDressingTank(){
        if(dressingTankfill <= 0){
-           app.subtractMoney(-10);
+           mainController.subtractMoney(-10);
            dressingTankfill = 100;
         }
     }
@@ -22,12 +21,14 @@ public class Storage {
     public void reduceDressingTankFill(){
         if(dressingTankfill>0) {
             dressingTankfill = dressingTankfill - 2.5;
+        }else{
+            refillDressingTank();
         }
     }
 
     public void setSaladkit(){
         saladkit = 35;
-        app.subtractMoney(-35);
+        mainController.subtractMoney(-35);
     }
 
     public void reduceSaladkit(){

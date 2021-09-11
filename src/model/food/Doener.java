@@ -9,9 +9,11 @@ public class Doener extends Meal {
 
     public Doener (App app) {
         super(app);
+        price=3.40;
     }
 
-    public void makeDoener(){
+    public void makeIt(){
+        super.makeIt();
         // hardcoded value (1.5%)
         if(skewerPercentage > 0.015){
             skewerPercentage = 1;
