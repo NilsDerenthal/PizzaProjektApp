@@ -25,4 +25,6 @@ public class Order {
         tmpNewMeals[mealsInOrder.length] = newMeal;
         mealsInOrder = tmpNewMeals;
     }
+
+    public void clearOrder(){ mealsInOrder=null; }
 }

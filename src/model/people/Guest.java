@@ -9,7 +9,7 @@ public class Guest {
     private String password;
     private Order order;
 
-    private double budget;
+    private double budget=100;
     private Meal[] lastMeals;
 
 
@@ -32,6 +32,14 @@ public class Guest {
     public String getName() {
         return name;
     }
+
+    public double getBudget() { return budget; }
+
+    public double getOrderPrice() { return order.getTotalPrice(); }
+
+    public void reduceBudget(double price) { budget -= price; }
+
+    public void clearOrder(){ order.clearOrder(); }
 
     public String getPassword() {
         return password;

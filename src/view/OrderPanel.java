@@ -3,8 +3,6 @@ package view;
 import control.App;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class OrderPanel extends ViewPanel {
 
@@ -12,7 +10,7 @@ public class OrderPanel extends ViewPanel {
     private JButton pizzaButton;
     private JButton doenerButton;
     private JButton beverageButton;
-    private JButton checkOutButton;
+    private JButton buyButton;
 
     public OrderPanel(App maincontroller, MainWindow mainWindow) {
         super(maincontroller, mainWindow);
@@ -22,7 +20,7 @@ public class OrderPanel extends ViewPanel {
         pizzaButton.addActionListener( e ->  mainWindow.setNewPanel(new PizzaPanel(maincontroller, mainWindow, OrderPanel.this).getMainPanel()));
         doenerButton.addActionListener( e -> mainWindow.setNewPanel(new DoenerPanel(maincontroller,mainWindow,OrderPanel.this).getMainPanel()));
         beverageButton.addActionListener( e -> mainWindow.setNewPanel(new SaladPanel(maincontroller,mainWindow,OrderPanel.this).getMainPanel()));
-        checkOutButton.addActionListener( e -> mainWindow.setNewPanel(new StartPanel(mainController,mainWindow).getMainPanel()));
+        buyButton.addActionListener(e -> mainWindow.setNewPanel(new FinalOrderPanel(mainController,mainWindow,mainWindow).getMainPanel()));
     }
 
     public JPanel getMainPanel() {
