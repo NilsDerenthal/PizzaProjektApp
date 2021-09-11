@@ -33,10 +33,12 @@ public class FinalOrderPanel extends ViewPanel{
     }
 
     private void setTextPane1(){
-        Meal[] currentOrder=mainController.getCurrentUser().getOrder();
-        for(int i=0;i< currentOrder.length;i++){
-            textPane1.setText(textPane1.getText()+currentOrder[i]+"\n");
-            //Todo
+        if(mainController.getCurrentUser().getOrder()!=null) {
+            Meal[] currentOrder = mainController.getCurrentUser().getOrder();
+            for (int i = 0; i < currentOrder.length; i++) {
+                textPane1.setText(textPane1.getText() + currentOrder[i] + "\n");
+                //Todo
+            }
         }
     }
 
