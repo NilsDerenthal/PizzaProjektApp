@@ -1,6 +1,7 @@
 package model.people;
 
 import model.food.Meal;
+import model.Beverage;
 import model.Order;
 
 public class Guest {
@@ -11,6 +12,8 @@ public class Guest {
 
     private double budget=100;
     private Meal[] lastMeals;
+
+    //Todo günstigeres lieblingsessen
 
 
     public Guest(String name, String password) {
@@ -52,5 +55,9 @@ public class Guest {
 
     public void addToOrder(Meal isAddTo) { order.addMeal(isAddTo); }
 
+    public void addBeverageToOrder(Beverage isAddTo) { order.addBeverage(isAddTo); }
+
     public Meal[] getOrder() { return order.getMealsInOrder(); }
+
+    public Beverage[] getBeverageOrder() { return order.getBeveragesInOrder(); }
 }

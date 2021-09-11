@@ -18,12 +18,6 @@ public class PizzaPanel extends ViewPanel {
 
     public PizzaPanel(App maincontroller, MainWindow mainWindow, OrderPanel orderPanel) {
         super(maincontroller, mainWindow);
-        addToCartButton.addActionListener(e -> {
-            //TODO Actually make this add pizza to "the cart"
-        });
-        /**
-         * Opens order Panel when go back button is pressed
-         */
         backButton.addActionListener(e -> mainWindow.setNewPanel(orderPanel.getMainPanel()));
         addToCartButton.addActionListener(new ActionListener() {
             @Override
