@@ -5,6 +5,7 @@ import view.MainWindow;
 import view.OrderPanel;
 
 import javax.swing.*;
+import java.io.*;
 
 public class LogInController {
 
@@ -12,10 +13,56 @@ public class LogInController {
     private final App mainController;
     private final OrderPanel nextPanel;
 
+    private Guest[] users;
+    private File userDataFile;
+
     public LogInController (App mainController, MainWindow mainWindow, OrderPanel nextPanel) {
         this.mainController = mainController;
         this.mainWindow = mainWindow;
         this.nextPanel = nextPanel;
+
+        userDataFile = new File("src/Database-impostor/Users.txt");
+        String usersString = getFileContent(userDataFile);
+
+        String[] usersFromFile = usersString.split("\n");
+        users = new Guest[usersFromFile.length];
+
+        for (int i = 0; i < usersFromFile.length; i++) {
+            String userString = usersFromFile[i];
+
+            String[] userData = userString.split(":");
+
+            String name = userData[0];
+            String password = userData[1];
+
+            users[i] = new Guest(name, password);
+        }
+
+    }
+
+    private String getFileContent (File f){
+
+        FileInputStream inputStream;
+
+        try {
+            inputStream = new FileInputStream(f);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return "";
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line).append("\n");
+            }
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+
+        return sb.toString();
     }
 
     public void addUser (String username, char[] password) {
@@ -24,7 +71,7 @@ public class LogInController {
 
         if(index == -1 && isUserNameValid(username)) {
             Guest newUser = new Guest(username, new String(password));
-            mainController.addUserToDatabase(newUser);
+            addUserToDatabase(newUser);
             mainWindow.setNewPanel(nextPanel.getMainPanel());
         }else{
             JOptionPane.showMessageDialog(null ,"Username is invalid, try another one");
@@ -42,7 +89,7 @@ public class LogInController {
         int index = binarySearch(username);
 
         if (index != -1) {
-            String correspondingPassword = mainController.getUsers()[index].getPassword();
+            String correspondingPassword =users[index].getPassword();
 
             boolean pwMatches = true;
 
@@ -60,7 +107,7 @@ public class LogInController {
 
 
             if (pwMatches) {
-                mainController.setCurrentUser(mainController.getUsers()[index]);
+                mainController.setCurrentUser(users[index]);
                 mainWindow.setNewPanel(nextPanel.getMainPanel());
             } else {
                 wrongPasswordOrUser = true;
@@ -74,8 +121,37 @@ public class LogInController {
         }
     }
 
+    public void addUserToDatabase (Guest guest) {
+
+        Guest[] newUsers = new Guest[users.length + 1];
+
+        StringBuilder newFileDataString = new StringBuilder();
+        boolean inserted = false;
+
+        for (int i = 0; i < newUsers.length; i++) {
+
+            int offset = inserted || i == newUsers.length - 1 ? -1:0;
+
+            if ((guest.getName().compareToIgnoreCase(users[i + offset].getName()) < 0 || i == newUsers.length - 1) && !inserted){
+                inserted = true;
+                newUsers[i] = guest;
+            } else {
+                newUsers[i] = users[i + offset];
+            }
+
+            newFileDataString.append(String.format("%s:%s%n", newUsers[i].getName(), newUsers[i].getPassword()));
+        }
+
+        users = newUsers;
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(userDataFile))) {
+            writer.write(newFileDataString.toString());
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+    }
+
     private int binarySearch (String key) {
-        Guest[] users = mainController.getUsers();
 
         int l = 0;
         int r = users.length - 1;
@@ -98,5 +174,9 @@ public class LogInController {
         }
 
         return -1;
+    }
+
+    public Guest[] getUsers() {
+        return users;
     }
 }
