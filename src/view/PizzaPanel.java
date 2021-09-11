@@ -4,27 +4,31 @@ import control.App;
 import model.food.Pizza;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 public class PizzaPanel extends ViewPanel {
+
     private JPanel pizzaPanel;
-    private JComboBox pizzaSelectionBox;
+    private JComboBox<String> pizzaSelectionBox;
     private JButton addToCartButton;
     private JButton backButton;
-    private String selectetTypOfPizza;
+
+    private Pizza thisPizza;
 
     public PizzaPanel(App mainController, MainWindow mainWindow, OrderPanel orderPanel) {
 
         super(mainController, mainWindow);
 
+        thisPizza = new Pizza(mainController);
+
+        for (String topping: thisPizza.getToppings()) {
+            pizzaSelectionBox.addItem(topping);
+        }
+
         backButton.addActionListener(e -> mainWindow.setNewPanel(orderPanel.getMainPanel()));
 
         addToCartButton.addActionListener(e -> {
-            selectetTypOfPizza=(String)pizzaSelectionBox.getSelectedItem();
-            mainController.getCurrentUser().addToOrder(new Pizza(mainController,selectetTypOfPizza));
+            String selectedTypeOfPizza = (String) pizzaSelectionBox.getSelectedItem();
+            mainController.getCurrentUser().addToOrder(new Pizza(mainController, selectedTypeOfPizza));
         });
     }
 

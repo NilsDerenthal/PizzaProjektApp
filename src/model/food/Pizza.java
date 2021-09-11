@@ -6,11 +6,14 @@ import control.App;
 public class Pizza extends Meal {
 
     private final String[] availibleTypes = {
-            "Salami",
             "Margerita",
-            "Pepperoni",
-            "Four Seasons",
-            "Hawaii"
+            "Salami",
+            "Prosciutto",
+            "Quattro Formaggi",
+            "Marinara",
+            "Funghi",
+            "Capricciosa",
+            "Diavola",
     };
 
     // kann 'null' sein -> noch kein Ofen "verfügbar"/Zugewiesen;
@@ -40,9 +43,17 @@ public class Pizza extends Meal {
         this.oven = oven;
     }
 
+    public Pizza(App mainController) {
+        this(mainController, null);
+    }
+
     public void makeIt(){
         super.makeIt();
         //Todo
+    }
+
+    public String[] getToppings () {
+        return availibleTypes;
     }
 
     @Override

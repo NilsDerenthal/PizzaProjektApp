@@ -13,7 +13,6 @@ public class MainWindow extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setContentPane(new StartPanel(control,this).getMainPanel());
         setVisible(true);
-        //setSize(600,400);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setBounds(screenSize.width/2 - 300, screenSize.height/2 - 200, 600, 400);
