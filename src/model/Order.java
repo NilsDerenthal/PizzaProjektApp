@@ -17,6 +17,8 @@ public class Order {
 
     public Meal[] getMealsInOrder(){ return mealsInOrder; }
 
+    public Meal getMealsInOrder(int i){ return mealsInOrder[i]; }
+
     public Beverage[] getBeveragesInOrder(){ return beveragesInOrder; }
 
     public void addMeal(Meal newMeal){

@@ -23,24 +23,19 @@ public class Pizza extends Meal {
     // Can be Salami, Margherita, etc.
     private String typeOfPizza;
 
+    private Oven[] ovens= {
+            new Oven(),
+            new Oven(),
+            new Oven(),
+    };
+
     /**
      * Creates a Pizza with the given type
      * @param type the type of Pizza (For example Salami)
      */
     public Pizza (App app, String type) {
-        this(app, type, null);
-        price=7;
-    }
-
-    /**
-     * Creates a Pizza with a given Oven.
-     * @param type the type of Pizza (for example Salami)
-     * @param oven the Oven to
-     */
-    public Pizza (App app, String type, Oven oven) {
         super(app);
-        this.typeOfPizza = type;
-        this.oven = oven;
+        price=7;
     }
 
     public Pizza(App mainController) {
@@ -49,7 +44,18 @@ public class Pizza extends Meal {
 
     public void makeIt(){
         super.makeIt();
+        int oven=checkOven();
+        if(oven>=0) {
+            ovens[oven].setPizza(this);
+        }
         //Todo
+    }
+
+    private int checkOven(){
+        for(int i=0;i< ovens.length;i++){
+            if(!ovens[i].bakePizza()){ return i; }
+        }
+        return -1;
     }
 
     public String[] getToppings () {

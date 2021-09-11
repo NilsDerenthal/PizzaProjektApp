@@ -9,6 +9,7 @@ public class Oven {
 
     private boolean baking;
     private double bakingProgress;
+    private long start;
 
     public Oven (Pizza pizza) {
         this.pizza = pizza;
@@ -32,11 +33,16 @@ public class Oven {
         return true;
     }
 
+    public long fiveMinutesTimer(){
+        return System.currentTimeMillis()-start;
+    }
+
     public Pizza getPizza () {
         return pizza;
     }
 
     public void setPizza (Pizza newPizza) {
         this.pizza = newPizza;
+        long start = System.currentTimeMillis();
     }
 }

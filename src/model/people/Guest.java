@@ -59,5 +59,7 @@ public class Guest {
 
     public Meal[] getOrder() { return order.getMealsInOrder(); }
 
+    public Meal getOrder(int i) { return order.getMealsInOrder(i); }
+
     public Beverage[] getBeverageOrder() { return order.getBeveragesInOrder(); }
 }
