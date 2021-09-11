@@ -1,11 +1,13 @@
 package model.people;
 
 import model.food.Meal;
+import model.Order;
 
 public class Guest {
 
     private String name;
     private String password;
+    private Order order;
 
     private double budget;
     private Meal[] lastMeals;
@@ -39,4 +41,9 @@ public class Guest {
     public String toString() {
         return name;
     }
+
+    public void makeOrder() { order = new Order(); }
+
+    public void addToOrder(Meal isAddTo) { order.addMeal(isAddTo); }
+
 }

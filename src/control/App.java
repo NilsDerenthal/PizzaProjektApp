@@ -116,4 +116,6 @@ public class App {
     public void setCurrentUser(Guest currentUser) {
         this.currentUser = currentUser;
     }
+
+    public Guest getCurrentUser(){ return currentUser; }
 }
