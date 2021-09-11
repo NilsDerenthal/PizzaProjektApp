@@ -7,20 +7,28 @@ import javax.swing.*;
 
 public class PizzaPanel extends ViewPanel {
     private JPanel pizzaPanel;
-    private JComboBox pizzaSelectionBox;
+    private JComboBox<String> pizzaSelectionBox;
     private JButton addToCartButton;
     private JButton backButton;
-    private String selectetTypOfPizza;
+    private String selectedPizzaType;
+
+    private Pizza pizza;
 
     public PizzaPanel(App mainController, MainWindow mainWindow, OrderPanel orderPanel) {
 
         super(mainController, mainWindow);
 
+        pizza = new Pizza(mainController);
+
+        for (String s: pizza.getToppings()) {
+            pizzaSelectionBox.addItem(s);
+        }
+
         backButton.addActionListener(e -> mainWindow.setNewPanel(orderPanel.getMainPanel()));
 
         addToCartButton.addActionListener(e -> {
-            selectetTypOfPizza=(String)pizzaSelectionBox.getSelectedItem();
-            mainController.getCurrentUser().addToOrder(new Pizza(mainController,selectetTypOfPizza));
+            selectedPizzaType = (String) pizzaSelectionBox.getSelectedItem();
+            mainController.getCurrentUser().addToOrder(new Pizza(mainController, selectedPizzaType));
         });
     }
 
