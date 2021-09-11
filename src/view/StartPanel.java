@@ -17,11 +17,11 @@ public class StartPanel extends ViewPanel{
         OrderPanel orderPanel = new OrderPanel(mainController, parent);
 
         logInButton.addActionListener(e -> {
-            parent.setNewPanel(new LoginPanel(mainController, parent, getMainPanel(), false, orderPanel).getMainPanel());
+            parent.setNewPanel(new LoginPanel(mainController, mainController.getLogInController(), parent, getMainPanel(), false, orderPanel).getMainPanel());
         });
 
         signUpButton.addActionListener(e -> {
-            parent.setNewPanel(new LoginPanel(mainController, parent, getMainPanel(), true, orderPanel).getMainPanel());
+            parent.setNewPanel(new LoginPanel(mainController, mainController.getLogInController(), parent, getMainPanel(), true, orderPanel).getMainPanel());
         });
 
     }

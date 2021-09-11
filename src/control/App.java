@@ -3,6 +3,7 @@ package control;
 import model.people.Guest;
 import model.utility.Storage;
 import view.MainWindow;
+import view.OrderPanel;
 
 import java.io.*;
 import java.util.Arrays;
@@ -18,12 +19,16 @@ public class App {
 
     private File userDataFile;
 
+    private LogInController logInController;
+
     public static void main(String[] args) {
         new App();
     }
 
     public App(){
-        new MainWindow(this);
+        MainWindow m = new MainWindow(this);
+
+        logInController = new LogInController(this, m, new OrderPanel(this,m));
 
         storage = new Storage(this);
 
@@ -100,31 +105,6 @@ public class App {
         }
     }
 
-    public int binarySearch (String key) {
-
-        int l = 0;
-        int r = users.length - 1;
-
-        while (l <= r) {
-
-            int m = (l+r)/2;
-
-            int comp = key.compareTo(users[m].getName());
-
-            if (comp == 0)
-                return m;
-
-
-            if (comp > 0) {
-                l = m + 1;
-            } else {
-                r = m - 1;
-            }
-        }
-
-        return -1;
-    }
-
     public void subtractMoney(double amount) {
         money -= amount;
     }
@@ -144,4 +124,8 @@ public class App {
     }
 
     public Guest getCurrentUser(){ return currentUser; }
+
+    public LogInController getLogInController() {
+        return logInController;
+    }
 }

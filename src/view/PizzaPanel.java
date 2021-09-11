@@ -6,13 +6,14 @@ import model.food.Pizza;
 import javax.swing.*;
 
 public class PizzaPanel extends ViewPanel {
+
     private JPanel pizzaPanel;
     private JComboBox<String> pizzaSelectionBox;
     private JButton addToCartButton;
     private JButton backButton;
-    private String selectedPizzaType;
 
-    private Pizza pizza;
+    private String selectedPizzaType;
+    private final Pizza pizza;
 
     public PizzaPanel(App mainController, MainWindow mainWindow, OrderPanel orderPanel) {
 
