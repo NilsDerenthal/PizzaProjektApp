@@ -59,6 +59,7 @@ public class LoginPanel extends ViewPanel{
         boolean wrongPasswordOrUser = false;
 
         int index = binarySearch(usernameTextField.getText());
+
         if (index != -1) {
             String correspondingPassword = mainController.getUsers()[index].getPassword();
 
@@ -80,8 +81,8 @@ public class LoginPanel extends ViewPanel{
     private int binarySearch (String key) {
         Guest[] users = mainController.getUsers();
 
-        int l = users.length - 1;
-        int r = 0;
+        int l = 0;
+        int r = users.length - 1;
 
         while (l <= r) {
 
