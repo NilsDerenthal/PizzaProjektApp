@@ -19,6 +19,7 @@ public class FinalPanel extends ViewPanel{
         newOrderButton.addActionListener( e -> mainWindow.setNewPanel(new OrderPanel(mainController,mainWindow).getMainPanel()));
 
         logOutButton.addActionListener( e -> mainWindow.setNewPanel(new StartPanel(mainController,parent).getMainPanel()));
+        watchOrderButton.addActionListener( e -> mainWindow.setNewPanel(new ProgressPanel(mainController,mainWindow,this).getMainPanel()));
     }
 
     public JPanel getMainPanel() {
