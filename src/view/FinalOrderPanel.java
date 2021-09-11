@@ -5,8 +5,6 @@ import model.food.Meal;
 import model.Beverage;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class FinalOrderPanel extends ViewPanel{
     private JPanel finalOrderPanel;
@@ -20,7 +18,7 @@ public class FinalOrderPanel extends ViewPanel{
     public FinalOrderPanel(App mainController, MainWindow parent, MainWindow mainWindow, OrderPanel orderPanel){
         super(mainController,parent);
         this.mainWindow=mainWindow;
-        setTextPane1();
+        setOrderText();
         buyButten.addActionListener( e -> buy() );
         backButton.addActionListener( e -> parent.setContentPane(orderPanel.getMainPanel()));
     }
@@ -36,7 +34,10 @@ public class FinalOrderPanel extends ViewPanel{
         }
     }
 
-    private void setTextPane1(){
+    private void setOrderText(){
+
+        textPane1.setEditable(false);
+
         if(mainController.getCurrentUser().getOrder()!=null) {
             Meal[] currentOrder = mainController.getCurrentUser().getOrder();
             for (int i = 1; i < currentOrder.length; i++) {
