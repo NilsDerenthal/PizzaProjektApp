@@ -1,15 +1,9 @@
 package view;
 
 import control.App;
-import model.Order;
 import model.people.Guest;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
-import java.time.Instant;
-import java.time.Year;
-import java.util.Arrays;
-import java.util.Date;
 
 public class LoginPanel extends ViewPanel{
 

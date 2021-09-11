@@ -1,5 +1,6 @@
 package view;
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import control.App;
 import javax.swing.*;
 
@@ -8,6 +9,8 @@ public class MainWindow extends JFrame {
     private final App mainController;
 
     public MainWindow(App control){
+
+        FlatDarkLaf.setup();
 
         this.mainController = control;
 
