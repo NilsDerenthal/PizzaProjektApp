@@ -5,6 +5,7 @@ import model.utility.Storage;
 import view.MainWindow;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class App {
 
@@ -97,6 +98,31 @@ public class App {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
+    }
+
+    public int binarySearch (String key) {
+
+        int l = 0;
+        int r = users.length - 1;
+
+        while (l <= r) {
+
+            int m = (l+r)/2;
+
+            int comp = key.compareTo(users[m].getName());
+
+            if (comp == 0)
+                return m;
+
+
+            if (comp > 0) {
+                l = m + 1;
+            } else {
+                r = m - 1;
+            }
+        }
+
+        return -1;
     }
 
     public void subtractMoney(double amount) {

@@ -35,7 +35,7 @@ public class LoginPanel extends ViewPanel{
 
     private void addUser(MainWindow mainWindow) {
         if(usernameTextField.getText() != null && passwordField.getPassword() != null) {
-            int index = binarySearch(usernameTextField.getText());
+            int index = mainController.binarySearch(usernameTextField.getText());
 
             if(index == -1 && isUserNameValid()) {
                 Guest newUser = new Guest(usernameTextField.getText(), new String(passwordField.getPassword()));
@@ -58,7 +58,7 @@ public class LoginPanel extends ViewPanel{
 
         boolean wrongPasswordOrUser = false;
 
-        int index = binarySearch(usernameTextField.getText());
+        int index = mainController.binarySearch(usernameTextField.getText());
 
         if (index != -1) {
             String correspondingPassword = mainController.getUsers()[index].getPassword();
@@ -76,38 +76,6 @@ public class LoginPanel extends ViewPanel{
         if (wrongPasswordOrUser) {
             JOptionPane.showMessageDialog(this.getMainPanel(),"Wrong password or username entered");
         }
-    }
-
-    private int binarySearch (String key) {
-        Guest[] users = mainController.getUsers();
-
-        int l = 0;
-        int r = users.length - 1;
-
-        System.out.printf(Arrays.toString(users) + " l:%d r:%d%n",l,r);
-        System.out.println("testing for: " + key + "\n");
-
-        while (l <= r) {
-
-            int m = (l+r)/2;
-
-            System.out.println("current: " + users[m] + "   left:" + l + " right:" + r + " middle:" + m);
-            int comp = key.compareTo(users[m].getName());
-
-            if (comp == 0)
-                return m;
-
-
-            if (comp > 0) {
-                System.out.println("pruned left of " + m);
-                l = m + 1;
-            } else {
-                System.out.println("pruned right of " + m);
-                r = m - 1;
-            }
-        }
-
-        return -1;
     }
 
     public JPanel getMainPanel() {
