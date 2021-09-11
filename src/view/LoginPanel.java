@@ -84,20 +84,25 @@ public class LoginPanel extends ViewPanel{
         int l = 0;
         int r = users.length - 1;
 
+        System.out.printf(Arrays.toString(users) + " l:%d r:%d%n",l,r);
+        System.out.println("testing for: " + key + "\n");
+
         while (l <= r) {
 
             int m = (l+r)/2;
 
+            System.out.println("current: " + users[m] + "   left:" + l + " right:" + r + " middle:" + m);
             int comp = key.compareTo(users[m].getName());
 
             if (comp == 0)
                 return m;
 
-            System.out.println(m);
 
             if (comp > 0) {
+                System.out.println("pruned left of " + m);
                 l = m + 1;
             } else {
+                System.out.println("pruned right of " + m);
                 r = m - 1;
             }
         }
