@@ -27,7 +27,7 @@ public class FinalOrderPanel extends ViewPanel{
         if(mainController.getCurrentUser().getOrder()!=null) {
             if (mainController.getCurrentUser().getBudget() >= mainController.getCurrentUser().getOrderPrice()) {
                 mainController.getCurrentUser().reduceBudget(mainController.getCurrentUser().getOrderPrice());
-                mainWindow.setNewPanel(new FinalPanel(mainController, parent, mainWindow).getMainPanel());
+                mainWindow.setNewPanel(new FinalPanel(mainController, this.mainWindow, mainWindow).getMainPanel());
             } else {
                 JOptionPane.showMessageDialog(this.getMainPanel(), "You haven't enough money");
             }

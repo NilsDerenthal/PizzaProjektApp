@@ -7,8 +7,6 @@ import javax.swing.*;
 
 public class LoginPanel extends ViewPanel{
 
-    private final boolean signUpPanel;
-
     private JTextField usernameTextField;
     private JPanel mainPanel;
     private JPasswordField passwordField;
@@ -21,13 +19,12 @@ public class LoginPanel extends ViewPanel{
         super(mainController, mainWindow);
 
         logInButton.setText(signUpPanel ? "Sign up" : "Log in");
-        this.signUpPanel = signUpPanel;
         this.orderPanel = orderPanel;
-        logInButton.addActionListener(!signUpPanel ? e -> checkLogIn() : e -> addUser(mainWindow));
+        logInButton.addActionListener(!signUpPanel ? e -> checkLogIn() : e -> addUser());
         goBackButton.addActionListener(e -> mainWindow.setNewPanel(parent));
     }
 
-    private void addUser(MainWindow mainWindow) {
+    private void addUser() {
         if(usernameTextField.getText() != null && passwordField.getPassword() != null) {
             int index = mainController.binarySearch(usernameTextField.getText());
 
@@ -59,7 +56,7 @@ public class LoginPanel extends ViewPanel{
 
             if (correspondingPassword.equals(new String(passwordField.getPassword()))) {
                 mainController.setCurrentUser(mainController.getUsers()[index]);
-                parent.setNewPanel(orderPanel.getMainPanel());
+                mainWindow.setNewPanel(orderPanel.getMainPanel());
             } else {
                 wrongPasswordOrUser = true;
             }

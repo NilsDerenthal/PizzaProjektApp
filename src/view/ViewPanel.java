@@ -4,11 +4,11 @@ import control.App;
 
 public abstract class ViewPanel {
 
-    protected App mainController;
-    protected final MainWindow parent;
+    protected final App mainController;
+    protected final MainWindow mainWindow;
 
-    public ViewPanel (App MainController, MainWindow parent){
+    public ViewPanel (App MainController, MainWindow mainWindow){
         this.mainController = MainController;
-        this.parent = parent;
+        this.mainWindow = mainWindow;
     }
 }

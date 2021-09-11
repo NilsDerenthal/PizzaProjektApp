@@ -16,15 +16,15 @@ public class PizzaPanel extends ViewPanel {
     private JButton backButton;
     private String selectetTypOfPizza;
 
-    public PizzaPanel(App maincontroller, MainWindow mainWindow, OrderPanel orderPanel) {
-        super(maincontroller, mainWindow);
+    public PizzaPanel(App mainController, MainWindow mainWindow, OrderPanel orderPanel) {
+
+        super(mainController, mainWindow);
+
         backButton.addActionListener(e -> mainWindow.setNewPanel(orderPanel.getMainPanel()));
-        addToCartButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                selectetTypOfPizza=(String)pizzaSelectionBox.getSelectedItem();
-                mainController.getCurrentUser().addToOrder(new Pizza(maincontroller,selectetTypOfPizza));
-            }
+
+        addToCartButton.addActionListener(e -> {
+            selectetTypOfPizza=(String)pizzaSelectionBox.getSelectedItem();
+            mainController.getCurrentUser().addToOrder(new Pizza(mainController,selectetTypOfPizza));
         });
     }
 
