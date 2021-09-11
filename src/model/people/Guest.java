@@ -46,4 +46,5 @@ public class Guest {
 
     public void addToOrder(Meal isAddTo) { order.addMeal(isAddTo); }
 
+    public Meal[] getOrder() { return order.getMealsInOrder(); }
 }
