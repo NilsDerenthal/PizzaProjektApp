@@ -2,7 +2,9 @@ package view;
 
 import control.App;
 
-public abstract class ViewPanel {
+import javax.swing.*;
+
+public abstract class ViewPanel{
 
     protected final App mainController;
     protected final MainWindow mainWindow;
