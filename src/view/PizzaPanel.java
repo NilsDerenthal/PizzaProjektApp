@@ -28,7 +28,9 @@ public class PizzaPanel extends ViewPanel {
 
         addToCartButton.addActionListener(e -> {
             selectedPizzaType = (String) pizzaSelectionBox.getSelectedItem();
-            mainController.getCurrentUser().addToOrder(new Pizza(mainController, selectedPizzaType));
+
+            pizza.setTopping(selectedPizzaType);
+            mainController.getCurrentUser().addToOrder(pizza);
         });
     }
 

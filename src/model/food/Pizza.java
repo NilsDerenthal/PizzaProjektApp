@@ -61,4 +61,13 @@ public class Pizza extends Meal {
         if(typeOfPizza.equals("Margerita")){ return price-1; }
         return price;
     }
+
+    @Override
+    public String toString() {
+        return "Pizza " + typeOfPizza;
+    }
+
+    public void setTopping(String selectedPizzaType) {
+        typeOfPizza = selectedPizzaType;
+    }
 }
