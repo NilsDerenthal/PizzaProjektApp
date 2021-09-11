@@ -4,7 +4,7 @@ import model.food.Meal;
 public class Order {
 
     private double totalPrice;
-    private Meal[] mealsInOrder;
+    private Meal[] mealsInOrder=new Meal[1];
 
     public Order(){
 
@@ -26,5 +26,5 @@ public class Order {
         mealsInOrder = tmpNewMeals;
     }
 
-    public void clearOrder(){ mealsInOrder=null; }
+    public void clearOrder(){ mealsInOrder=new Meal[1]; }
 }

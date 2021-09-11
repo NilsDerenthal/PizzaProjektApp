@@ -19,11 +19,12 @@ public class FinalOrderPanel extends ViewPanel{
         super(mainController,parent);
         this.mainWindow=mainWindow;
         setTextPane1();
-        buy();
+        buyButten.addActionListener( e -> buy() );
+        //backButton.addActionListener( ); //Todo
     }
 
     private void buy(){
-        if( mainController.getCurrentUser().getBudget() >= mainController.getCurrentUser().getOrderPrice()){
+        if( mainController.getCurrentUser().getBudget() >= mainController.getCurrentUser().getOrderPrice() ){
             mainController.getCurrentUser().reduceBudget(mainController.getCurrentUser().getOrderPrice());
             mainWindow.setNewPanel(new FinalPanel(mainController,parent,mainWindow).getMainPanel());
         }else{
@@ -35,6 +36,7 @@ public class FinalOrderPanel extends ViewPanel{
         Meal[] currentOrder=mainController.getCurrentUser().getOrder();
         for(int i=0;i< currentOrder.length;i++){
             textPane1.setText(textPane1.getText()+currentOrder[i]+"\n");
+            //Todo
         }
     }
 

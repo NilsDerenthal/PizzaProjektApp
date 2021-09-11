@@ -7,7 +7,7 @@ public class Guest {
 
     private String name;
     private String password;
-    private Order order;
+    private Order order=new Order();
 
     private double budget=100;
     private Meal[] lastMeals;
@@ -49,8 +49,6 @@ public class Guest {
     public String toString() {
         return name;
     }
-
-    public void makeOrder() { order = new Order(); }
 
     public void addToOrder(Meal isAddTo) { order.addMeal(isAddTo); }
 
