@@ -3,6 +3,7 @@ package control;
 import model.people.Guest;
 import model.utility.Storage;
 import view.MainWindow;
+import view.MenuePanel;
 import view.OrderPanel;
 
 import java.io.*;

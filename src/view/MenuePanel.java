@@ -15,9 +15,9 @@ public class MenuePanel extends ViewPanel{
 
         mainController.getCurrentUser().clearOrder();
         newOrderButton.addActionListener( e -> mainWindow.setNewPanel(new OrderPanel(mainController,mainWindow).getMainPanel()));
-
         logOutButton.addActionListener( e -> mainWindow.setNewPanel(new StartPanel(mainController,parent).getMainPanel()));
         lastOrderButton.addActionListener(e -> mainWindow.setNewPanel(new ProgressPanel(mainController,mainWindow,parent).getMainPanel()));
+        //Todo
     }
 
     public JPanel getMainPanel() {

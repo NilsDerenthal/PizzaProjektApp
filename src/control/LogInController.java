@@ -2,6 +2,7 @@ package control;
 
 import model.people.Guest;
 import view.MainWindow;
+import view.MenuePanel;
 import view.OrderPanel;
 
 import javax.swing.*;
