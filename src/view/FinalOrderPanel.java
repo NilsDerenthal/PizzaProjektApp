@@ -24,11 +24,13 @@ public class FinalOrderPanel extends ViewPanel{
     }
 
     private void buy(){
-        if( mainController.getCurrentUser().getBudget() >= mainController.getCurrentUser().getOrderPrice() ){
-            mainController.getCurrentUser().reduceBudget(mainController.getCurrentUser().getOrderPrice());
-            mainWindow.setNewPanel(new FinalPanel(mainController,parent,mainWindow).getMainPanel());
-        }else{
-            JOptionPane.showMessageDialog(this.getMainPanel(),"You haven't enough money");
+        if(mainController.getCurrentUser().getOrder()!=null) {
+            if (mainController.getCurrentUser().getBudget() >= mainController.getCurrentUser().getOrderPrice()) {
+                mainController.getCurrentUser().reduceBudget(mainController.getCurrentUser().getOrderPrice());
+                mainWindow.setNewPanel(new FinalPanel(mainController, parent, mainWindow).getMainPanel());
+            } else {
+                JOptionPane.showMessageDialog(this.getMainPanel(), "You haven't enough money");
+            }
         }
     }
 
