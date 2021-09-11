@@ -4,7 +4,6 @@ import control.App;
 import model.food.Pizza;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class PizzaPanel extends ViewPanel {
     private JPanel pizzaPanel;

@@ -10,6 +10,7 @@ public class FinalPanel extends ViewPanel{
     private JButton newOrderButton;
     private JButton logOutButton;
     private JPanel finalPanel;
+    private JButton watchOrderButton;
 
     public FinalPanel(App mainController, MainWindow parent, MainWindow mainWindow) {
         super(mainController,parent);
