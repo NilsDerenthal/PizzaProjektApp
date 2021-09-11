@@ -13,6 +13,7 @@ public class FinalOrderPanel extends ViewPanel{
     private JLabel label1;
     private JTextPane textPane1;
     private MainWindow mainWindow;
+    private MainWindow parent;
     private OrderPanel orderPanel;
 
     public FinalOrderPanel(App mainController, MainWindow parent, MainWindow mainWindow, OrderPanel orderPanel){
@@ -27,7 +28,7 @@ public class FinalOrderPanel extends ViewPanel{
         if(mainController.getCurrentUser().getOrder()!=null) {
             if (mainController.getCurrentUser().getBudget() >= mainController.getCurrentUser().getOrderPrice()) {
                 mainController.getCurrentUser().reduceBudget(mainController.getCurrentUser().getOrderPrice());
-                mainWindow.setNewPanel(new FinalPanel(mainController, this.mainWindow, mainWindow).getMainPanel());
+                mainWindow.setNewPanel(new ProgressPanel(mainController, this.mainWindow,parent).getMainPanel());
             } else {
                 JOptionPane.showMessageDialog(this.getMainPanel(), "You haven't enough money");
             }

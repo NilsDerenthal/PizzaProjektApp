@@ -45,4 +45,6 @@ public class Oven {
         this.pizza = newPizza;
         long start = System.currentTimeMillis();
     }
+
+    public long getStart(){ return start; }
 }
