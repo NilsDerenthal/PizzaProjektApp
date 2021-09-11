@@ -1,6 +1,7 @@
 package view;
 
 import control.App;
+import model.food.Salad;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -17,12 +18,7 @@ public class SaladPanel extends ViewPanel{
         super(maincontroller, mainWindow);
 
         backButton.addActionListener(e -> mainWindow.setNewPanel(orderPanel.getMainPanel()));
-        addToCartButten.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //Todo
-            }
-        });
+        addToCartButten.addActionListener( e -> mainController.getCurrentUser().addToOrder(new Salad(maincontroller)));
     }
 
     public JPanel getMainPanel() {
