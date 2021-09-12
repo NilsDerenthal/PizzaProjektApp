@@ -2,7 +2,6 @@ package view;
 
 import control.App;
 import control.ViewController;
-import model.food.Pizza;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
