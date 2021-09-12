@@ -5,7 +5,7 @@ public class Doener extends Meal {
 
     private double skewerPercentage = 1;
     //hardcoded value (25€)
-    private double skewerPrice = 25.00;
+    private final double skewerPrice = 25.00;
 
     public Doener (App app) {
         super(app);

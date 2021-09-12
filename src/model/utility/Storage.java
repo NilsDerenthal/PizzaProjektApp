@@ -5,7 +5,7 @@ import control.App;
 public class Storage {
     private int saladkit;
     private double dressingTankfill;
-    private App mainController;
+    private final App mainController;
 
     public Storage(App mainController) {
         this.mainController = mainController;
