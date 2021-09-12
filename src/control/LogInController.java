@@ -10,17 +10,14 @@ import java.io.*;
 
 public class LogInController {
 
-    private final MainWindow mainWindow;
+
     private final App mainController;
-    private final MenuePanel nextPanel;
 
     private Guest[] users;
     private File userDataFile;
 
-    public LogInController (App mainController, MainWindow mainWindow, MenuePanel nextPanel) {
+    public LogInController (App mainController) {
         this.mainController = mainController;
-        this.mainWindow = mainWindow;
-        this.nextPanel = nextPanel;
 
         userDataFile = new File("src/Database-impostor/Users.txt");
         String usersString = getFileContent(userDataFile);
@@ -73,7 +70,7 @@ public class LogInController {
         if(index == -1 && isUserNameValid(username)) {
             Guest newUser = new Guest(username, new String(password));
             addUserToDatabase(newUser);
-            mainWindow.setNewPanel(nextPanel.getMainPanel());
+            mainController.getViewController().setPanel("orderpanel");
         }else{
             JOptionPane.showMessageDialog(null ,"Username is invalid, try another one");
         }
@@ -109,7 +106,7 @@ public class LogInController {
 
             if (pwMatches) {
                 mainController.setCurrentUser(users[index]);
-                mainWindow.setNewPanel(nextPanel.getMainPanel());
+                mainController.getViewController().setPanel("orderpanel");
             } else {
                 wrongPasswordOrUser = true;
             }

@@ -1,13 +1,6 @@
 package control;
 
 import model.people.Guest;
-import model.utility.Storage;
-import view.MainWindow;
-import view.MenuePanel;
-import view.OrderPanel;
-
-import java.io.*;
-import java.util.Arrays;
 
 public class App {
 
@@ -15,22 +8,16 @@ public class App {
 
     private Guest currentUser;
 
-    private Storage storage;
-
-
-    private LogInController logInController;
+    private final LogInController logInController;
+    private final ViewController viewController;
 
     public static void main(String[] args) {
         new App();
     }
 
     public App(){
-        MainWindow m = new MainWindow(this);
-
-        logInController = new LogInController(this, m, new MenuePanel(this,m));
-
-        storage = new Storage(this);
-
+        viewController = new ViewController(this);
+        logInController = new LogInController(this);
     }
 
 
@@ -52,5 +39,9 @@ public class App {
 
     public LogInController getLogInController() {
         return logInController;
+    }
+
+    public ViewController getViewController() {
+        return viewController;
     }
 }
