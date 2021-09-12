@@ -21,7 +21,6 @@ public class FinalOrderPanel extends ViewPanel{
     public FinalOrderPanel (ViewController viewController, MainWindow mainWindow) {
         super(viewController, mainWindow);
         this.mainWindow=mainWindow;
-        setOrderText();
         buyButten.addActionListener( e -> buy() );
         backButton.addActionListener( e -> parent.setContentPane(orderPanel.getMainPanel()));
     }
@@ -62,6 +61,7 @@ public class FinalOrderPanel extends ViewPanel{
     }
 
     public JPanel getMainPanel() {
+        setOrderText();
         return finalOrderPanel;
     }
 }
