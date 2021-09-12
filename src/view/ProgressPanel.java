@@ -13,7 +13,6 @@ public class ProgressPanel extends ViewPanel{
     private JPanel progressPanel;
     private JProgressBar progressBar1;
     private JButton menueButton;
-    private  final long startT=System.currentTimeMillis();
 
     public ProgressPanel(ViewController viewController, MainWindow mainWindow){
         super(viewController, mainWindow);
@@ -28,9 +27,11 @@ public class ProgressPanel extends ViewPanel{
 
             @Override
             protected Void doInBackground() {
-                while(true){
 
-                    long progress = (System.currentTimeMillis() - startT) / 6000;
+                final long startTime = System.currentTimeMillis();
+
+                while(true){
+                    long progress = (System.currentTimeMillis() - startTime) / 6000;
 
                     if (progress >= 100)
                         break;
