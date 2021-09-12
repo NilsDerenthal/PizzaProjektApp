@@ -9,7 +9,7 @@ public class Guest {
     private String name;
     private String password;
     private Order order=new Order();
-    private Order[] lastOrders; //Todo
+    private Order[] lastOrders;
 
     private double budget=100;
 
@@ -19,7 +19,7 @@ public class Guest {
     public Guest(String name, String password) {
         this.name = name;
         this.password = password;
-        lastOrders = new Order[0];
+        lastOrders=new Order[1];
     }
 
 
@@ -33,7 +33,16 @@ public class Guest {
 
     public void reduceBudget(double price) { budget -= price; }
 
-    public void clearOrder(){ order.clearOrder(); }
+    public void makeNewOrder(){
+        Order[] tmpNewOrders = new Order[lastOrders.length + 1];
+
+        for (int i = 0; i < lastOrders.length; i++)
+            tmpNewOrders[i] = lastOrders[i];
+
+        tmpNewOrders[lastOrders.length] = order;
+        lastOrders = tmpNewOrders;
+        order=new Order();
+    }
 
     public String getPassword() {
         return password;
@@ -51,6 +60,10 @@ public class Guest {
     public Meal[] getOrder() { return order.getMealsInOrder(); }
 
     public Meal getOrder(int i) { return order.getMealsInOrder(i); }
+
+    public Order[] getLastOrders(){ return lastOrders; }
+
+    public Order getLastOrders(int i){ return lastOrders[i]; }
 
     public Beverage[] getBeverageOrder() { return order.getBeveragesInOrder(); }
 }
