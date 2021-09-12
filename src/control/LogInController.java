@@ -7,6 +7,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 
 public class LogInController {
 
@@ -17,6 +18,12 @@ public class LogInController {
     private final File userDataFile;
 
     public LogInController (App mainController) {
+
+        //byte[] solt = generateSalt();
+
+        //System.out.println(bytesToHex(solt));
+        //System.out.println(hash("testpw".toCharArray(), solt));
+
 
         this.mainController = mainController;
 
@@ -33,8 +40,9 @@ public class LogInController {
 
             String name = userData[0];
             String password = userData[1];
+            String salt = userData[2];
 
-            users[i] = new Guest(name, password);
+            users[i] = new Guest(name, password, hexToBytes(salt));
         }
 
     }
@@ -68,7 +76,9 @@ public class LogInController {
         int index = binarySearch(username);
 
         if(index == -1 && isUserNameValid(username)) {
-            Guest newUser = new Guest(username, hash(password));
+
+            byte[] salt = generateSalt();
+            Guest newUser = new Guest(username, hash(password, salt), salt);
             addUserToDatabase(newUser);
             mainController.getViewController().setPanel("setFavMealPanel");
         }else{
@@ -76,6 +86,12 @@ public class LogInController {
             JOptionPane.showMessageDialog(null , errorText);
         }
 
+    }
+
+    private byte[] generateSalt() {
+        byte[] bytes = new byte[5];
+        new SecureRandom().nextBytes(bytes);
+        return bytes;
     }
 
     private boolean isUserNameValid(String username){
@@ -90,7 +106,7 @@ public class LogInController {
         if (index != -1) {
             String correspondingPassword = users[index].getPassword();
 
-            boolean pwMatches = correspondingPassword.equals(hash(password));
+            boolean pwMatches = correspondingPassword.equals(hash(password, users[index].getSalt()));
 
             if (pwMatches) {
                 mainController.setCurrentUser(users[index]);
@@ -125,7 +141,7 @@ public class LogInController {
                 newUsers[i] = users[i + offset];
             }
 
-            newFileDataString.append(String.format("%s:%s%n", newUsers[i].getName(), newUsers[i].getPassword()));
+            newFileDataString.append(String.format("%s:%s:%s%n", newUsers[i].getName(), newUsers[i].getPassword(), bytesToHex(newUsers[i].getSalt())));
         }
 
         users = newUsers;
@@ -137,13 +153,14 @@ public class LogInController {
         }
     }
 
-    private String hash(char[] input) {
+    private String hash(char[] input, byte[] salt) {
         // Exception won't have to be caught
         try {
 
             final MessageDigest messageDigest = MessageDigest.getInstance("SHA3-256");
-            final byte[] hashbytes = messageDigest.digest(new String(input).getBytes(StandardCharsets.UTF_8));
-            return bytesToHex(hashbytes);
+            messageDigest.update(salt);
+            final byte[] hashedBytes = messageDigest.digest(new String(input).getBytes(StandardCharsets.UTF_8));
+            return bytesToHex(hashedBytes);
 
         } catch (NoSuchAlgorithmException ignored) {return null;}
     }
@@ -159,6 +176,19 @@ public class LogInController {
             hexString.append(hex);
         }
         return hexString.toString();
+    }
+
+    // source: https://stackoverflow.com/questions/140131/convert-a-string-representation-of-a-hex-dump-to-a-byte-array-using-java
+    private byte[] hexToBytes(String hex) {
+
+        int len = hex.length();
+        byte[] bytes = new byte[len/2];
+
+        for (int i = 0; i < len; i += 2) {
+            bytes[i / 2] = (byte) ((Character.digit(hex.charAt(i), 16) << 4)
+                    + Character.digit(hex.charAt(i+1), 16));
+        }
+        return bytes;
     }
 
     private int binarySearch (String key) {

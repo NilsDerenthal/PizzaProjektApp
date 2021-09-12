@@ -15,10 +15,12 @@ public class Guest {
 
     private Order favoriteMeal=new Order();
 
+    private final byte[] salt;
     //Todo günstigeres lieblingsessen
 
 
-    public Guest(String name, String password) {
+    public Guest(String name, String password, byte[] salt) {
+        this.salt = salt;
         this.name = name;
         this.password = password;
         lastOrders=new Order[1];
@@ -76,4 +78,8 @@ public class Guest {
     public Meal[] getFavOrder() { return favoriteMeal.getMealsInOrder(); }
 
     public Meal getFavOrder(int i) { return favoriteMeal.getMealsInOrder(i); }
+
+    public byte[] getSalt() {
+        return salt;
+    }
 }
