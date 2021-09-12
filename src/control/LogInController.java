@@ -7,6 +7,10 @@ import view.OrderPanel;
 
 import javax.swing.*;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 public class LogInController {
 
@@ -14,9 +18,10 @@ public class LogInController {
     private final App mainController;
 
     private Guest[] users;
-    private File userDataFile;
+    private final File userDataFile;
 
     public LogInController (App mainController) {
+
         this.mainController = mainController;
 
         userDataFile = new File("src/Database-impostor/Users.txt");
@@ -64,11 +69,10 @@ public class LogInController {
     }
 
     public void addUser (String username, char[] password) {
-
         int index = binarySearch(username);
 
         if(index == -1 && isUserNameValid(username)) {
-            Guest newUser = new Guest(username, new String(password));
+            Guest newUser = new Guest(username, hash(password));
             addUserToDatabase(newUser);
             mainController.getViewController().setPanel("setFavMealPanel");
         }else{
@@ -87,22 +91,9 @@ public class LogInController {
         int index = binarySearch(username);
 
         if (index != -1) {
-            String correspondingPassword =users[index].getPassword();
+            String correspondingPassword = users[index].getPassword();
 
-            boolean pwMatches = true;
-
-            if (correspondingPassword.length() == password.length) {
-                for (int i = 0; i < password.length; i++) {
-                    char c = password[i];
-                    if (!(c == correspondingPassword.charAt(i))) {
-                        pwMatches = false;
-                        break;
-                    }
-                }
-            } else {
-                pwMatches = false;
-            }
-
+            boolean pwMatches = correspondingPassword.equals(hash(password));
 
             if (pwMatches) {
                 mainController.setCurrentUser(users[index]);
@@ -147,6 +138,33 @@ public class LogInController {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
+    }
+
+    private String hash(char[] input) {
+
+        // Exception won't be caught
+        try {
+
+            final MessageDigest messageDigest = MessageDigest.getInstance("SHA3-256");
+            final byte[] hashbytes = messageDigest.digest(new String(input).getBytes(StandardCharsets.UTF_8));
+            return bytesToHex(hashbytes);
+
+        } catch (NoSuchAlgorithmException ignored) {}
+
+        return null;
+    }
+
+    // source: https://www.baeldung.com/sha-256-hashing-java
+    private String bytesToHex(byte[] hash) {
+        StringBuilder hexString = new StringBuilder(2 * hash.length);
+        for (byte b : hash) {
+            String hex = Integer.toHexString(0xff & b);
+            if (hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+        return hexString.toString();
     }
 
     private int binarySearch (String key) {
