@@ -1,11 +1,9 @@
 package view;
 
-import control.App;
+import control.ViewController;
 import model.Beverage;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class BeveragePanel extends ViewPanel{
 
@@ -15,15 +13,15 @@ public class BeveragePanel extends ViewPanel{
     private JPanel beveragePanel;
     private String selectetTyp;
 
-    public BeveragePanel(App maincontroller, MainWindow mainWindow, OrderPanel orderPanel){
-        super(maincontroller,mainWindow);
-        backButton.addActionListener(e -> mainWindow.setNewPanel(orderPanel.getMainPanel()));
-        addToCardButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                selectetTyp=(String)selectBox.getSelectedItem();
-                mainController.getCurrentUser().addBeverageToOrder(new Beverage(selectetTyp));
-            }
+
+    public BeveragePanel(ViewController viewController, MainWindow frame) {
+        super(viewController, frame);
+
+        backButton.addActionListener(e -> viewController.setPanel("orderPanel"));
+
+        addToCardButton.addActionListener(e -> {
+            selectetTyp=(String)selectBox.getSelectedItem();
+            this.viewController.getMainController().getCurrentUser().addBeverageToOrder(new Beverage(selectetTyp));
         });
     }
 

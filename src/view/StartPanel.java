@@ -1,6 +1,6 @@
 package view;
 
-import control.App;
+import control.ViewController;
 
 import javax.swing.*;
 
@@ -10,18 +10,19 @@ public class StartPanel extends ViewPanel{
     private JButton signUpButton;
     private JPanel mainPanel;
 
-    public StartPanel(App mainController, MainWindow parent) {
+    public StartPanel(ViewController viewController, MainWindow parent) {
 
-        super(mainController, parent);
+        super(viewController, parent);
 
-        OrderPanel orderPanel = new OrderPanel(mainController, parent);
+        OrderPanel orderPanel = new OrderPanel(viewController, parent);
 
+        //TODO
         logInButton.addActionListener(e -> {
-            parent.setNewPanel(new LoginPanel(mainController, mainController.getLogInController(), parent, getMainPanel(), false, orderPanel).getMainPanel());
+            parent.setNewPanel(new LoginPanel(viewController, viewController.getMainController().getLogInController(), parent, getMainPanel(), false, orderPanel).getMainPanel());
         });
 
         signUpButton.addActionListener(e -> {
-            parent.setNewPanel(new LoginPanel(mainController, mainController.getLogInController(), parent, getMainPanel(), true, orderPanel).getMainPanel());
+            parent.setNewPanel(new LoginPanel(viewController, viewController.getMainController().getLogInController(), parent, getMainPanel(), true, orderPanel).getMainPanel());
         });
 
     }

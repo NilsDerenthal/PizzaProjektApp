@@ -1,8 +1,10 @@
 package view;
 
 import control.App;
+import control.ViewController;
 import model.food.Meal;
 import model.Beverage;
+import model.people.Guest;
 
 import javax.swing.*;
 
@@ -16,8 +18,8 @@ public class FinalOrderPanel extends ViewPanel{
     private MainWindow parent;
     private OrderPanel orderPanel;
 
-    public FinalOrderPanel(App mainController, MainWindow parent, MainWindow mainWindow, OrderPanel orderPanel){
-        super(mainController,parent);
+    public FinalOrderPanel(ViewController viewController, MainWindow parent, MainWindow mainWindow, OrderPanel orderPanel){
+        super(viewController,parent);
         this.mainWindow=mainWindow;
         setOrderText();
         buyButten.addActionListener( e -> buy() );
@@ -25,10 +27,14 @@ public class FinalOrderPanel extends ViewPanel{
     }
 
     private void buy(){
-        if(mainController.getCurrentUser().getOrder()!=null) {
-            if (mainController.getCurrentUser().getBudget() >= mainController.getCurrentUser().getOrderPrice()) {
-                mainController.getCurrentUser().reduceBudget(mainController.getCurrentUser().getOrderPrice());
-                mainWindow.setNewPanel(new ProgressPanel(mainController, this.mainWindow).getMainPanel());
+
+        Guest currentUser = viewController.getMainController().getCurrentUser();
+
+        if(currentUser.getOrder()!=null) {
+            if (currentUser.getBudget() >= currentUser.getOrderPrice()) {
+                currentUser.reduceBudget(currentUser.getOrderPrice());
+                //TODO MAIN CONTROLLER TO VIEW CONTROLLER BUT XAVER IST WORKING ON THIS
+                //mainWindow.setNewPanel(new ProgressPanel(viewController, this.mainWindow).getMainPanel());
             } else {
                 JOptionPane.showMessageDialog(this.getMainPanel(), "You haven't enough money");
             }
@@ -39,19 +45,21 @@ public class FinalOrderPanel extends ViewPanel{
 
         textPane1.setEditable(false);
 
-        if(mainController.getCurrentUser().getOrder()!=null) {
-            Meal[] currentOrder = mainController.getCurrentUser().getOrder();
+        Guest currentUser = viewController.getMainController().getCurrentUser();
+
+        if(currentUser.getOrder()!=null) {
+            Meal[] currentOrder = currentUser.getOrder();
             for (int i = 1; i < currentOrder.length; i++) {
                 textPane1.setText(textPane1.getText() + currentOrder[i] + "\n");
             }
         }
-        if(mainController.getCurrentUser().getBeverageOrder()!=null) {
-            Beverage[] currentOrder = mainController.getCurrentUser().getBeverageOrder();
+        if(currentUser.getBeverageOrder()!=null) {
+            Beverage[] currentOrder = currentUser.getBeverageOrder();
             for (int i = 1; i < currentOrder.length; i++) {
                 textPane1.setText(textPane1.getText() + currentOrder[i].getTypOfBeverage() + "\n");
             }
         }
-        textPane1.setText(textPane1.getText() + "\n" + "Price: " + mainController.getCurrentUser().getOrderPrice() );
+        textPane1.setText(textPane1.getText() + "\n" + "Price: " + currentUser.getOrderPrice() );
     }
 
     public JPanel getMainPanel() {

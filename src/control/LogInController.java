@@ -106,7 +106,7 @@ public class LogInController {
 
             if (pwMatches) {
                 mainController.setCurrentUser(users[index]);
-                mainController.getViewController().setPanel("orderpanel");
+                mainController.getViewController().setPanel("orderPanel");
             } else {
                 wrongPasswordOrUser = true;
             }

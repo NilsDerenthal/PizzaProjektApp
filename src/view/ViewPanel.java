@@ -1,15 +1,19 @@
 package view;
 
-import control.App;
+import control.ViewController;
+
+import javax.swing.*;
 
 
 public abstract class ViewPanel {
 
-    protected final App mainController;
+    protected final ViewController viewController;
     protected final MainWindow mainWindow;
 
-    public ViewPanel (App MainController, MainWindow mainWindow){
-        this.mainController = MainController;
+    public ViewPanel (ViewController viewController, MainWindow mainWindow){
+        this.viewController = viewController;
         this.mainWindow = mainWindow;
     }
+
+    public abstract JPanel getMainPanel();
 }

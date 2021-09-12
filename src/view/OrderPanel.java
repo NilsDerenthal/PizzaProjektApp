@@ -1,10 +1,8 @@
 package view;
 
-import control.App;
+import control.ViewController;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class OrderPanel extends ViewPanel {
 
@@ -15,16 +13,14 @@ public class OrderPanel extends ViewPanel {
     private JButton buyButton;
     private JButton beverageButton;
 
-    public OrderPanel(App maincontroller, MainWindow mainWindow) {
-        super(maincontroller, mainWindow);
-        /**
-         * Opens pizzaPanel when the Pizza button is pressed
-         */
-        pizzaButton.addActionListener( e ->  mainWindow.setNewPanel(new PizzaPanel(maincontroller, mainWindow, OrderPanel.this).getMainPanel()));
-        doenerButton.addActionListener( e -> mainWindow.setNewPanel(new DoenerPanel(maincontroller,mainWindow,OrderPanel.this).getMainPanel()));
-        saladButton.addActionListener(e -> mainWindow.setNewPanel(new SaladPanel(maincontroller,mainWindow,OrderPanel.this).getMainPanel()));
-        buyButton.addActionListener(e -> mainWindow.setNewPanel(new FinalOrderPanel(mainController,mainWindow,mainWindow,this).getMainPanel()));
-        beverageButton.addActionListener( e -> mainWindow.setNewPanel(new BeveragePanel(maincontroller,mainWindow,OrderPanel.this).getMainPanel()));
+    public OrderPanel(ViewController viewController, MainWindow mainWindow) {
+        super(viewController, mainWindow);
+
+        pizzaButton.addActionListener(e ->  viewController.setPanel("PizzaPanel"));
+        doenerButton.addActionListener(e -> viewController.setPanel("DoenerPanel"));
+        saladButton.addActionListener(e -> viewController.setPanel("SaladPanel"));
+        buyButton.addActionListener(e -> viewController.setPanel("finalOrderPanel"));
+        beverageButton.addActionListener(e -> viewController.setPanel("BeveragePanel"));
     }
 
     public JPanel getMainPanel() {

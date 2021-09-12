@@ -1,6 +1,7 @@
 package view;
 
 import control.App;
+import control.ViewController;
 import model.food.Doener;
 
 import javax.swing.*;
@@ -13,11 +14,12 @@ public class DoenerPanel extends ViewPanel{
     private JButton addToCartButtonton;
     private JPanel doenerPanel;
 
-    public DoenerPanel(App maincontroller, MainWindow mainWindow, OrderPanel orderPanel) {
-        super(maincontroller, mainWindow);
+    public DoenerPanel(ViewController viewController, MainWindow frame) {
+        super(viewController, frame);
 
-        backButton.addActionListener( e -> mainWindow.setNewPanel(orderPanel.getMainPanel()));
-        addToCartButtonton.addActionListener( e -> mainController.getCurrentUser().addToOrder(new Doener(maincontroller)));
+        backButton.addActionListener( e -> viewController.setPanel("orderPanel"));
+        //TODO
+        //addToCartButtonton.addActionListener( e -> mainController.getCurrentUser().addToOrder(new Doener(maincontroller)));
     }
 
     public JPanel getMainPanel() {

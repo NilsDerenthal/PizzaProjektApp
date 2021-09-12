@@ -2,6 +2,7 @@ package view;
 
 import control.App;
 import control.LogInController;
+import control.ViewController;
 import model.people.Guest;
 
 import javax.swing.*;
@@ -16,8 +17,8 @@ public class LoginPanel extends ViewPanel{
 
     private final OrderPanel orderPanel;
 
-    public LoginPanel (App mainController, LogInController logInController, MainWindow mainWindow, JPanel parent, boolean signUpPanel, OrderPanel orderPanel) {
-        super(mainController, mainWindow);
+    public LoginPanel (ViewController viewController, LogInController logInController, MainWindow mainWindow, JPanel parent, boolean signUpPanel, OrderPanel orderPanel) {
+        super(viewController, mainWindow);
 
         logInButton.setText(signUpPanel ? "Sign up" : "Log in");
         this.orderPanel = orderPanel;

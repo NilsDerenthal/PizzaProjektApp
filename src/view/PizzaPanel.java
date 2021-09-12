@@ -1,6 +1,7 @@
 package view;
 
 import control.App;
+import control.ViewController;
 import model.food.Pizza;
 
 import javax.swing.*;
@@ -13,25 +14,22 @@ public class PizzaPanel extends ViewPanel {
     private JButton backButton;
 
     private String selectedPizzaType;
-    private final Pizza pizza;
 
-    public PizzaPanel(App mainController, MainWindow mainWindow, OrderPanel orderPanel) {
+    public PizzaPanel(ViewController viewController, MainWindow frame) {
+        super(viewController, frame);
 
-        super(mainController, mainWindow);
-
-        pizza = new Pizza(mainController);
-
-        for (String s: pizza.getToppings()) {
+        for (String s: Pizza.getToppings()) {
             pizzaSelectionBox.addItem(s);
         }
 
-        backButton.addActionListener(e -> mainWindow.setNewPanel(orderPanel.getMainPanel()));
+        backButton.addActionListener(e -> viewController.setPanel("orderPanel"));
 
         addToCartButton.addActionListener(e -> {
             selectedPizzaType = (String) pizzaSelectionBox.getSelectedItem();
 
-            pizza.setTopping(selectedPizzaType);
-            mainController.getCurrentUser().addToOrder(pizza);
+            //TODO
+            //pizza.setTopping(selectedPizzaType);
+            //mainController.getCurrentUser().addToOrder(pizza);
         });
     }
 

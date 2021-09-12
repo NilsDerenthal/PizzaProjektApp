@@ -11,7 +11,6 @@ public class MainWindow extends JFrame {
         FlatDarkLaf.setup();
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setContentPane(new StartPanel(control,this).getMainPanel());
         setVisible(true);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

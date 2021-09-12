@@ -1,6 +1,7 @@
 package view;
 
 import control.App;
+import control.ViewController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,10 +14,10 @@ public class ProgressPanel extends ViewPanel{
     private JButton menueButton;
     private long startT=System.currentTimeMillis();
 
-    public ProgressPanel(App mainController, MainWindow mainWindow){
-        super(mainController,mainWindow);
+    public ProgressPanel(ViewController viewController, MainWindow mainWindow){
+        super(viewController, mainWindow);
         progressOfOrder();
-        menueButton.addActionListener( e -> mainWindow.setNewPanel(new MenuePanel(mainController,mainWindow).getMainPanel()));
+        menueButton.addActionListener( e -> mainWindow.setNewPanel(new MenuePanel(viewController,mainWindow).getMainPanel()));
     }
 
     private void progressOfOrder() {

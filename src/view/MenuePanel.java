@@ -1,6 +1,6 @@
 package view;
 
-import control.App;
+import control.ViewController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,8 +12,9 @@ public class MenuePanel extends ViewPanel{
     private JPanel finalPanel;
     private JButton lastOrderButton;
 
-    public MenuePanel(App mainController, MainWindow mainWindow) {
+    public MenuePanel(ViewController mainController, MainWindow mainWindow) {
         super(mainController,mainWindow);
+        //TODO VIA VIEWCONTROLLER
         logOutButton.addActionListener( e -> mainWindow.setNewPanel(new StartPanel(mainController,mainWindow).getMainPanel()));
         lastOrderButton.addActionListener(e -> mainWindow.setNewPanel(new LastOrdersPanel(mainController,mainWindow).getMainPanel()));
         //Todo
@@ -21,7 +22,8 @@ public class MenuePanel extends ViewPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainWindow.setNewPanel(new OrderPanel(mainController,mainWindow).getMainPanel());
-                mainController.getCurrentUser().makeNewOrder();
+                //TODO
+                //mainController.getCurrentUser().makeNewOrder();
             }
         });
     }
