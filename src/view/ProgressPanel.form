@@ -37,7 +37,7 @@
           <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="back to Menue"/>
+          <text value="Menue"/>
         </properties>
       </component>
       <vspacer id="e5ff9">

@@ -12,7 +12,7 @@ public class ProgressPanel extends ViewPanel{
     private JPanel progressPanel;
     private JProgressBar progressBar1;
     private JButton menueButton;
-    private long startT=System.currentTimeMillis();
+    private  final long startT=System.currentTimeMillis();
 
     public ProgressPanel(ViewController viewController, MainWindow mainWindow){
         super(viewController, mainWindow);
@@ -21,13 +21,19 @@ public class ProgressPanel extends ViewPanel{
     }
 
     private void progressOfOrder() {
-        long progress=0;
+        final long[] progress = {0};
         progressBar1.setStringPainted(true);
-        //while(progress<=100) {
-            progress = (System.currentTimeMillis() - startT)/6000;
-            progressBar1.setString(progress + " %");
-            //Todo
-        //}
+        SwingWorker<Void, String> Worker = new SwingWorker<Void, String>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                while(progress[0] <100){
+                    progress[0] = (System.currentTimeMillis() - startT) / 60;
+                    progressBar1.setString(progress[0] + " %");
+                    progressBar1.setValue((int) progress[0]);
+                }
+                return null;
+            }
+        };
     }
 
     public JPanel getMainPanel(){ return progressPanel; }

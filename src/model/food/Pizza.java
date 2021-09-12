@@ -49,7 +49,6 @@ public class Pizza extends Meal {
         if(oven>=0) {
             ovens[oven].setPizza(this);
         }
-        //Todo
     }
 
     private int checkOven(){

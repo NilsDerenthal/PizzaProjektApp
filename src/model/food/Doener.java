@@ -22,7 +22,6 @@ public class Doener extends Meal {
 
         // hardcoded in value (1.5%)
         skewerPercentage -= 0.015;
-        //TODO Finish Guest / Order
         /*
         return Doener;
         gotta do stuff in Guest / Order first to be able to do this
