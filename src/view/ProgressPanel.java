@@ -32,7 +32,7 @@ public class ProgressPanel extends ViewPanel{
 
                 while(true){
                     long progress = (System.currentTimeMillis() - startTime) / 6000;
-
+                    //Todo länge an bestellung anpassen
                     if (progress >= 100)
                         break;
 

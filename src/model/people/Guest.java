@@ -82,4 +82,8 @@ public class Guest {
     public byte[] getSalt() {
         return salt;
     }
+
+    public void orderFavMeal(){
+        order=favoriteMeal;
+    }
 }

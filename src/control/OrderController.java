@@ -32,4 +32,6 @@ public class OrderController {
     public void addPizzaToFavOrder(String typ){ mainController.getCurrentUser().addToFavOrder(new Pizza(mainController,typ));}
 
     public void addBeverageToFavOrder(String typ){ mainController.getCurrentUser().addBeverageToFavOrder(new Beverage(typ));}
+
+    public void orderFavMeal(){ mainController.getCurrentUser().orderFavMeal(); }
 }

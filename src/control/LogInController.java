@@ -145,6 +145,7 @@ public class LogInController {
         }
 
         users = newUsers;
+        mainController.setCurrentUser(users[newUsers.length-1]);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(userDataFile))) {
             writer.write(newFileDataString.toString());
