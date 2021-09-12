@@ -92,7 +92,7 @@ public class LogInController {
     }
 
     public void checkLogIn (String username, char[] password) {
-        boolean wrongPasswordOrUser = false;
+        String errorText = null;
 
         int index = binarySearch(username);
 
@@ -105,14 +105,14 @@ public class LogInController {
                 mainController.setCurrentUser(users[index]);
                 mainController.getViewController().setPanel("menuePanel");
             } else {
-                wrongPasswordOrUser = true;
+                errorText = "Password does not match";
             }
         } else {
-            wrongPasswordOrUser = true;
+            errorText = "Unknown Username";
         }
 
-        if (wrongPasswordOrUser) {
-            JOptionPane.showMessageDialog(null,"Wrong password or username entered");
+        if (errorText != null) {
+            JOptionPane.showMessageDialog(null, "Wrong password or username entered");
         }
     }
 
