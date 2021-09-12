@@ -79,7 +79,7 @@ public class LogInController {
     }
 
     private boolean isUserNameValid(String username){
-        return !username.isEmpty() && !username.contains(":");
+        return !username.isEmpty() && username.matches("^(\\w* ?)+$");
     }
 
     public void checkLogIn (String username, char[] password) {
