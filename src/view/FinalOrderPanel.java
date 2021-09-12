@@ -18,8 +18,8 @@ public class FinalOrderPanel extends ViewPanel{
     private MainWindow parent;
     private OrderPanel orderPanel;
 
-    public FinalOrderPanel(ViewController viewController, MainWindow parent, MainWindow mainWindow, OrderPanel orderPanel){
-        super(viewController,parent);
+    public FinalOrderPanel (ViewController viewController, MainWindow mainWindow) {
+        super(viewController, mainWindow);
         this.mainWindow=mainWindow;
         setOrderText();
         buyButten.addActionListener( e -> buy() );
@@ -33,8 +33,7 @@ public class FinalOrderPanel extends ViewPanel{
         if(currentUser.getOrder()!=null) {
             if (currentUser.getBudget() >= currentUser.getOrderPrice()) {
                 currentUser.reduceBudget(currentUser.getOrderPrice());
-                //TODO MAIN CONTROLLER TO VIEW CONTROLLER BUT XAVER IST WORKING ON THIS
-                //mainWindow.setNewPanel(new ProgressPanel(viewController, this.mainWindow).getMainPanel());
+                viewController.setPanel("progressPanel");
             } else {
                 JOptionPane.showMessageDialog(this.getMainPanel(), "You haven't enough money");
             }
