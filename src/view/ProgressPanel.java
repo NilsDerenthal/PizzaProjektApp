@@ -6,6 +6,7 @@ import control.ViewController;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class ProgressPanel extends ViewPanel{
 
@@ -21,19 +22,39 @@ public class ProgressPanel extends ViewPanel{
     }
 
     private void progressOfOrder() {
-        final long[] progress = {0};
         progressBar1.setStringPainted(true);
-        SwingWorker<Void, String> Worker = new SwingWorker<Void, String>() {
+
+        new SwingWorker<Void, Long>() {
+
             @Override
-            protected Void doInBackground() throws Exception {
-                while(progress[0] <100){
-                    progress[0] = (System.currentTimeMillis() - startT) / 60;
-                    progressBar1.setString(progress[0] + " %");
-                    progressBar1.setValue((int) progress[0]);
+            protected Void doInBackground() {
+                while(true){
+
+                    long progress = (System.currentTimeMillis() - startT) / 600;
+
+                    if (progress >= 100)
+                        break;
+
+                    publish(progress);
                 }
+
                 return null;
             }
-        };
+
+            @Override
+            protected void process(List<Long> chunks) {
+                long progress = chunks.get(chunks.size() - 1);
+
+                progressBar1.setString(progress + " %");
+                progressBar1.setValue((int) progress);
+            }
+
+            @Override
+            protected void done() {
+                // Wird aufgerufen wenn fertig -> "Ihre bestellung ist fertig"?
+            }
+
+        }.execute();
     }
 
     public JPanel getMainPanel(){ return progressPanel; }
