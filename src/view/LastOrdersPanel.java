@@ -16,7 +16,7 @@ public class LastOrdersPanel extends ViewPanel{
     }
 
     private void setTextPane1() {
-        for (int i = 0; i < 10 && i < viewController.getMainController().getCurrentUser().getLastOrders().length; i++) {
+        for (int i = 1; i < 11 && i < viewController.getMainController().getCurrentUser().getLastOrders().length; i++) {
             textPane1.setText(textPane1.getText() + viewController.getMainController().getCurrentUser().getLastOrders(i) + "\n");
         }
     }

@@ -46,6 +46,8 @@ public class FinalOrderPanel extends ViewPanel{
 
         Guest currentUser = viewController.getMainController().getCurrentUser();
 
+        //Todo
+
         if(currentUser.getOrder()!=null) {
             Meal[] currentOrder = currentUser.getOrder();
             for (int i = 1; i < currentOrder.length; i++) {
