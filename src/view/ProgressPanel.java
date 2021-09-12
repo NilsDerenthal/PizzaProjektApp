@@ -18,7 +18,6 @@ public class ProgressPanel extends ViewPanel{
 
     public ProgressPanel(ViewController viewController){
         super(viewController);
-        checkDuration();
         progressOfOrder();
         menueButton.addActionListener(e -> viewController.setPanel("menuePanel"));
     }
@@ -67,5 +66,8 @@ public class ProgressPanel extends ViewPanel{
         }.execute();
     }
 
-    public JPanel getMainPanel(){ return progressPanel; }
+    public JPanel getMainPanel(){
+        checkDuration();
+        return progressPanel;
+    }
 }
