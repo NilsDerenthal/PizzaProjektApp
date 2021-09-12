@@ -1,6 +1,7 @@
 package view;
 
 import control.App;
+import control.OrderController;
 import control.ViewController;
 import model.food.Pizza;
 
@@ -15,7 +16,7 @@ public class PizzaPanel extends ViewPanel {
 
     private String selectedPizzaType;
 
-    public PizzaPanel(ViewController viewController) {
+    public PizzaPanel(ViewController viewController, OrderController orderController) {
         super(viewController);
 
         for (String s: Pizza.getToppings()) {
@@ -26,10 +27,7 @@ public class PizzaPanel extends ViewPanel {
 
         addToCartButton.addActionListener(e -> {
             selectedPizzaType = (String) pizzaSelectionBox.getSelectedItem();
-
-            //TODO
-            //pizza.setTopping(selectedPizzaType);
-            //mainController.getCurrentUser().addToOrder(pizza);
+            orderController.addPizzaToOrder(selectedPizzaType);
         });
     }
 

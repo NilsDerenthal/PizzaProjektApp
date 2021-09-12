@@ -1,6 +1,7 @@
 package view;
 
 import control.App;
+import control.OrderController;
 import control.ViewController;
 import model.food.Salad;
 
@@ -13,12 +14,12 @@ public class SaladPanel extends ViewPanel{
     private JPanel SaladPanel;
 
 
-    public SaladPanel(ViewController viewController) {
+    public SaladPanel(ViewController viewController, OrderController orderController) {
         super(viewController);
 
         backButton.addActionListener(e -> viewController.setPanel("orderPanel"));
-        //TODO MCV
-        addToCartButten.addActionListener( e -> viewController.getMainController().getCurrentUser().addToOrder(new Salad(viewController.getMainController())));
+
+        addToCartButten.addActionListener( e -> orderController.addSaladToOrder());
     }
 
     public JPanel getMainPanel() {

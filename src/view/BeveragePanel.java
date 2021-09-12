@@ -1,5 +1,6 @@
 package view;
 
+import control.OrderController;
 import control.ViewController;
 import model.Beverage;
 
@@ -14,7 +15,7 @@ public class BeveragePanel extends ViewPanel{
     private String selectetTyp;
 
 
-    public BeveragePanel(ViewController viewController) {
+    public BeveragePanel(ViewController viewController, OrderController orderController) {
         super(viewController);
 
         backButton.addActionListener(e -> viewController.setPanel("orderPanel"));
@@ -22,7 +23,7 @@ public class BeveragePanel extends ViewPanel{
 
         addToCardButton.addActionListener(e -> {
             selectetTyp=(String)selectBox.getSelectedItem();
-            this.viewController.getMainController().getCurrentUser().addBeverageToOrder(new Beverage(selectetTyp));
+            orderController.addBeverageToOrder(selectetTyp);
         });
     }
 

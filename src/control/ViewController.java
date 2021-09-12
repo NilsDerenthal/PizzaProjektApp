@@ -9,25 +9,26 @@ public class ViewController {
 
     private final App mainController;
     private final MainWindow frame;
+    private OrderController orderController;
 
     private ViewPanel[] panels;
 
     public ViewController(App mainController) {
-
+        orderController = new OrderController(mainController);
         frame = new MainWindow(mainController);
         this.mainController = mainController;
 
         panels = new ViewPanel[]{
                 new StartPanel(this),
                 new OrderPanel(this),
-                new PizzaPanel(this),
-                new DoenerPanel(this),
-                new BeveragePanel(this),
+                new PizzaPanel(this,orderController),
+                new DoenerPanel(this,orderController),
+                new BeveragePanel(this,orderController),
                 new MenuePanel(this),
                 new LastOrdersPanel(this),
                 new FinalOrderPanel(this),
                 new ProgressPanel(this),
-                new SaladPanel(this),
+                new SaladPanel(this,orderController),
                 new LoginPanel(this, false),
                 new LoginPanel(this, true)
         };
