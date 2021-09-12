@@ -36,6 +36,7 @@ public class Pizza extends Meal {
      */
     public Pizza (App app, String type) {
         super(app);
+        this.typeOfPizza=type;
         price=7;
     }
 
