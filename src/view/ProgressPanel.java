@@ -1,7 +1,6 @@
 package view;
 
 import control.App;
-import model.food.Pizza;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,25 +11,23 @@ public class ProgressPanel extends ViewPanel{
     private JPanel progressPanel;
     private JProgressBar progressBar1;
     private JButton menueButton;
-    private Pizza pizza;
+    private long startT=System.currentTimeMillis();
 
     public ProgressPanel(App mainController, MainWindow mainWindow){
         super(mainController,mainWindow);
-        //if(testPizza()>0){  } //TODO
-        //menueButton.addActionListener( e -> mainWindow.setContentPane(new MenuePanel(mainController,mainWindow).getMainPanel()));
+        progressOfOrder();
         menueButton.addActionListener( e -> mainWindow.setNewPanel(new MenuePanel(mainController,mainWindow).getMainPanel()));
     }
 
-    /*private int testPizza(){
-        if(mainController.getCurrentUser().getOrder()!=null) {
-            for (int i = 0; i < mainController.getCurrentUser().getOrder().length; i++) {
-                if (mainController.getCurrentUser().getOrder(i).getClass() == pizza.getClass()) {
-                    return i;
-                }
-            }       //Todo
-        }
-        return -1;
-    }*/
+    private void progressOfOrder() {
+        long progress=0;
+        progressBar1.setStringPainted(true);
+        //while(progress<=100) {
+            progress = (System.currentTimeMillis() - startT)/6000;
+            progressBar1.setString(progress + " %");
+            //Todo
+        //}
+    }
 
     public JPanel getMainPanel(){ return progressPanel; }
 }
