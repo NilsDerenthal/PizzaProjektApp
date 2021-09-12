@@ -14,12 +14,12 @@ public class SaladPanel extends ViewPanel{
     private JPanel SaladPanel;
 
 
-    public SaladPanel(ViewController viewController, OrderController orderController) {
+    public SaladPanel(ViewController viewController) {
         super(viewController);
 
         backButton.addActionListener(e -> viewController.setPanel("orderPanel"));
 
-        addToCartButten.addActionListener( e -> orderController.addSaladToOrder());
+        addToCartButten.addActionListener( e -> viewController.getMainController().getOrderController().addSaladToOrder());
     }
 
     public JPanel getMainPanel() {

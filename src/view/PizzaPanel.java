@@ -16,7 +16,7 @@ public class PizzaPanel extends ViewPanel {
 
     private String selectedPizzaType;
 
-    public PizzaPanel(ViewController viewController, OrderController orderController) {
+    public PizzaPanel(ViewController viewController) {
         super(viewController);
 
         for (String s: Pizza.getToppings()) {
@@ -27,7 +27,7 @@ public class PizzaPanel extends ViewPanel {
 
         addToCartButton.addActionListener(e -> {
             selectedPizzaType = (String) pizzaSelectionBox.getSelectedItem();
-            orderController.addPizzaToOrder(selectedPizzaType);
+            viewController.getMainController().getOrderController().addPizzaToOrder(selectedPizzaType);
         });
     }
 

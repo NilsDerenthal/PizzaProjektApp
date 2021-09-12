@@ -10,6 +10,7 @@ public class App {
 
     private final LogInController logInController;
     private final ViewController viewController;
+    private final OrderController orderController;
 
     public static void main(String[] args) {
         new App();
@@ -18,6 +19,7 @@ public class App {
     public App(){
         logInController = new LogInController(this);
         viewController = new ViewController(this);
+        orderController = new OrderController(this);
     }
 
     public void addMoney(double amount){ money += amount; }
@@ -33,11 +35,14 @@ public class App {
     public Guest getCurrentUser(){ return currentUser; }
 
     public LogInController getLogInController() {
-        System.out.println(logInController);
         return logInController;
     }
 
     public ViewController getViewController() {
         return viewController;
+    }
+
+    public OrderController getOrderController () {
+        return orderController;
     }
 }

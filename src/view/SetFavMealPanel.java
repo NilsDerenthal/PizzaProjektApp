@@ -18,17 +18,17 @@ public class SetFavMealPanel extends ViewPanel{
     private JPanel setFaMealPanel;
     private JButton acceptButton;
 
-    public SetFavMealPanel(ViewController viewController, OrderController orderController){
+    public SetFavMealPanel(ViewController viewController){
         super(viewController);
-        acceptButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if( doenerCheckBox.isSelected()){ orderController.addDoenerToFavOrder(); }
-                if( saladCheckBox.isSelected()){ orderController.addSaladToFavOrder(); }
-                if( pizzaCheckBox.isSelected()) { orderController.addPizzaToFavOrder((String) pizzaComboBox.getSelectedItem()); }
-                if( beverageCheckBox.isSelected()) { orderController.addBeverageToFavOrder((String) beverageComboBox.getSelectedItem()); }
-                viewController.setPanel("menuePanel");
-            }
+
+        acceptButton.addActionListener(e -> {
+
+            OrderController orderController = viewController.getMainController().getOrderController();
+            if( doenerCheckBox.isSelected()){ orderController.addDoenerToFavOrder(); }
+            if( saladCheckBox.isSelected()){ orderController.addSaladToFavOrder(); }
+            if( pizzaCheckBox.isSelected()) { orderController.addPizzaToFavOrder((String) pizzaComboBox.getSelectedItem()); }
+            if( beverageCheckBox.isSelected()) { orderController.addBeverageToFavOrder((String) beverageComboBox.getSelectedItem()); }
+            viewController.setPanel("menuePanel");
         });
     }
 
