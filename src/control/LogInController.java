@@ -18,13 +18,6 @@ public class LogInController {
     private final File userDataFile;
 
     public LogInController (App mainController) {
-
-        //byte[] solt = generateSalt();
-
-        //System.out.println(bytesToHex(solt));
-        //System.out.println(hash("testpw".toCharArray(), solt));
-
-
         this.mainController = mainController;
 
         userDataFile = new File("src/Database-impostor/Users.txt");
