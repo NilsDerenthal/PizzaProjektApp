@@ -72,7 +72,8 @@ public class LogInController {
             addUserToDatabase(newUser);
             mainController.getViewController().setPanel("setFavMealPanel");
         }else{
-            JOptionPane.showMessageDialog(null ,"Username is invalid, try another one");
+            String errorText = index != -1 ? "Username is already taken" : "Username is invalid";
+            JOptionPane.showMessageDialog(null , errorText);
         }
 
     }
@@ -137,8 +138,7 @@ public class LogInController {
     }
 
     private String hash(char[] input) {
-
-        // Exception won't be caught
+        // Exception won't have to be caught
         try {
 
             final MessageDigest messageDigest = MessageDigest.getInstance("SHA3-256");
