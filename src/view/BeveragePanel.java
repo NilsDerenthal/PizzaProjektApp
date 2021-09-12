@@ -14,8 +14,8 @@ public class BeveragePanel extends ViewPanel{
     private String selectetTyp;
 
 
-    public BeveragePanel(ViewController viewController, MainWindow frame) {
-        super(viewController, frame);
+    public BeveragePanel(ViewController viewController) {
+        super(viewController);
 
         backButton.addActionListener(e -> viewController.setPanel("orderPanel"));
 

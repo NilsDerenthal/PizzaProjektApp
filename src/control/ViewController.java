@@ -13,20 +13,23 @@ public class ViewController {
     private ViewPanel[] panels;
 
     public ViewController(App mainController) {
+
         frame = new MainWindow(mainController);
         this.mainController = mainController;
 
         panels = new ViewPanel[]{
-                new StartPanel(this,frame),
-                new OrderPanel(this, frame),
-                new PizzaPanel(this, frame),
-                new DoenerPanel(this, frame),
-                new BeveragePanel(this, frame),
-                new MenuePanel(this,frame),
-                new LastOrdersPanel(this, frame),
-                new FinalOrderPanel(this, frame),
-                new ProgressPanel(this, frame),
-                new SaladPanel(this,frame)
+                new StartPanel(this),
+                new OrderPanel(this),
+                new PizzaPanel(this),
+                new DoenerPanel(this),
+                new BeveragePanel(this),
+                new MenuePanel(this),
+                new LastOrdersPanel(this),
+                new FinalOrderPanel(this),
+                new ProgressPanel(this),
+                new SaladPanel(this),
+                new LoginPanel(this, false),
+                new LoginPanel(this, true)
         };
 
         setPanel("startPanel");
@@ -44,6 +47,8 @@ public class ViewController {
             case "finalOrderPanel" -> frame.setNewPanel(panels[7].getMainPanel());
             case "progressPanel" -> frame.setNewPanel(panels[8].getMainPanel());
             case "saladPanel" -> frame.setNewPanel(panels[9].getMainPanel());
+            case "logInPanel" -> frame.setNewPanel(panels[10].getMainPanel());
+            case "signInPanel" -> frame.setNewPanel(panels[11].getMainPanel());
         }
     }
 

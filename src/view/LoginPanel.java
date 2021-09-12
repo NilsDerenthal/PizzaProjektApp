@@ -15,13 +15,12 @@ public class LoginPanel extends ViewPanel{
     private JButton goBackButton;
     private JButton logInButton;
 
-    private final OrderPanel orderPanel;
-
-    public LoginPanel (ViewController viewController, LogInController logInController, MainWindow mainWindow, JPanel parent, boolean signUpPanel, OrderPanel orderPanel) {
-        super(viewController, mainWindow);
+    public LoginPanel (ViewController viewController, boolean signUpPanel) {
+        super(viewController);
 
         logInButton.setText(signUpPanel ? "Sign up" : "Log in");
-        this.orderPanel = orderPanel;
+
+        LogInController logInController = viewController.getMainController().getLogInController();
 
         logInButton.addActionListener(
                 !signUpPanel ?
@@ -29,7 +28,7 @@ public class LoginPanel extends ViewPanel{
                 e -> logInController.addUser(usernameTextField.getText(), passwordField.getPassword())
         );
 
-        goBackButton.addActionListener(e -> mainWindow.setNewPanel(parent));
+        goBackButton.addActionListener(e -> viewController.setPanel("startPanel"));
     }
 
     public JPanel getMainPanel() {

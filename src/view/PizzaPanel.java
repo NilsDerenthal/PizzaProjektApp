@@ -15,8 +15,8 @@ public class PizzaPanel extends ViewPanel {
 
     private String selectedPizzaType;
 
-    public PizzaPanel(ViewController viewController, MainWindow frame) {
-        super(viewController, frame);
+    public PizzaPanel(ViewController viewController) {
+        super(viewController);
 
         for (String s: Pizza.getToppings()) {
             pizzaSelectionBox.addItem(s);

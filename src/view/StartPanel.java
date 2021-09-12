@@ -10,19 +10,17 @@ public class StartPanel extends ViewPanel{
     private JButton signUpButton;
     private JPanel mainPanel;
 
-    public StartPanel(ViewController viewController, MainWindow parent) {
+    public StartPanel(ViewController viewController) {
 
-        super(viewController, parent);
+        super(viewController);
 
-        OrderPanel orderPanel = new OrderPanel(viewController, mainWindow);
 
-        //TODO
         logInButton.addActionListener(e -> {
-            parent.setNewPanel(new LoginPanel(viewController, viewController.getMainController().getLogInController(), parent, getMainPanel(), false, orderPanel).getMainPanel());
+            viewController.setPanel("logInPanel");
         });
 
         signUpButton.addActionListener(e -> {
-            parent.setNewPanel(new LoginPanel(viewController, viewController.getMainController().getLogInController(), parent, getMainPanel(), true, orderPanel).getMainPanel());
+            viewController.setPanel("signInPanel");
         });
 
     }

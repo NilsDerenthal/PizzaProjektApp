@@ -13,8 +13,8 @@ public class SaladPanel extends ViewPanel{
     private JPanel SaladPanel;
 
 
-    public SaladPanel(ViewController viewController, MainWindow mainWindow) {
-        super(viewController, mainWindow);
+    public SaladPanel(ViewController viewController) {
+        super(viewController);
 
         backButton.addActionListener(e -> viewController.setPanel("orderPanel"));
         //TODO MCV

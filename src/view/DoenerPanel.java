@@ -14,8 +14,8 @@ public class DoenerPanel extends ViewPanel{
     private JButton addToCartButtonton;
     private JPanel doenerPanel;
 
-    public DoenerPanel(ViewController viewController, MainWindow frame) {
-        super(viewController, frame);
+    public DoenerPanel(ViewController viewController) {
+        super(viewController);
 
         backButton.addActionListener( e -> viewController.setPanel("orderPanel"));
         //TODO

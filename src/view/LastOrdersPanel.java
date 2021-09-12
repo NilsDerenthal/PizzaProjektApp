@@ -10,9 +10,9 @@ public class LastOrdersPanel extends ViewPanel{
     private JPanel lastOrdersPanel;
     private JButton goBackButton;
 
-    public LastOrdersPanel(ViewController viewController, MainWindow mainWindow){
-        super(viewController,mainWindow);
-        goBackButton.addActionListener( e -> mainWindow.setNewPanel(new MenuePanel(viewController,mainWindow).getMainPanel()));
+    public LastOrdersPanel(ViewController viewController){
+        super(viewController);
+        goBackButton.addActionListener(e -> viewController.setPanel("menuePanel"));
     }
 
     private void setTextPane1() {

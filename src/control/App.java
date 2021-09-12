@@ -16,10 +16,9 @@ public class App {
     }
 
     public App(){
-        viewController = new ViewController(this);
         logInController = new LogInController(this);
+        viewController = new ViewController(this);
     }
-
 
     public void subtractMoney(double amount) {
         money -= amount;
@@ -38,6 +37,7 @@ public class App {
     public Guest getCurrentUser(){ return currentUser; }
 
     public LogInController getLogInController() {
+        System.out.println(logInController);
         return logInController;
     }
 

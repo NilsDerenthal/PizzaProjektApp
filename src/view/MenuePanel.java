@@ -12,8 +12,8 @@ public class MenuePanel extends ViewPanel{
     private JPanel finalPanel;
     private JButton lastOrderButton;
 
-    public MenuePanel(ViewController viewController, MainWindow mainWindow) {
-        super(viewController,mainWindow);
+    public MenuePanel(ViewController viewController) {
+        super(viewController);
         logOutButton.addActionListener( e -> viewController.setPanel("startPanel"));
         lastOrderButton.addActionListener(e -> viewController.setPanel("lastOrdersPanel"));
         newOrderButton.addActionListener(new ActionListener() {

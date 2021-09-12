@@ -14,10 +14,10 @@ public class ProgressPanel extends ViewPanel{
     private JProgressBar progressBar1;
     private JButton menueButton;
 
-    public ProgressPanel(ViewController viewController, MainWindow mainWindow){
-        super(viewController, mainWindow);
+    public ProgressPanel(ViewController viewController){
+        super(viewController);
         progressOfOrder();
-        menueButton.addActionListener( e -> mainWindow.setNewPanel(new MenuePanel(viewController,mainWindow).getMainPanel()));
+        menueButton.addActionListener(e -> viewController.setPanel("viewmenuePanel"));
     }
 
     private void progressOfOrder() {
