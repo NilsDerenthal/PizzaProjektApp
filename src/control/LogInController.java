@@ -12,12 +12,12 @@ public class LogInController {
 
     private final MainWindow mainWindow;
     private final App mainController;
-    private final OrderPanel nextPanel;
+    private final MenuePanel nextPanel;
 
     private Guest[] users;
     private File userDataFile;
 
-    public LogInController (App mainController, MainWindow mainWindow, OrderPanel nextPanel) {
+    public LogInController (App mainController, MainWindow mainWindow, MenuePanel nextPanel) {
         this.mainController = mainController;
         this.mainWindow = mainWindow;
         this.nextPanel = nextPanel;

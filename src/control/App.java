@@ -27,7 +27,7 @@ public class App {
     public App(){
         MainWindow m = new MainWindow(this);
 
-        logInController = new LogInController(this, m, new OrderPanel(this,m));
+        logInController = new LogInController(this, m, new MenuePanel(this,m));
 
         storage = new Storage(this);
 
