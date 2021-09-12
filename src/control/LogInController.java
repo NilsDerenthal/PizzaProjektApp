@@ -1,16 +1,12 @@
 package control;
 
 import model.people.Guest;
-import view.MainWindow;
-import view.MenuePanel;
-import view.OrderPanel;
 
 import javax.swing.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 
 public class LogInController {
 
@@ -149,9 +145,7 @@ public class LogInController {
             final byte[] hashbytes = messageDigest.digest(new String(input).getBytes(StandardCharsets.UTF_8));
             return bytesToHex(hashbytes);
 
-        } catch (NoSuchAlgorithmException ignored) {}
-
-        return null;
+        } catch (NoSuchAlgorithmException ignored) {return null;}
     }
 
     // source: https://www.baeldung.com/sha-256-hashing-java

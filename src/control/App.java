@@ -20,10 +20,6 @@ public class App {
         viewController = new ViewController(this);
     }
 
-    public void subtractMoney(double amount) {
-        money -= amount;
-    }
-
     public void addMoney(double amount){ money += amount; }
 
     public double getMoney () {

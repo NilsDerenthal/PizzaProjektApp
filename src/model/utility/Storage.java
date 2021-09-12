@@ -13,7 +13,7 @@ public class Storage {
 
     public void refillDressingTank(){
        if(dressingTankfill <= 0){
-           mainController.subtractMoney(-10);
+           mainController.addMoney(-10);
            dressingTankfill = 100;
         }
     }
@@ -28,7 +28,7 @@ public class Storage {
 
     public void setSaladkit(){
         saladkit = 35;
-        mainController.subtractMoney(-35);
+        mainController.addMoney(-35);
     }
 
     public void reduceSaladkit(){

@@ -17,7 +17,7 @@ public class Doener extends Meal {
         // hardcoded value (1.5%)
         if(skewerPercentage > 0.015){
             skewerPercentage = 1;
-            mainController.subtractMoney(skewerPrice);
+            mainController.addMoney(-skewerPrice);
         }
 
         // hardcoded in value (1.5%)
