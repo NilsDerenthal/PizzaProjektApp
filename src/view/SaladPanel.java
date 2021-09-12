@@ -13,10 +13,10 @@ public class SaladPanel extends ViewPanel{
     private JPanel SaladPanel;
 
 
-    public SaladPanel(ViewController viewController, MainWindow mainWindow, OrderPanel orderPanel) {
+    public SaladPanel(ViewController viewController, MainWindow mainWindow) {
         super(viewController, mainWindow);
 
-        backButton.addActionListener(e -> mainWindow.setNewPanel(orderPanel.getMainPanel()));
+        backButton.addActionListener(e -> viewController.setPanel("orderPanel"));
         //TODO MCV
         addToCartButten.addActionListener( e -> viewController.getMainController().getCurrentUser().addToOrder(new Salad(viewController.getMainController())));
     }

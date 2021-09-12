@@ -19,6 +19,7 @@ public class BeveragePanel extends ViewPanel{
 
         backButton.addActionListener(e -> viewController.setPanel("orderPanel"));
 
+
         addToCardButton.addActionListener(e -> {
             selectetTyp=(String)selectBox.getSelectedItem();
             this.viewController.getMainController().getCurrentUser().addBeverageToOrder(new Beverage(selectetTyp));

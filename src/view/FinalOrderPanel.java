@@ -7,6 +7,8 @@ import model.Beverage;
 import model.people.Guest;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class FinalOrderPanel extends ViewPanel{
     private JPanel finalOrderPanel;
@@ -15,14 +17,13 @@ public class FinalOrderPanel extends ViewPanel{
     private JLabel label1;
     private JTextPane textPane1;
     private MainWindow mainWindow;
-    private MainWindow parent;
     private OrderPanel orderPanel;
 
     public FinalOrderPanel (ViewController viewController, MainWindow mainWindow) {
         super(viewController, mainWindow);
         this.mainWindow=mainWindow;
         buyButten.addActionListener( e -> buy() );
-        backButton.addActionListener( e -> parent.setContentPane(orderPanel.getMainPanel()));
+        backButton.addActionListener( e -> viewController.setPanel("orderPanel"));
     }
 
     private void buy(){

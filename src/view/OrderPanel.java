@@ -16,11 +16,11 @@ public class OrderPanel extends ViewPanel {
     public OrderPanel(ViewController viewController, MainWindow mainWindow) {
         super(viewController, mainWindow);
 
-        pizzaButton.addActionListener(e ->  viewController.setPanel("PizzaPanel"));
-        doenerButton.addActionListener(e -> viewController.setPanel("DoenerPanel"));
-        saladButton.addActionListener(e -> viewController.setPanel("SaladPanel"));
+        pizzaButton.addActionListener(e ->  viewController.setPanel("pizzaPanel"));
+        doenerButton.addActionListener(e -> viewController.setPanel("doenerPanel"));
+        saladButton.addActionListener(e -> viewController.setPanel("saladPanel"));
         buyButton.addActionListener(e -> viewController.setPanel("finalOrderPanel"));
-        beverageButton.addActionListener(e -> viewController.setPanel("BeveragePanel"));
+        beverageButton.addActionListener(e -> viewController.setPanel("beveragePanel"));
     }
 
     public JPanel getMainPanel() {

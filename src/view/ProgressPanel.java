@@ -30,7 +30,7 @@ public class ProgressPanel extends ViewPanel{
             protected Void doInBackground() {
                 while(true){
 
-                    long progress = (System.currentTimeMillis() - startT) / 30000;
+                    long progress = (System.currentTimeMillis() - startT) / 6000;
 
                     if (progress >= 100)
                         break;
