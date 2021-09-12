@@ -13,6 +13,8 @@ public class Guest {
 
     private double budget=100;
 
+    private Order favoriteMeal=new Order();
+
     //Todo günstigeres lieblingsessen
 
 
@@ -66,4 +68,12 @@ public class Guest {
     public Order getLastOrders(int i){ return lastOrders[i]; }
 
     public Beverage[] getBeverageOrder() { return order.getBeveragesInOrder(); }
+
+    public void addToFavOrder(Meal isAddTo) { favoriteMeal.addMeal(isAddTo); }
+
+    public void addBeverageToFavOrder(Beverage isAddTo) { favoriteMeal.addBeverage(isAddTo); }
+
+    public Meal[] getFavOrder() { return favoriteMeal.getMealsInOrder(); }
+
+    public Meal getFavOrder(int i) { return favoriteMeal.getMealsInOrder(i); }
 }

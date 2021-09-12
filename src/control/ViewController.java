@@ -30,7 +30,8 @@ public class ViewController {
                 new ProgressPanel(this),
                 new SaladPanel(this,orderController),
                 new LoginPanel(this, false),
-                new LoginPanel(this, true)
+                new LoginPanel(this, true),
+                new SetFavMealPanel(this,orderController)
         };
 
         setPanel("startPanel");
@@ -50,6 +51,7 @@ public class ViewController {
             case "saladPanel" -> frame.setNewPanel(panels[9].getMainPanel());
             case "logInPanel" -> frame.setNewPanel(panels[10].getMainPanel());
             case "signInPanel" -> frame.setNewPanel(panels[11].getMainPanel());
+            case "setFavMealPanel" -> frame.setNewPanel(panels[12].getMainPanel());
         }
     }
 

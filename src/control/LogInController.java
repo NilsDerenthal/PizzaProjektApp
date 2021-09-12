@@ -70,7 +70,7 @@ public class LogInController {
         if(index == -1 && isUserNameValid(username)) {
             Guest newUser = new Guest(username, new String(password));
             addUserToDatabase(newUser);
-            mainController.getViewController().setPanel("orderpanel");
+            mainController.getViewController().setPanel("setFavMealPanel");
         }else{
             JOptionPane.showMessageDialog(null ,"Username is invalid, try another one");
         }
@@ -106,7 +106,7 @@ public class LogInController {
 
             if (pwMatches) {
                 mainController.setCurrentUser(users[index]);
-                mainController.getViewController().setPanel("orderPanel");
+                mainController.getViewController().setPanel("menuePanel");
             } else {
                 wrongPasswordOrUser = true;
             }

@@ -24,4 +24,12 @@ public class OrderController {
     public void addBeverageToOrder(String typ){ mainController.getCurrentUser().addBeverageToOrder(new Beverage(typ));}
 
     public void makeNewOrder(){ mainController.getCurrentUser().makeNewOrder(); }
+
+    public void addSaladToFavOrder(){ mainController.getCurrentUser().addToFavOrder(new Salad(mainController)); }
+
+    public void addDoenerToFavOrder(){ mainController.getCurrentUser().addToFavOrder(new Doener(mainController)); }
+
+    public void addPizzaToFavOrder(String typ){ mainController.getCurrentUser().addToFavOrder(new Pizza(mainController,typ));}
+
+    public void addBeverageToFavOrder(String typ){ mainController.getCurrentUser().addBeverageToFavOrder(new Beverage(typ));}
 }

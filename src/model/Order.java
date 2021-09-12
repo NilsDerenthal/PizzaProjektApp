@@ -31,6 +31,7 @@ public class Order {
         mealsInOrder = tmpNewMeals;
         totalPrice=totalPrice+ newMeal.getPrice();
         newMeal.makeIt();
+        //Todo hinzugefügtes lieblingsessen darf nicht gemacht werden
     }
     public void addBeverage(Beverage newBeverage){
         Beverage[] tmpNewBeverages = new Beverage[beveragesInOrder.length + 1];

@@ -11,6 +11,7 @@ public class MenuePanel extends ViewPanel{
     private JButton logOutButton;
     private JPanel finalPanel;
     private JButton lastOrderButton;
+    private JButton orderFavoritMealButton;
 
     public MenuePanel(ViewController viewController) {
         super(viewController);
@@ -21,6 +22,12 @@ public class MenuePanel extends ViewPanel{
             public void actionPerformed(ActionEvent e) {
                 viewController.setPanel("orderPanel");
                 viewController.getMainController().getCurrentUser().makeNewOrder();
+            }
+        });
+        orderFavoritMealButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Todo
             }
         });
     }
