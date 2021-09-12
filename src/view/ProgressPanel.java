@@ -17,7 +17,7 @@ public class ProgressPanel extends ViewPanel{
     public ProgressPanel(ViewController viewController){
         super(viewController);
         progressOfOrder();
-        menueButton.addActionListener(e -> viewController.setPanel("viewmenuePanel"));
+        menueButton.addActionListener(e -> viewController.setPanel("menuePanel"));
     }
 
     private void progressOfOrder() {
