@@ -16,7 +16,6 @@ public class Guest {
     private Order favoriteMeal=new Order();
 
     private final byte[] salt;
-    //Todo günstigeres lieblingsessen
 
 
     public Guest(String name, String password, byte[] salt) {
@@ -33,7 +32,7 @@ public class Guest {
 
     public double getBudget() { return budget; }
 
-    public double getOrderPrice() { return order.getTotalPrice(); }
+    public double getOrderPrice(boolean favMeal) { return order.getTotalPrice(favMeal); }
 
     public void reduceBudget(double price) { budget -= price; }
 
@@ -70,6 +69,8 @@ public class Guest {
     public Order getLastOrders(int i){ return lastOrders[i]; }
 
     public Beverage[] getBeverageOrder() { return order.getBeveragesInOrder(); }
+
+    public Beverage[] getFavBeverageOrder() { return favoriteMeal.getBeveragesInOrder(); }
 
     public void addToFavOrder(Meal isAddTo) { favoriteMeal.addMeal(isAddTo); }
 

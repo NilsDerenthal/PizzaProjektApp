@@ -9,6 +9,7 @@ import model.people.Guest;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class FinalOrderPanel extends ViewPanel{
     private JPanel finalOrderPanel;
@@ -18,6 +19,7 @@ public class FinalOrderPanel extends ViewPanel{
     private JTextPane textPane1;
     private MainWindow mainWindow;
     private OrderPanel orderPanel;
+    Guest currentUser = viewController.getMainController().getCurrentUser();
 
     public FinalOrderPanel (ViewController viewController) {
         super(viewController);
@@ -27,17 +29,18 @@ public class FinalOrderPanel extends ViewPanel{
     }
 
     private void buy(){
-
-        Guest currentUser = viewController.getMainController().getCurrentUser();
-
         if(currentUser.getOrder()!=null) {
-            if (currentUser.getBudget() >= currentUser.getOrderPrice()) {
-                currentUser.reduceBudget(currentUser.getOrderPrice());
+            if (currentUser.getBudget() >= currentUser.getOrderPrice(false)) {
+                currentUser.reduceBudget(currentUser.getOrderPrice(isFav()));
                 viewController.setPanel("progressPanel");
             } else {
                 JOptionPane.showMessageDialog(this.getMainPanel(), "You haven't enough money");
             }
         }
+    }
+
+    private boolean isFav(){
+        return Arrays.equals(currentUser.getOrder(), currentUser.getFavOrder()) && Arrays.equals(currentUser.getBeverageOrder(), currentUser.getFavBeverageOrder());
     }
 
     private void setOrderText(){
@@ -60,7 +63,7 @@ public class FinalOrderPanel extends ViewPanel{
                 textPane1.setText(textPane1.getText() + currentOrder[i].getTypOfBeverage() + "\n");
             }
         }
-        textPane1.setText(textPane1.getText() + "\n" + "Price: " + currentUser.getOrderPrice() );
+        textPane1.setText(textPane1.getText() + "\n" + "Price: " + currentUser.getOrderPrice(isFav()) );
     }
 
     public JPanel getMainPanel() {

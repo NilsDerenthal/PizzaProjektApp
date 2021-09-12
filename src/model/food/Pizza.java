@@ -26,8 +26,8 @@ public class Pizza extends Meal {
     private Oven[] ovens= {
             new Oven(),
             new Oven(),
-            new Oven(),
-            //Todo
+            new Oven()
+            //Todo oven darf nicht in Pizza erzeugt werden
     };
 
     /**

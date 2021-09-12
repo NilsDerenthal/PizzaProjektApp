@@ -11,7 +11,12 @@ public class Order {
 
     }
 
-    public double getTotalPrice(){ return totalPrice; }
+    public double getTotalPrice(boolean favMeal){
+        if(favMeal){
+            return (totalPrice/10)*9;
+        }
+        return totalPrice;
+    }
 
     public void increasPrice(double price){ totalPrice=totalPrice+price; }
 

@@ -2,6 +2,7 @@ package view;
 
 import control.App;
 import control.ViewController;
+import model.food.Pizza;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,11 +14,20 @@ public class ProgressPanel extends ViewPanel{
     private JPanel progressPanel;
     private JProgressBar progressBar1;
     private JButton menueButton;
+    private int processDuration;
 
     public ProgressPanel(ViewController viewController){
         super(viewController);
+        checkDuration();
         progressOfOrder();
         menueButton.addActionListener(e -> viewController.setPanel("menuePanel"));
+    }
+
+    private int checkDuration(){
+        for(int i=0;i<viewController.getMainController().getCurrentUser().getOrder().length;i++){
+            //if(){} Todo wenn Pizza in der Bestelung ist return 300000
+        }
+        return 1000;
     }
 
     private void progressOfOrder() {
@@ -31,8 +41,7 @@ public class ProgressPanel extends ViewPanel{
                 final long startTime = System.currentTimeMillis();
 
                 while(true){
-                    long progress = (System.currentTimeMillis() - startTime) / 6000;
-                    //Todo länge an bestellung anpassen
+                    long progress = (System.currentTimeMillis() - startTime) / processDuration;
                     if (progress >= 100)
                         break;
 

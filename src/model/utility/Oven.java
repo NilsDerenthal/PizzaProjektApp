@@ -29,7 +29,6 @@ public class Oven {
 
         baking = true;
         //TODO actually bake Pizza
-        // -> increase baking progress -> display in the view
         return true;
     }
 
@@ -43,7 +42,6 @@ public class Oven {
 
     public void setPizza (Pizza newPizza) {
         this.pizza = newPizza;
-        long start = System.currentTimeMillis();
     }
 
     public long getStart(){ return start; }
