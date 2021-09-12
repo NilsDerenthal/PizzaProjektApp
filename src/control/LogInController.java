@@ -20,7 +20,7 @@ public class LogInController {
     public LogInController (App mainController) {
         this.mainController = mainController;
 
-        userDataFile = new File("src/Database-impostor/Users.txt");
+        userDataFile = new File("src/Database/Users.txt");
         String usersString = getFileContent(userDataFile);
 
         String[] usersFromFile = usersString.split("\n");
