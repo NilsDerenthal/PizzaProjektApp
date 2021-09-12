@@ -12,18 +12,15 @@ public class MenuePanel extends ViewPanel{
     private JPanel finalPanel;
     private JButton lastOrderButton;
 
-    public MenuePanel(ViewController mainController, MainWindow mainWindow) {
-        super(mainController,mainWindow);
-        //TODO VIA VIEWCONTROLLER
-        logOutButton.addActionListener( e -> mainWindow.setNewPanel(new StartPanel(mainController,mainWindow).getMainPanel()));
-        lastOrderButton.addActionListener(e -> mainWindow.setNewPanel(new LastOrdersPanel(mainController,mainWindow).getMainPanel()));
-        //Todo
+    public MenuePanel(ViewController viewController, MainWindow mainWindow) {
+        super(viewController,mainWindow);
+        logOutButton.addActionListener( e -> viewController.setPanel("startPanel"));
+        lastOrderButton.addActionListener(e -> viewController.setPanel("lastOrdersPanel"));
         newOrderButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainWindow.setNewPanel(new OrderPanel(mainController,mainWindow).getMainPanel());
-                //TODO
-                //mainController.getCurrentUser().makeNewOrder();
+                viewController.setPanel("orderPanel");
+                viewController.getMainController().getCurrentUser().makeNewOrder();
             }
         });
     }

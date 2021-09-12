@@ -14,7 +14,7 @@ public class StartPanel extends ViewPanel{
 
         super(viewController, parent);
 
-        OrderPanel orderPanel = new OrderPanel(viewController, parent);
+        OrderPanel orderPanel = new OrderPanel(viewController, mainWindow);
 
         //TODO
         logInButton.addActionListener(e -> {
