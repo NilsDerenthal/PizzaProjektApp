@@ -14,8 +14,6 @@ public class PizzaPanel extends ViewPanel {
     private JButton addToCartButton;
     private JButton backButton;
 
-    private String selectedPizzaType;
-
     public PizzaPanel(ViewController viewController) {
         super(viewController);
 
@@ -26,8 +24,8 @@ public class PizzaPanel extends ViewPanel {
         backButton.addActionListener(e -> viewController.setPanel("orderPanel"));
 
         addToCartButton.addActionListener(e -> {
-            selectedPizzaType = (String) pizzaSelectionBox.getSelectedItem();
-            viewController.getMainController().getOrderController().addPizzaToOrder(selectedPizzaType);
+            String selectedPizzaType = (String) pizzaSelectionBox.getSelectedItem();
+            viewController.getMainController().getOrderController().addFoodToOrder("Pizza", selectedPizzaType);
         });
     }
 

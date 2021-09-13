@@ -14,7 +14,7 @@ public class DoenerPanel extends ViewPanel{
         super(viewController);
 
         backButton.addActionListener( e -> viewController.setPanel("orderPanel"));
-        addToCartButtonton.addActionListener( e -> viewController.getMainController().getOrderController().addDoenerToOrder());
+        addToCartButtonton.addActionListener( e -> viewController.getMainController().getOrderController().addFoodToOrder("Doener", null));
     }
 
     public JPanel getMainPanel() {

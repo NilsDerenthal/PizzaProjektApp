@@ -246,7 +246,7 @@ public class LogInController {
     /**
      * Performs a custom binary search for a user in the Guest array
      * @param key the username to be searched for
-     * @return -1 if the username cannot be found, the index in the array otherwise.
+     * @return -1 if the username cannot be found, the index in the array otherwise
      */
     private int binarySearch (String key) {
 

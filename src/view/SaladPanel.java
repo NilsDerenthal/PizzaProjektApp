@@ -19,7 +19,7 @@ public class SaladPanel extends ViewPanel{
 
         backButton.addActionListener(e -> viewController.setPanel("orderPanel"));
 
-        addToCartButten.addActionListener( e -> viewController.getMainController().getOrderController().addSaladToOrder());
+        addToCartButten.addActionListener( e -> viewController.getMainController().getOrderController().addFoodToOrder("Salad", null));
     }
 
     public JPanel getMainPanel() {
