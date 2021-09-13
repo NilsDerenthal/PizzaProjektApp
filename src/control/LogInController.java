@@ -18,6 +18,7 @@ public class LogInController {
     private final File userDataFile;
 
     public LogInController (App mainController) {
+
         this.mainController = mainController;
 
         userDataFile = new File("src/Database/Users.txt");
@@ -82,7 +83,7 @@ public class LogInController {
     }
 
     private byte[] generateSalt() {
-        byte[] bytes = new byte[5];
+        byte[] bytes = new byte[2<<5];
         new SecureRandom().nextBytes(bytes);
         return bytes;
     }
@@ -150,7 +151,6 @@ public class LogInController {
     private String hash(char[] input, byte[] salt) {
         // Exception won't have to be caught
         try {
-
             final MessageDigest messageDigest = MessageDigest.getInstance("SHA3-256");
             messageDigest.update(salt);
             final byte[] hashedBytes = messageDigest.digest(new String(input).getBytes(StandardCharsets.UTF_8));
