@@ -23,7 +23,6 @@ public class FinalOrderPanel extends ViewPanel{
 
     public FinalOrderPanel (ViewController viewController) {
         super(viewController);
-        this.mainWindow=mainWindow;
         buyButten.addActionListener( e -> buy() );
         backButton.addActionListener( e -> viewController.setPanel("orderPanel"));
     }

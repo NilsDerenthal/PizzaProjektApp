@@ -11,16 +11,26 @@ import java.security.SecureRandom;
 
 public class LogInController {
 
-
+    // main controller
     private final App mainController;
 
+    // all users
     private Guest[] users;
+
+    // file the users + their data is stored in
     private final File userDataFile;
 
+    /**
+     * Default Constructor
+     * @param mainController main/parent controller
+     */
     public LogInController (App mainController) {
 
         this.mainController = mainController;
 
+        // read file into an array of Guest Objects.
+        // The userdata is formatted as username:password:salt
+        // where password has been hashed using the salt.
         userDataFile = new File("src/Database/Users.txt");
         String usersString = getFileContent(userDataFile);
 
@@ -41,15 +51,20 @@ public class LogInController {
 
     }
 
-    private String getFileContent (File f){
+    /**
+     * Reads The content of this file into a String and returns it
+     * @param file the file whose content are to be read
+     * @return the content of the file
+     */
+    private String getFileContent (File file){
 
         FileInputStream inputStream;
 
         try {
-            inputStream = new FileInputStream(f);
+            inputStream = new FileInputStream(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            return "";
+            return null;
         }
 
         StringBuilder sb = new StringBuilder();
@@ -66,6 +81,11 @@ public class LogInController {
         return sb.toString();
     }
 
+    /**
+     * Adds a user to the database in case that the username as well as the password are valid
+     * @param username the username of the new user
+     * @param password the password for this user. Stored as a char array for security reasons.
+     */
     public void addUser (String username, char[] password) {
         int index = binarySearch(username);
 
@@ -82,16 +102,33 @@ public class LogInController {
 
     }
 
+    /**
+     * Generates "salt", a byte array with random contents. It is important to use SecureRandom to ensure security.
+     * @return the random byte array of size 64
+     */
     private byte[] generateSalt() {
+        // 2 << 5 -> bitshift 2 5 to the left -> 2^5 = 64
         byte[] bytes = new byte[2<<5];
         new SecureRandom().nextBytes(bytes);
         return bytes;
     }
 
+    /**
+     * Returns wether this username is valid by the given Regex.
+     * The regex tests for word characters only allowing for whitespaces.
+     * word characters mean letters a-z, upper- and lowercase
+     * @param username the username to be tested
+     * @return wether the username is valid
+     */
     private boolean isUserNameValid(String username){
         return !username.isEmpty() && username.matches("^(\\w* ?)+$");
     }
 
+    /**
+     * Checks if the login is succesful for the given user and password.
+     * @param username the username
+     * @param password the password to be tested for the user
+     */
     public void checkLogIn (String username, char[] password) {
         String errorText = null;
 
@@ -117,6 +154,11 @@ public class LogInController {
         }
     }
 
+    /**
+     * Adds a user to the database. It does so by inserting it alphabetically into the already existing user array.
+     * This method is only to be called after it has been determined if it is a valid username and password.
+     * @param guest the new Guest object
+     */
     public void addUserToDatabase (Guest guest) {
 
         Guest[] newUsers = new Guest[users.length + 1];
@@ -148,6 +190,13 @@ public class LogInController {
         }
     }
 
+    /**
+     * Hashes the given input String with the given salt.
+     * This simply means adding the salt to the end of the input string and hashing the resulting String.
+     * @param input the input string
+     * @param salt the salt added to the input string
+     * @return the hashed String representation in hexadecimal
+     */
     private String hash(char[] input, byte[] salt) {
         // Exception won't have to be caught
         try {
@@ -159,7 +208,11 @@ public class LogInController {
         } catch (NoSuchAlgorithmException ignored) {return null;}
     }
 
-    // source: https://www.baeldung.com/sha-256-hashing-java
+    /**
+     * Converts bytes to a hexadecimal String. Source: https://www.baeldung.com/sha-256-hashing-java
+     * @param hash the hashed input argument
+     * @return The hexadecimal representation of the input bytes
+     */
     private String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
         for (byte b : hash) {
@@ -172,7 +225,12 @@ public class LogInController {
         return hexString.toString();
     }
 
-    // source: https://stackoverflow.com/questions/140131/convert-a-string-representation-of-a-hex-dump-to-a-byte-array-using-java
+    /**
+     * Creates an array of bytes from this hexadecimal String, read from the file. This is the complement method to {@link #bytesToHex(byte[])}
+     * Source: https://stackoverflow.com/questions/140131/convert-a-string-representation-of-a-hex-dump-to-a-byte-array-using-java
+     * @param hex the hexadecimal input string
+     * @return the byte array
+     */
     private byte[] hexToBytes(String hex) {
 
         int len = hex.length();
@@ -185,6 +243,11 @@ public class LogInController {
         return bytes;
     }
 
+    /**
+     * Performs a custom binary search for a user in the Guest array
+     * @param key the username to be searched for
+     * @return -1 if the username cannot be found, the index in the array otherwise.
+     */
     private int binarySearch (String key) {
 
         int l = 0;
@@ -208,9 +271,5 @@ public class LogInController {
         }
 
         return -1;
-    }
-
-    public Guest[] getUsers() {
-        return users;
     }
 }
