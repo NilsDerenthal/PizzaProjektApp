@@ -19,7 +19,6 @@ public class FinalOrderPanel extends ViewPanel{
     private JTextPane textPane1;
     private MainWindow mainWindow;
     private OrderPanel orderPanel;
-    Guest currentUser = viewController.getMainController().getCurrentUser();
 
     public FinalOrderPanel (ViewController viewController) {
         super(viewController);
@@ -28,9 +27,9 @@ public class FinalOrderPanel extends ViewPanel{
     }
 
     private void buy(){
-        if(currentUser.getOrder()!=null) {
-            if (currentUser.getBudget() >= currentUser.getOrderPrice(false)) {
-                currentUser.reduceBudget(currentUser.getOrderPrice(isFav()));
+        if(viewController.getMainController().getCurrentUser().getOrder()!=null) {
+            if (viewController.getMainController().getCurrentUser().getBudget() >= viewController.getMainController().getCurrentUser().getOrderPrice(false)) {
+                viewController.getMainController().getCurrentUser().reduceBudget(viewController.getMainController().getCurrentUser().getOrderPrice(isFav()));
                 viewController.setPanel("progressPanel");
             } else {
                 JOptionPane.showMessageDialog(this.getMainPanel(), "You haven't enough money");
@@ -39,7 +38,7 @@ public class FinalOrderPanel extends ViewPanel{
     }
 
     private boolean isFav(){
-        return Arrays.equals(currentUser.getOrder(), currentUser.getFavOrder()) && Arrays.equals(currentUser.getBeverageOrder(), currentUser.getFavBeverageOrder());
+        return Arrays.equals(viewController.getMainController().getCurrentUser().getOrder(), viewController.getMainController().getCurrentUser().getFavOrder()) && Arrays.equals(viewController.getMainController().getCurrentUser().getBeverageOrder(), viewController.getMainController().getCurrentUser().getFavBeverageOrder());
     }
 
     private void setOrderText(){
