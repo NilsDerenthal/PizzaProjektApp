@@ -25,7 +25,7 @@ public class SaladPanel extends ViewPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(viewController.getMainController().getStorage().getSaladkit()>0){
-                    viewController.getMainController().getOrderController().addFoodToOrder("Salad", null);
+                    viewController.getMainController().getOrderController().addFoodToOrder("Salad", null, false);
                 }else{
                     JOptionPane.showMessageDialog(null,"No Saladkits left, next salad tomorow");
                 }

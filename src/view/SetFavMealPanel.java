@@ -24,10 +24,11 @@ public class SetFavMealPanel extends ViewPanel{
         acceptButton.addActionListener(e -> {
 
             OrderController orderController = viewController.getMainController().getOrderController();
-            if( doenerCheckBox.isSelected()){ orderController.addDoenerToFavOrder(); }
-            if( saladCheckBox.isSelected()){ orderController.addSaladToFavOrder(); }
-            if( pizzaCheckBox.isSelected()) { orderController.addPizzaToFavOrder((String) pizzaComboBox.getSelectedItem()); }
-            if( beverageCheckBox.isSelected()) { orderController.addBeverageToFavOrder((String) beverageComboBox.getSelectedItem()); }
+            if( doenerCheckBox.isSelected()){ orderController.addFoodToOrder("Doener", null, true); }
+            if( saladCheckBox.isSelected()){ orderController.addFoodToOrder("Salad", null, true); }
+            if( pizzaCheckBox.isSelected()) { orderController.addFoodToOrder("Pizza", (String) pizzaComboBox.getSelectedItem(), true); }
+            if( beverageCheckBox.isSelected()) { orderController.addFoodToOrder("Beverage", (String) beverageComboBox.getSelectedItem(), true); }
+
             viewController.setPanel("menuePanel");
         });
     }
