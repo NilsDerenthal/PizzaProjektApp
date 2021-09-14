@@ -16,7 +16,7 @@ public class OrderController {
         this.mainController=mainController;
     }
 
-    public void addBeverageToOrder(String typ){ mainController.getCurrentUser().addBeverageToOrder(new Beverage(typ));}
+    public void addBeverageToOrder(String typ){ mainController.getCurrentUser().addBeverageToOrder(new Beverage(typ),false);}
 
     public void addFoodToOrder (String orderType, String type){
         Guest guest = mainController.getCurrentUser();
@@ -27,17 +27,17 @@ public class OrderController {
             case "Salad" -> new Salad(mainController);
 
             default -> throw new IllegalStateException("Unexpected type: " + orderType);
-        });
+        },false);
     }
     public void makeNewOrder(){ mainController.getCurrentUser().makeNewOrder(); }
 
-    public void addSaladToFavOrder(){ mainController.getCurrentUser().addToFavOrder(new Salad(mainController)); }
+    public void addSaladToFavOrder(){ mainController.getCurrentUser().addToOrder(new Salad(mainController),true); }
 
-    public void addDoenerToFavOrder(){ mainController.getCurrentUser().addToFavOrder(new Doener(mainController)); }
+    public void addDoenerToFavOrder(){ mainController.getCurrentUser().addToOrder(new Doener(mainController),true); }
 
-    public void addPizzaToFavOrder(String typ){ mainController.getCurrentUser().addToFavOrder(new Pizza(mainController,typ));}
+    public void addPizzaToFavOrder(String typ){ mainController.getCurrentUser().addToOrder(new Pizza(mainController,typ),true);}
 
-    public void addBeverageToFavOrder(String typ){ mainController.getCurrentUser().addBeverageToFavOrder(new Beverage(typ));}
+    public void addBeverageToFavOrder(String typ){ mainController.getCurrentUser().addBeverageToOrder(new Beverage(typ),true);}
 
     public void orderFavMeal(){ mainController.getCurrentUser().orderFavMeal(); }
 }

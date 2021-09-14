@@ -56,29 +56,37 @@ public class Guest {
         return name;
     }
 
-    public void addToOrder(Meal isAddTo) { order.addMeal(isAddTo); }
+    public void addToOrder(Meal isAddTo,boolean isFav) {
+        if(isFav){
+            favoriteMeal.addMeal(isAddTo);
+        }else{
+            order.addMeal(isAddTo);
+        }
+    }
 
-    public void addBeverageToOrder(Beverage isAddTo) { order.addBeverage(isAddTo); }
+    public void addBeverageToOrder(Beverage isAddTo,boolean isFav) {
+        if(isFav) favoriteMeal.addBeverage(isAddTo);
+        order.addBeverage(isAddTo);
+    }
 
-    public Meal[] getOrder() { return order.getMealsInOrder(); }
+    public Meal[] getOrder(boolean isFav) {
+        if(isFav) return favoriteMeal.getMealsInOrder();
+        return order.getMealsInOrder();
+    }
 
-    public Meal getOrder(int i) { return order.getMealsInOrder(i); }
+    public Meal getOrder(int i,boolean isFav) {
+        if(isFav) return favoriteMeal.getMealsInOrder(i);
+        return order.getMealsInOrder(i);
+    }
 
     public Order[] getLastOrders(){ return lastOrders; }
 
     public Order getLastOrders(int i){ return lastOrders[i]; }
 
-    public Beverage[] getBeverageOrder() { return order.getBeveragesInOrder(); }
-
-    public Beverage[] getFavBeverageOrder() { return favoriteMeal.getBeveragesInOrder(); }
-
-    public void addToFavOrder(Meal isAddTo) { favoriteMeal.addMeal(isAddTo); }
-
-    public void addBeverageToFavOrder(Beverage isAddTo) { favoriteMeal.addBeverage(isAddTo); }
-
-    public Meal[] getFavOrder() { return favoriteMeal.getMealsInOrder(); }
-
-    public Meal getFavOrder(int i) { return favoriteMeal.getMealsInOrder(i); }
+    public Beverage[] getBeverageOrder(boolean isFav) {
+        if(isFav) return favoriteMeal.getBeveragesInOrder();
+        return order.getBeveragesInOrder();
+    }
 
     public byte[] getSalt() {
         return salt;

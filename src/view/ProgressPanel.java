@@ -22,7 +22,7 @@ public class ProgressPanel extends ViewPanel{
     }
 
     private int checkDuration(){
-        for(int i=0;i<viewController.getMainController().getCurrentUser().getOrder().length;i++){
+        for(int i=0;i<viewController.getMainController().getCurrentUser().getOrder(false).length;i++){
             //if(){} Todo wenn Pizza in der Bestelung ist return 300000
         }
         return 1000;
