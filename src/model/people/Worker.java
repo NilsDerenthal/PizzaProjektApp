@@ -1,23 +1,25 @@
 package model.people;
 
 
+import control.App;
 import control.OrderController;
 import model.Beverage;
+import model.Order;
 import model.food.Meal;
 
 public class Worker {
 
+    private App mainController;
     //todo
 
-    public Worker(OrderController orderController, Beverage beverage, Meal meal){
-
+    public Worker(App mainController/*OrderController orderController, Beverage beverage, Meal meal*/){
+        this.mainController=mainController;
     }
     public void prepareFood(){
 
     }
-    public void getNewOrder(){
-       // return .getMealsInOrder;
-
+    public Meal[] getNewOrder(boolean isFav){
+       return mainController.getCurrentUser().getOrder(isFav);
     }
     public void makeNewOrder(){
 

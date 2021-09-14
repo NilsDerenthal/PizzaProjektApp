@@ -32,7 +32,12 @@ public class FinalOrderPanel extends ViewPanel{
                 JOptionPane.showMessageDialog(this.getMainPanel(), "You haven't enough money");
             }
         }
+        if(viewController.getMainController().getCurrentUser().getOrder(false).length<2){
+            JOptionPane.showMessageDialog(null,"your Order is emty");
+        }
     }
+
+    //private boolean
 
     private boolean isFav(){
         return Arrays.equals(viewController.getMainController().getCurrentUser().getOrder(false), viewController.getMainController().getCurrentUser().getOrder(true)) && Arrays.equals(viewController.getMainController().getCurrentUser().getBeverageOrder(false), viewController.getMainController().getCurrentUser().getBeverageOrder(true));
