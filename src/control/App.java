@@ -1,6 +1,7 @@
 package control;
 
 import model.people.Guest;
+import model.utility.Oven;
 import model.utility.Storage;
 
 public class App {
@@ -13,6 +14,11 @@ public class App {
     private final ViewController viewController;
     private final OrderController orderController;
     private final Storage storage;
+    private final Oven[] ovens= {
+            new Oven(),
+            new Oven(),
+            new Oven()
+    };
 
     public static void main(String[] args) {
         new App();
@@ -50,4 +56,6 @@ public class App {
     }
 
     public Storage getStorage(){ return storage; }
+
+    public Oven[] getOven(){ return ovens; }
 }
