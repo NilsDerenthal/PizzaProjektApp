@@ -1,6 +1,7 @@
 package control;
 
 import model.people.Guest;
+import view.Debugger;
 
 import javax.swing.*;
 import java.io.*;
@@ -8,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Arrays;
 
 public class LogInController {
 
@@ -26,6 +28,7 @@ public class LogInController {
      */
     public LogInController (App mainController) {
 
+        Debugger.log("Created Log-in controller");
         this.mainController = mainController;
 
         // read file into an array of Guest Objects.
@@ -48,6 +51,8 @@ public class LogInController {
 
             users[i] = new Guest(name, password, hexToBytes(salt));
         }
+
+        Debugger.log("Read users into array: " + Arrays.toString(users));
 
     }
 
@@ -96,6 +101,7 @@ public class LogInController {
             addUserToDatabase(newUser);
             mainController.getViewController().setPanel("setFavMealPanel");
         }else{
+            Debugger.log("Failed to add user");
             String errorText = index != -1 ? "Username is already taken" : "Username is invalid";
             JOptionPane.showMessageDialog(null , errorText);
         }
@@ -110,6 +116,8 @@ public class LogInController {
         // 2 << 5 -> bitshift 2 5 to the left -> 2^5 = 64
         byte[] bytes = new byte[2<<5];
         new SecureRandom().nextBytes(bytes);
+
+        Debugger.log("Generated Salt");
         return bytes;
     }
 
@@ -140,6 +148,7 @@ public class LogInController {
             boolean pwMatches = correspondingPassword.equals(hash(password, users[index].getSalt()));
 
             if (pwMatches) {
+                Debugger.log("Log-in successful");
                 mainController.setCurrentUser(users[index]);
                 mainController.getViewController().setPanel("menuePanel");
             } else {
@@ -150,7 +159,8 @@ public class LogInController {
         }
 
         if (errorText != null) {
-            JOptionPane.showMessageDialog(null, "Wrong password or username entered");
+            Debugger.log("Log-in unsuccessful");
+            JOptionPane.showMessageDialog(null, errorText);
         }
     }
 
@@ -185,6 +195,7 @@ public class LogInController {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(userDataFile))) {
             writer.write(newFileDataString.toString());
+            Debugger.log("Wrote Array with new user into file");
         } catch (IOException exception) {
             exception.printStackTrace();
         }
@@ -203,6 +214,7 @@ public class LogInController {
             final MessageDigest messageDigest = MessageDigest.getInstance("SHA3-256");
             messageDigest.update(salt);
             final byte[] hashedBytes = messageDigest.digest(new String(input).getBytes(StandardCharsets.UTF_8));
+            Debugger.log("Hashed input");
             return bytesToHex(hashedBytes);
 
         } catch (NoSuchAlgorithmException ignored) {return null;}
@@ -262,8 +274,7 @@ public class LogInController {
             if (comp == 0)
                 return m;
 
-
-            if (comp > 0) {
+            if (comp < 0) {
                 l = m + 1;
             } else {
                 r = m - 1;
