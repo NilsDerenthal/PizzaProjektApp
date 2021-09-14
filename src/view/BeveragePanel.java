@@ -23,7 +23,7 @@ public class BeveragePanel extends ViewPanel{
 
         addToCardButton.addActionListener(e -> {
             selectetTyp=(String)selectBox.getSelectedItem();
-            viewController.getMainController().getOrderController().addBeverageToOrder(selectetTyp);
+            viewController.getMainController().getOrderController().addBeverageToOrder(selectetTyp,false);
         });
     }
 
