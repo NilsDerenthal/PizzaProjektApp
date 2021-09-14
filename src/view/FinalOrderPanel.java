@@ -24,7 +24,7 @@ public class FinalOrderPanel extends ViewPanel{
     }
 
     private void buy(){
-        if(viewController.getMainController().getCurrentUser().getOrder()!=null) {
+        if(viewController.getMainController().getCurrentUser().getOrder(false)!=null) {
             if (viewController.getMainController().getCurrentUser().getBudget() >= viewController.getMainController().getCurrentUser().getOrderPrice(false)) {
                 viewController.getMainController().getCurrentUser().reduceBudget(viewController.getMainController().getCurrentUser().getOrderPrice(isFav()));
                 viewController.setPanel("progressPanel");
@@ -35,7 +35,7 @@ public class FinalOrderPanel extends ViewPanel{
     }
 
     private boolean isFav(){
-        return Arrays.equals(viewController.getMainController().getCurrentUser().getOrder(), viewController.getMainController().getCurrentUser().getFavOrder()) && Arrays.equals(viewController.getMainController().getCurrentUser().getBeverageOrder(), viewController.getMainController().getCurrentUser().getFavBeverageOrder());
+        return Arrays.equals(viewController.getMainController().getCurrentUser().getOrder(false), viewController.getMainController().getCurrentUser().getOrder(true)) && Arrays.equals(viewController.getMainController().getCurrentUser().getBeverageOrder(false), viewController.getMainController().getCurrentUser().getBeverageOrder(true));
     }
 
     private void setOrderText(){
@@ -46,14 +46,14 @@ public class FinalOrderPanel extends ViewPanel{
 
         //Todo
 
-        if(currentUser.getOrder()!=null) {
-            Meal[] currentOrder = currentUser.getOrder();
+        if(currentUser.getOrder(false)!=null) {
+            Meal[] currentOrder = currentUser.getOrder(false);
             for (int i = 1; i < currentOrder.length; i++) {
                 textPane1.setText(textPane1.getText() + currentOrder[i] + "\n");
             }
         }
-        if(currentUser.getBeverageOrder()!=null) {
-            Beverage[] currentOrder = currentUser.getBeverageOrder();
+        if(currentUser.getBeverageOrder(false)!=null) {
+            Beverage[] currentOrder = currentUser.getBeverageOrder(false);
             for (int i = 1; i < currentOrder.length; i++) {
                 textPane1.setText(textPane1.getText() + currentOrder[i].getTypOfBeverage() + "\n");
             }
