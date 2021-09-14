@@ -2,9 +2,6 @@ package model.people;
 
 
 import control.App;
-import control.OrderController;
-import model.Beverage;
-import model.Order;
 import model.food.Meal;
 
 public class Worker {
@@ -12,7 +9,7 @@ public class Worker {
     private App mainController;
     //todo
 
-    public Worker(App mainController/*OrderController orderController, Beverage beverage, Meal meal*/){
+    public Worker(App mainController){
         this.mainController=mainController;
     }
     public void prepareFood(){
