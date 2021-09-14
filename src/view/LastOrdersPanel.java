@@ -8,11 +8,11 @@ public class LastOrdersPanel extends ViewPanel{
 
     private JTextPane textPane1;
     private JPanel lastOrdersPanel;
-    private JButton goBackButton;
+    private JButton backButton;
 
     public LastOrdersPanel(ViewController viewController){
         super(viewController);
-        goBackButton.addActionListener(e -> viewController.setPanel("menuePanel"));
+        backButton.addActionListener(e -> viewController.setPanel("menuePanel"));
     }
 
     private void setTextPane1() {

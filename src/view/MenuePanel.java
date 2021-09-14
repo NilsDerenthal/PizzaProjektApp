@@ -10,13 +10,13 @@ public class MenuePanel extends ViewPanel{
     private JButton newOrderButton;
     private JButton logOutButton;
     private JPanel finalPanel;
-    private JButton lastOrderButton;
-    private JButton orderFavoritMealButton;
+    private JButton lastOrdersButton;
+    private JButton orderFavouriteMealButton;
 
     public MenuePanel(ViewController viewController) {
         super(viewController);
         logOutButton.addActionListener( e -> viewController.setPanel("startPanel"));
-        lastOrderButton.addActionListener(e -> viewController.setPanel("lastOrdersPanel"));
+        lastOrdersButton.addActionListener(e -> viewController.setPanel("lastOrdersPanel"));
         newOrderButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -24,7 +24,7 @@ public class MenuePanel extends ViewPanel{
                 viewController.getMainController().getCurrentUser().makeNewOrder();
             }
         });
-        orderFavoritMealButton.addActionListener(new ActionListener() {
+        orderFavouriteMealButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewController.getMainController().getOrderController().orderFavMeal();

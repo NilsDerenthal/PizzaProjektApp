@@ -10,7 +10,7 @@ public class OrderPanel extends ViewPanel {
     private JButton pizzaButton;
     private JButton doenerButton;
     private JButton saladButton;
-    private JButton buyButton;
+    private JButton checkoutButton;
     private JButton beverageButton;
 
     public OrderPanel(ViewController viewController) {
@@ -19,7 +19,7 @@ public class OrderPanel extends ViewPanel {
         pizzaButton.addActionListener(e ->  viewController.setPanel("pizzaPanel"));
         doenerButton.addActionListener(e -> viewController.setPanel("doenerPanel"));
         saladButton.addActionListener(e -> viewController.setPanel("saladPanel"));
-        buyButton.addActionListener(e -> viewController.setPanel("finalOrderPanel"));
+        checkoutButton.addActionListener(e -> viewController.setPanel("finalOrderPanel"));
         beverageButton.addActionListener(e -> viewController.setPanel("beveragePanel"));
     }
 

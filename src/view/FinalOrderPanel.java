@@ -1,19 +1,16 @@
 package view;
 
-import control.App;
 import control.ViewController;
 import model.food.Meal;
 import model.Beverage;
 import model.people.Guest;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 public class FinalOrderPanel extends ViewPanel{
     private JPanel finalOrderPanel;
-    private JButton buyButten;
+    private JButton orderButton;
     private JButton backButton;
     private JLabel label1;
     private JTextPane textPane1;
@@ -22,7 +19,7 @@ public class FinalOrderPanel extends ViewPanel{
 
     public FinalOrderPanel (ViewController viewController) {
         super(viewController);
-        buyButten.addActionListener( e -> buy() );
+        orderButton.addActionListener(e -> buy() );
         backButton.addActionListener( e -> viewController.setPanel("orderPanel"));
     }
 
