@@ -24,20 +24,22 @@ public class FinalOrderPanel extends ViewPanel{
     }
 
     private void buy(){
-        if(viewController.getMainController().getCurrentUser().getOrder(false)!=null) {
+        if(viewController.getMainController().getCurrentUser().getOrder(false) != null && !orderIsEmty()) {
             if (viewController.getMainController().getCurrentUser().getBudget() >= viewController.getMainController().getCurrentUser().getOrderPrice(false)) {
                 viewController.getMainController().getCurrentUser().reduceBudget(viewController.getMainController().getCurrentUser().getOrderPrice(isFav()));
                 viewController.setPanel("progressPanel");
             } else {
                 JOptionPane.showMessageDialog(this.getMainPanel(), "You haven't enough money");
             }
-        }
-        if(viewController.getMainController().getCurrentUser().getOrder(false).length<2){
+        }else{
             JOptionPane.showMessageDialog(null,"your Order is emty");
         }
     }
 
-    //private boolean
+    private boolean orderIsEmty(){
+        if(viewController.getMainController().getCurrentUser().getOrder(false).length<2) return true;
+        return false;
+    }
 
     private boolean isFav(){
         return Arrays.equals(viewController.getMainController().getCurrentUser().getOrder(false), viewController.getMainController().getCurrentUser().getOrder(true)) && Arrays.equals(viewController.getMainController().getCurrentUser().getBeverageOrder(false), viewController.getMainController().getCurrentUser().getBeverageOrder(true));

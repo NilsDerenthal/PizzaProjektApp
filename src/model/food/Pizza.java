@@ -22,13 +22,7 @@ public class Pizza extends Meal {
 
     // Can be Salami, Margherita, etc.
     private String typeOfPizza;
-
-    private Oven[] ovens= {
-            new Oven(),
-            new Oven(),
-            new Oven()
-            //Todo oven darf nicht in Pizza erzeugt werden
-    };
+    private Oven[] ovens;
 
     /**
      * Creates a Pizza with the given type
@@ -42,6 +36,7 @@ public class Pizza extends Meal {
 
     public Pizza(App mainController) {
         this(mainController, null);
+        ovens= mainController.getOven();
     }
 
     public void makeIt(){
