@@ -39,7 +39,7 @@ public class ProgressPanel extends ViewPanel{
                 final long startTime = System.currentTimeMillis();
 
                 while(true){
-                    long progress = (System.currentTimeMillis() - startTime) / processDuration;
+                    long progress = (System.currentTimeMillis() - startTime) / 1000;  //Todo fix procxessduration
                     if (progress >= 100)
                         break;
 
