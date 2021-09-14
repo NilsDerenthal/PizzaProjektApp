@@ -1,6 +1,5 @@
 package model.people;
 
-
 import control.App;
 import model.food.Meal;
 
