@@ -16,7 +16,7 @@ public class OrderController {
         this.mainController=mainController;
     }
 
-    public void addBeverageToOrder(String typ){ mainController.getCurrentUser().addBeverageToOrder(new Beverage(typ),false);}
+    public void addBeverageToOrder(String typ,boolean isFav){ mainController.getCurrentUser().addBeverageToOrder(new Beverage(typ),isFav);}
 
     public void addFoodToOrder (String orderType, String type, boolean isFav){
         Guest guest = mainController.getCurrentUser();
