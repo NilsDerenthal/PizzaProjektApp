@@ -28,7 +28,7 @@ public class MenuePanel extends ViewPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewController.getMainController().getOrderController().orderFavMeal();
-                viewController.setPanel("progressPanel");
+                viewController.setPanel("finalOrderPanel");
             }
         });
     }
