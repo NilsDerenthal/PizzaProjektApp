@@ -1,6 +1,7 @@
 package control;
 
 import model.people.Guest;
+import model.utility.Storage;
 
 public class App {
 
@@ -11,6 +12,7 @@ public class App {
     private final LogInController logInController;
     private final ViewController viewController;
     private final OrderController orderController;
+    private final Storage storage;
 
     public static void main(String[] args) {
         new App();
@@ -20,6 +22,7 @@ public class App {
         logInController = new LogInController(this);
         viewController = new ViewController(this);
         orderController = new OrderController(this);
+        storage=new Storage(this);
     }
 
     public void addMoney(double amount){ money += amount; }
@@ -45,4 +48,6 @@ public class App {
     public OrderController getOrderController () {
         return orderController;
     }
+
+    public Storage getStorage(){ return storage; }
 }
