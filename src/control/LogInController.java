@@ -114,18 +114,18 @@ public class LogInController {
     }
 
     /**
-     * Returns wether this username is valid by the given Regex.
+     * Returns whether this username is valid by the given Regex.
      * The regex tests for word characters only allowing for whitespaces.
      * word characters mean letters a-z, upper- and lowercase
      * @param username the username to be tested
-     * @return wether the username is valid
+     * @return whether the username is valid
      */
     private boolean isUserNameValid(String username){
         return !username.isEmpty() && username.matches("^(\\w* ?)+$");
     }
 
     /**
-     * Checks if the login is succesful for the given user and password.
+     * Checks if the login is successful for the given user and password.
      * @param username the username
      * @param password the password to be tested for the user
      */
