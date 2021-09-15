@@ -107,8 +107,7 @@ public class LogInController {
      * @return the random byte array of size 64
      */
     private byte[] generateSalt() {
-        // 2 << 5 -> bitshift 2 5 to the left -> 2^5 = 64
-        byte[] bytes = new byte[2<<5];
+        byte[] bytes = new byte[64];
         new SecureRandom().nextBytes(bytes);
         return bytes;
     }
