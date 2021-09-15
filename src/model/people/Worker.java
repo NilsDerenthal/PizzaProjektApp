@@ -16,7 +16,7 @@ public class Worker {
     }
 
     public void prepareFood(Guest guest){
-        guest.getOrder(guest.getOrder(false).length,false).makeIt();
+        guest.getOrder(guest.getOrder(false).length-1,false).makeIt();
     }
 
     public void addBeverageToOrder(String typ,boolean isFav){ mainController.getCurrentUser().addBeverageToOrder(new Beverage(typ),isFav);}
