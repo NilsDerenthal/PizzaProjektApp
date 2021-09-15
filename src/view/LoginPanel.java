@@ -20,11 +20,21 @@ public class LoginPanel extends ViewPanel{
 
         LogInController logInController = viewController.getMainController().getLogInController();
 
-        logInButton.addActionListener(
-                !signUpPanel ?
-                e -> logInController.checkLogIn(usernameTextField.getText(), passwordField.getPassword()) :
-                e -> logInController.addUser(usernameTextField.getText(), passwordField.getPassword())
-        );
+        logInButton.addActionListener(e -> {
+
+            boolean success;
+
+            if (!signUpPanel)
+                success = logInController.checkLogIn(usernameTextField.getText(), passwordField.getPassword());
+            else
+                success = logInController.addUser(usernameTextField.getText(), passwordField.getPassword());
+
+            passwordField.setText(null);
+
+            if (success) {
+                usernameTextField.setText(null);
+            }
+        });
 
         backButton.addActionListener(e -> viewController.setPanel("startPanel"));
     }
