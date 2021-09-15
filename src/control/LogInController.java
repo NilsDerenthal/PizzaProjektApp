@@ -58,21 +58,22 @@ public class LogInController {
      */
     private String getFileContent (File file){
 
-        FileInputStream inputStream;
+        FileInputStream inputStream = null;
 
+        // won't throw
         try {
             inputStream = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
+        } catch (FileNotFoundException ignore) {}
 
         StringBuilder sb = new StringBuilder();
 
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line).append("\n");
+        try {
+            assert inputStream != null;
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line).append("\n");
+                }
             }
         } catch (IOException exception) {
             exception.printStackTrace();
