@@ -86,8 +86,9 @@ public class LogInController {
      * Adds a user to the database in case that the username as well as the password are valid
      * @param username the username of the new user
      * @param password the password for this user. Stored as a char array for security reasons.
+     * @return
      */
-    public void addUser (String username, char[] password) {
+    public boolean addUser (String username, char[] password) {
 
         String errorText = null;
         int index = binarySearch(username);
@@ -108,6 +109,7 @@ public class LogInController {
             JOptionPane.showMessageDialog(null , errorText);
         }
 
+        return errorText == null;
     }
 
     /**
@@ -144,8 +146,9 @@ public class LogInController {
      * Checks if the login is successful for the given user and password.
      * @param username the username
      * @param password the password to be tested for the user
+     * @return
      */
-    public void checkLogIn (String username, char[] password) {
+    public boolean checkLogIn (String username, char[] password) {
         String errorText = null;
 
         int index = binarySearch(username);
@@ -168,6 +171,8 @@ public class LogInController {
         if (errorText != null) {
             JOptionPane.showMessageDialog(null, "Wrong password or username entered");
         }
+
+        return errorText == null;
     }
 
     /**
