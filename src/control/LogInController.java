@@ -88,16 +88,23 @@ public class LogInController {
      * @param password the password for this user. Stored as a char array for security reasons.
      */
     public void addUser (String username, char[] password) {
+
+        String errorText = null;
         int index = binarySearch(username);
 
-        if(index == -1 && isUserNameValid(username)) {
+        if (!isUserNameValid(username))
+            errorText = "Username is invalid";
+        if (!isPasswordValid(password))
+            errorText = "Password is invalid, please make sure it is longer than five characters and does not start with a space";
+        if (index != -1)
+            errorText = "Username has already been taken";
 
+        if(errorText == null) {
             byte[] salt = generateSalt();
             Guest newUser = new Guest(username, hash(password, salt), salt);
             addUserToDatabase(newUser);
             mainController.getViewController().setPanel("setFavMealPanel");
         }else{
-            String errorText = index != -1 ? "Username is already taken" : "Username is invalid";
             JOptionPane.showMessageDialog(null , errorText);
         }
 
@@ -122,6 +129,15 @@ public class LogInController {
      */
     private boolean isUserNameValid(String username){
         return !username.isEmpty() && username.matches("^(\\w* ?)+$");
+    }
+
+    /**
+     * Returns whether this password is valid. A password being valid is identified by it having more than 5 characters.
+     * @param password the password
+     * @return if this password is valid
+     */
+    private boolean isPasswordValid(char[] password){
+        return password.length >= 5 && password[0] != ' ';
     }
 
     /**
