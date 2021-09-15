@@ -1,6 +1,7 @@
 package control;
 
 import model.people.Guest;
+import model.people.Worker;
 import model.utility.Oven;
 import model.utility.Storage;
 
@@ -14,6 +15,7 @@ public class App {
     private final ViewController viewController;
     private final OrderController orderController;
     private final Storage storage;
+    private final Worker worker;
     private final Oven[] ovens= {
             new Oven(),
             new Oven(),
@@ -29,6 +31,7 @@ public class App {
         viewController = new ViewController(this);
         orderController = new OrderController(this);
         storage=new Storage(this);
+        worker=new Worker(this);
     }
 
     public void addMoney(double amount){ money += amount; }
@@ -58,4 +61,6 @@ public class App {
     public Storage getStorage(){ return storage; }
 
     public Oven[] getOven(){ return ovens; }
+
+    public Worker getTheWorker(){ return worker; }
 }

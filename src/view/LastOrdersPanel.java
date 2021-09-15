@@ -22,7 +22,6 @@ public class LastOrdersPanel extends ViewPanel{
     }
 
     public JPanel getMainPanel(){
-        //TODO
         setTextPane1();
         return lastOrdersPanel;
     }
