@@ -5,7 +5,7 @@ import control.App;
 
 public class Pizza extends Meal {
 
-    private static final String[] availibleTypes = {
+    private static final String[] availableTypes = {
             "Margerita",
             "Salami",
             "Prosciutto",
@@ -22,7 +22,7 @@ public class Pizza extends Meal {
 
     // Can be Salami, Margherita, etc.
     private String typeOfPizza;
-    private Oven[] ovens;
+    private final Oven[] ovens;
 
     /**
      * Creates a Pizza with the given type
@@ -55,7 +55,7 @@ public class Pizza extends Meal {
     }
 
     public static String[] getToppings () {
-        return availibleTypes;
+        return availableTypes;
     }
 
     @Override
