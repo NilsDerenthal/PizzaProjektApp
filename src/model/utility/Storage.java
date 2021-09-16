@@ -19,7 +19,7 @@ public class Storage {
     }
 
     public void reduceDressingTankFill(){
-        if(dressingTankfill>0) {
+        if(dressingTankfill > 0) {
             dressingTankfill = dressingTankfill - 2.5;
         }else{
             refillDressingTank();
@@ -32,7 +32,7 @@ public class Storage {
     }
 
     public void reduceSaladkit(){
-        if(saladkit>0) {
+        if(saladkit > 0) {
             saladkit = saladkit - 1;
         }
     }

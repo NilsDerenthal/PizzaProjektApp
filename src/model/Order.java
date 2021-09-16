@@ -13,7 +13,7 @@ public class Order {
 
     public double getTotalPrice(boolean favMeal){
         if(favMeal){
-            return (totalPrice/10) * 9;
+            return (totalPrice / 10) * 9;
         }
         return totalPrice;
     }

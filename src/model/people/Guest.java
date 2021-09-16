@@ -8,12 +8,12 @@ public class Guest {
 
     private String name;
     private String password;
-    private Order order=new Order();
+    private Order order = new Order();
     private Order[] lastOrders;
 
-    private double budget=100;
+    private double budget = 100;
 
-    private Order favoriteMeal=new Order();
+    private Order favoriteMeal = new Order();
 
     private final byte[] salt;
 
@@ -44,7 +44,7 @@ public class Guest {
 
         tmpNewOrders[lastOrders.length] = order;
         lastOrders = tmpNewOrders;
-        order=new Order();
+        order = new Order();
     }
 
     public String getPassword() {
