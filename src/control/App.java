@@ -16,11 +16,7 @@ public class App {
     private final OrderController orderController;
     private final Storage storage;
     private final Worker worker;
-    private final Oven[] ovens= {
-            new Oven(),
-            new Oven(),
-            new Oven()
-    };
+    private final Oven[] ovens = { new Oven(), new Oven(), new Oven() };
 
     public static void main(String[] args) {
         new App();

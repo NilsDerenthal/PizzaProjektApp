@@ -44,7 +44,7 @@ public class Order {
 
         tmpNewBeverages[beveragesInOrder.length] = newBeverage;
         beveragesInOrder = tmpNewBeverages;
-        totalPrice=totalPrice+ newBeverage.getPrice();
+        totalPrice=totalPrice + newBeverage.getPrice();
     }
 
     public void clearOrder(){
