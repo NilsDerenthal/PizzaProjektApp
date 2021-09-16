@@ -28,15 +28,17 @@ public class Oven {
             return false;
 
         baking = true;
-        //TODO actually bake Pizza
         return true;
     }
     public void makePizza(){
 
         if(bakePizza() == false){
 
-            getStart();
-            fiveMinutesTimer();
+            start= System.currentTimeMillis();
+            if (fiveMinutesTimer() > 3000){
+                //TODO
+            }
+
 
         }
     }
