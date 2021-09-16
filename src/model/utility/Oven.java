@@ -26,9 +26,7 @@ public class Oven {
 
         if (baking || pizza == null)
             return false;
-
         baking = true;
-        //TODO actually bake Pizza
         return true;
     }
 

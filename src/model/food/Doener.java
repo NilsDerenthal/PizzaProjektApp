@@ -9,7 +9,7 @@ public class Doener extends Meal {
 
     public Doener (App app) {
         super(app);
-        price=3.40;
+        price = 3.40;
     }
 
     public void makeIt(){

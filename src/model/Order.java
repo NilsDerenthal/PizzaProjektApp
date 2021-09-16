@@ -4,8 +4,8 @@ import model.food.Meal;
 public class Order {
 
     private double totalPrice;
-    private Meal[] mealsInOrder=new Meal[1];
-    private Beverage[] beveragesInOrder=new Beverage[1];
+    private Meal[] mealsInOrder = new Meal[1];
+    private Beverage[] beveragesInOrder = new Beverage[1];
 
     public Order(){
 
@@ -13,7 +13,7 @@ public class Order {
 
     public double getTotalPrice(boolean favMeal){
         if(favMeal){
-            return (totalPrice/10)*9;
+            return (totalPrice/10) * 9;
         }
         return totalPrice;
     }

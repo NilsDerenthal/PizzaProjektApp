@@ -14,7 +14,7 @@ public class MainWindow extends JFrame {
         setVisible(true);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds(screenSize.width/2 - 300, screenSize.height/2 - 200, 600, 400);
+        setBounds(screenSize.width / 2 - 300, screenSize.height / 2 - 200, 600, 400);
     }
 
     public void setNewPanel (JPanel newPanel) {

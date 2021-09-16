@@ -30,25 +30,25 @@ public class Pizza extends Meal {
      */
     public Pizza (App app, String type) {
         super(app);
-        this.typeOfPizza=type;
-        price=7;
+        this.typeOfPizza = type;
+        price = 7;
+        ovens = mainController.getOven();
     }
 
     public Pizza(App mainController) {
         this(mainController, null);
-        ovens= mainController.getOven();
     }
 
     public void makeIt(){
         super.makeIt();
         int oven=checkOven();
-        if(oven>=0) {
+        if(oven >= 0) {
             ovens[oven].setPizza(this);
         }
     }
 
     private int checkOven(){
-        for(int i=0;i< ovens.length;i++){
+        for(int i = 0; i < ovens.length; i++){
             if(!ovens[i].bakePizza()){ return i; }
         }
         return -1;

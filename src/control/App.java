@@ -30,8 +30,8 @@ public class App {
         logInController = new LogInController(this);
         viewController = new ViewController(this);
         orderController = new OrderController(this);
-        storage=new Storage(this);
-        worker=new Worker(this);
+        storage = new Storage(this);
+        worker = new Worker(this);
     }
 
     public void addMoney(double amount){ money += amount; }

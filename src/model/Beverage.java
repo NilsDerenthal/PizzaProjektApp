@@ -7,11 +7,11 @@ public class Beverage {
 
     public Beverage(String type){
         this.typOfBeverage=type;
-        price=2;
+        price = 2;
     }
 
     public double getPrice() {
-        if(typOfBeverage.equals("Water")){ return price/2; }
+        if(typOfBeverage.equals("Water")){ return price / 2; }
         return price;
     }
 
