@@ -1,6 +1,9 @@
 package view;
 
 import control.ViewController;
+import model.food.Doener;
+import model.food.Pizza;
+import model.food.Salad;
 
 import javax.swing.*;
 
@@ -17,8 +20,27 @@ public class LastOrdersPanel extends ViewPanel{
 
     private void setTextPane1() {
         for (int i = 1; i < 11 && i < viewController.getMainController().getCurrentUser().getLastOrders().length; i++) {
-            textPane1.setText(textPane1.getText() + viewController.getMainController().getCurrentUser().getLastOrders(i) + "\n");
+            textPane1.setText(textPane1.getText() + getInOrders(i) + "\n");
         }
+    }
+
+    private String getInOrders(int i) {
+        String theString="last order "+i+" : ";
+        for (int y = 1; i < 11 && i < viewController.getMainController().getCurrentUser().getLastOrders(i).getMealsInOrder().length + viewController.getMainController().getCurrentUser().getLastOrders(i).getBeveragesInOrder().length; i++){
+            if(viewController.getMainController().getCurrentUser().getOrder(i,false) instanceof Pizza){
+                theString=theString+textPane1.getText() + viewController.getMainController().getCurrentUser().getLastOrders(i).getMealsInOrder(y);
+            }else {
+                String inOrderY = setInOrderY(y);
+                theString=theString+inOrderY;
+            }
+        }
+        return theString;
+    }
+
+    private String setInOrderY(int y){
+        if( viewController.getMainController().getCurrentUser().getOrder(y,false) instanceof Doener) return "Doener";
+        if( viewController.getMainController().getCurrentUser().getOrder(y,false) instanceof Salad) return "Salad";
+        return "";
     }
 
     public JPanel getMainPanel(){
