@@ -24,7 +24,7 @@ public class SetFavMealPanel extends ViewPanel{
             if( doenerCheckBox.isSelected()){ orderController.addFoodToOrder("Doener", null, true); }
             if( saladCheckBox.isSelected()){ orderController.addFoodToOrder("Salad", null, true); }
             if( pizzaCheckBox.isSelected()) { orderController.addFoodToOrder("Pizza", (String) pizzaComboBox.getSelectedItem(), true); }
-            if( beverageCheckBox.isSelected()) { orderController.addBeverageToOrder((String) beverageComboBox.getSelectedItem(), true); }
+            if( beverageCheckBox.isSelected()) { orderController.addFoodToOrder((String) beverageComboBox.getSelectedItem(), null, true); }
 
             viewController.setPanel("menuePanel");
         });
