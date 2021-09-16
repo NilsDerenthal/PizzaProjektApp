@@ -31,7 +31,7 @@ public class LogInController {
         // read file into an array of Guest Objects.
         // The userdata is formatted as username:password:salt
         // where password has been hashed using the salt.
-        userDataFile = new File("src/Database/Users.txt");
+        userDataFile = new File("src/database/Users.txt");
         String usersString = getFileContent(userDataFile);
 
         String[] usersFromFile = usersString.split("\n");
