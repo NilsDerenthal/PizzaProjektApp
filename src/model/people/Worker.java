@@ -12,11 +12,11 @@ public class Worker {
     private App mainController;
 
     public Worker(App mainController){
-        this.mainController=mainController;
+        this.mainController = mainController;
     }
 
     public void prepareFood(Guest guest){
-        guest.getOrder(guest.getOrder(false).length-1,false).makeIt();
+        guest.getOrder(guest.getOrder(false).length - 1,false).makeIt();
     }
 
     public void addBeverageToOrder(String typ,boolean isFav){ mainController.getCurrentUser().addBeverageToOrder(new Beverage(typ),isFav);}
