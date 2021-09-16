@@ -5,24 +5,13 @@ import control.App;
 
 public class Pizza extends Meal {
 
-    private static final String[] availableTypes = {
-            "Margerita",
-            "Salami",
-            "Prosciutto",
-            "Quattro Formaggi",
-            "Marinara",
-            "Funghi",
-            "Capricciosa",
-            "Diavola",
-    };
-
     // kann 'null' sein -> noch kein Ofen "verfügbar"/Zugewiesen;
     // dieses 'null' muss überprüft werden.
     private Oven oven;
 
     // Can be Salami, Margherita, etc.
     private String typeOfPizza;
-    private final Oven[] ovens;
+    private Oven[] ovens;
 
     /**
      * Creates a Pizza with the given type
@@ -54,9 +43,6 @@ public class Pizza extends Meal {
         return -1;
     }
 
-    public static String[] getToppings () {
-        return availableTypes;
-    }
 
     @Override
     public double getPrice() {

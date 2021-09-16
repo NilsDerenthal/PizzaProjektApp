@@ -16,14 +16,14 @@ public class ViewController {
         panels = new ViewPanel[]{
                 new StartPanel(this),
                 new OrderPanel(this),
-                new PizzaPanel(this),
-                new DoenerPanel(this),
-                new BeveragePanel(this),
+                new GeneralOrderPanel(this, "Pizza"),
+                new GeneralOrderPanel(this, "Doener"),
+                new GeneralOrderPanel(this, "Beverage"),
                 new MenuePanel(this),
                 new LastOrdersPanel(this),
                 new FinalOrderPanel(this),
                 new ProgressPanel(this),
-                new SaladPanel(this),
+                new GeneralOrderPanel(this, "Salad"),
                 new LoginPanel(this, false),
                 new LoginPanel(this, true),
                 new SetFavMealPanel(this)
