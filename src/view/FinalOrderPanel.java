@@ -1,19 +1,16 @@
 package view;
 
-import control.App;
 import control.ViewController;
 import model.food.Meal;
 import model.Beverage;
 import model.people.Guest;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 public class FinalOrderPanel extends ViewPanel{
     private JPanel finalOrderPanel;
-    private JButton buyButten;
+    private JButton orderButton;
     private JButton backButton;
     private JLabel label1;
     private JTextPane textPane1;
@@ -22,19 +19,26 @@ public class FinalOrderPanel extends ViewPanel{
 
     public FinalOrderPanel (ViewController viewController) {
         super(viewController);
-        buyButten.addActionListener( e -> buy() );
+        orderButton.addActionListener(e -> buy() );
         backButton.addActionListener( e -> viewController.setPanel("orderPanel"));
     }
 
     private void buy(){
-        if(viewController.getMainController().getCurrentUser().getOrder(false)!=null) {
+        if(viewController.getMainController().getCurrentUser().getOrder(false) != null && !orderIsEmty()) {
             if (viewController.getMainController().getCurrentUser().getBudget() >= viewController.getMainController().getCurrentUser().getOrderPrice(false)) {
                 viewController.getMainController().getCurrentUser().reduceBudget(viewController.getMainController().getCurrentUser().getOrderPrice(isFav()));
                 viewController.setPanel("progressPanel");
             } else {
                 JOptionPane.showMessageDialog(this.getMainPanel(), "You haven't enough money");
             }
+        }else{
+            JOptionPane.showMessageDialog(null,"your Order is emty");
         }
+    }
+
+    private boolean orderIsEmty(){
+        if(viewController.getMainController().getCurrentUser().getOrder(false).length<2) return true;
+        return false;
     }
 
     private boolean isFav(){

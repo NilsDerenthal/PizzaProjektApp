@@ -1,7 +1,6 @@
 package control;
 
 import model.people.Guest;
-import view.Debugger;
 
 import javax.swing.*;
 import java.io.*;
@@ -9,7 +8,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Arrays;
 
 public class LogInController {
 
@@ -28,7 +26,6 @@ public class LogInController {
      */
     public LogInController (App mainController) {
 
-        Debugger.log("Created Log-in controller");
         this.mainController = mainController;
 
         // read file into an array of Guest Objects.
@@ -52,8 +49,6 @@ public class LogInController {
             users[i] = new Guest(name, password, hexToBytes(salt));
         }
 
-        Debugger.log("Read users into array: " + Arrays.toString(users));
-
     }
 
     /**
@@ -63,21 +58,22 @@ public class LogInController {
      */
     private String getFileContent (File file){
 
-        FileInputStream inputStream;
+        FileInputStream inputStream = null;
 
+        // won't throw
         try {
             inputStream = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
+        } catch (FileNotFoundException ignore) {}
 
         StringBuilder sb = new StringBuilder();
 
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line).append("\n");
+        try {
+            assert inputStream != null;
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line).append("\n");
+                }
             }
         } catch (IOException exception) {
             exception.printStackTrace();
@@ -90,22 +86,30 @@ public class LogInController {
      * Adds a user to the database in case that the username as well as the password are valid
      * @param username the username of the new user
      * @param password the password for this user. Stored as a char array for security reasons.
+     * @return
      */
-    public void addUser (String username, char[] password) {
+    public boolean addUser (String username, char[] password) {
+
+        String errorText = null;
         int index = binarySearch(username);
 
-        if(index == -1 && isUserNameValid(username)) {
+        if (!isUserNameValid(username))
+            errorText = "Username is invalid";
+        if (!isPasswordValid(password))
+            errorText = "Password is invalid, please make sure it is longer than five characters and does not start with a space";
+        if (index != -1)
+            errorText = "Username has already been taken";
 
+        if(errorText == null) {
             byte[] salt = generateSalt();
             Guest newUser = new Guest(username, hash(password, salt), salt);
             addUserToDatabase(newUser);
             mainController.getViewController().setPanel("setFavMealPanel");
         }else{
-            Debugger.log("Failed to add user");
-            String errorText = index != -1 ? "Username is already taken" : "Username is invalid";
             JOptionPane.showMessageDialog(null , errorText);
         }
 
+        return errorText == null;
     }
 
     /**
@@ -113,31 +117,38 @@ public class LogInController {
      * @return the random byte array of size 64
      */
     private byte[] generateSalt() {
-        // 2 << 5 -> bitshift 2 5 to the left -> 2^5 = 64
-        byte[] bytes = new byte[2<<5];
+        byte[] bytes = new byte[64];
         new SecureRandom().nextBytes(bytes);
-
-        Debugger.log("Generated Salt");
         return bytes;
     }
 
     /**
-     * Returns wether this username is valid by the given Regex.
+     * Returns whether this username is valid by the given Regex.
      * The regex tests for word characters only allowing for whitespaces.
      * word characters mean letters a-z, upper- and lowercase
      * @param username the username to be tested
-     * @return wether the username is valid
+     * @return whether the username is valid
      */
     private boolean isUserNameValid(String username){
         return !username.isEmpty() && username.matches("^(\\w* ?)+$");
     }
 
     /**
-     * Checks if the login is succesful for the given user and password.
+     * Returns whether this password is valid. A password being valid is identified by it having more than 5 characters.
+     * @param password the password
+     * @return if this password is valid
+     */
+    private boolean isPasswordValid(char[] password){
+        return password.length >= 5 && password[0] != ' ';
+    }
+
+    /**
+     * Checks if the login is successful for the given user and password.
      * @param username the username
      * @param password the password to be tested for the user
+     * @return
      */
-    public void checkLogIn (String username, char[] password) {
+    public boolean checkLogIn (String username, char[] password) {
         String errorText = null;
 
         int index = binarySearch(username);
@@ -148,7 +159,6 @@ public class LogInController {
             boolean pwMatches = correspondingPassword.equals(hash(password, users[index].getSalt()));
 
             if (pwMatches) {
-                Debugger.log("Log-in successful");
                 mainController.setCurrentUser(users[index]);
                 mainController.getViewController().setPanel("menuePanel");
             } else {
@@ -159,9 +169,10 @@ public class LogInController {
         }
 
         if (errorText != null) {
-            Debugger.log("Log-in unsuccessful");
-            JOptionPane.showMessageDialog(null, errorText);
+            JOptionPane.showMessageDialog(null, "Wrong password or username entered");
         }
+
+        return errorText == null;
     }
 
     /**
@@ -195,7 +206,6 @@ public class LogInController {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(userDataFile))) {
             writer.write(newFileDataString.toString());
-            Debugger.log("Wrote Array with new user into file");
         } catch (IOException exception) {
             exception.printStackTrace();
         }
@@ -214,7 +224,6 @@ public class LogInController {
             final MessageDigest messageDigest = MessageDigest.getInstance("SHA3-256");
             messageDigest.update(salt);
             final byte[] hashedBytes = messageDigest.digest(new String(input).getBytes(StandardCharsets.UTF_8));
-            Debugger.log("Hashed input");
             return bytesToHex(hashedBytes);
 
         } catch (NoSuchAlgorithmException ignored) {return null;}
@@ -274,7 +283,8 @@ public class LogInController {
             if (comp == 0)
                 return m;
 
-            if (comp < 0) {
+
+            if (comp > 0) {
                 l = m + 1;
             } else {
                 r = m - 1;

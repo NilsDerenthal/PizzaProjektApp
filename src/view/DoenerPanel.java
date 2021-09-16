@@ -7,14 +7,14 @@ import javax.swing.*;
 public class DoenerPanel extends ViewPanel{
     private JButton backButton;
     private JComboBox doenerSelectionBox;
-    private JButton addToCartButtonton;
+    private JButton addToCartButton;
     private JPanel doenerPanel;
 
     public DoenerPanel(ViewController viewController) {
         super(viewController);
 
         backButton.addActionListener( e -> viewController.setPanel("orderPanel"));
-        addToCartButtonton.addActionListener( e -> viewController.getMainController().getOrderController().addFoodToOrder("Doener", null, false));
+        addToCartButton.addActionListener(e -> viewController.getMainController().getOrderController().addFoodToOrder("Doener", null,false));
     }
 
     public JPanel getMainPanel() {
