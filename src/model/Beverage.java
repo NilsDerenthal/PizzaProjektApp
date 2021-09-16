@@ -1,11 +1,15 @@
 package model;
 
-public class Beverage {
+import control.App;
+import model.food.Meal;
+
+public class Beverage extends Meal {
 
     private final double price;
     private final String typOfBeverage;
 
-    public Beverage(String type){
+    public Beverage(App mainController, String type){
+        super(mainController);
         this.typOfBeverage = type;
         price = 2;
     }

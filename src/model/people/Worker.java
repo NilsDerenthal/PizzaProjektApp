@@ -18,7 +18,7 @@ public class Worker {
         guest.getOrder(guest.getOrder(false).length - 1,false).makeIt();
     }
 
-    public void addBeverageToOrder(String typ,boolean isFav){ mainController.getCurrentUser().addBeverageToOrder(new Beverage(typ),isFav);}
+    public void addBeverageToOrder(String type,boolean isFav){ mainController.getCurrentUser().addBeverageToOrder(new Beverage(mainController, type),isFav);}
 
     public void addFoodToOrder (String orderType, String type, boolean isFav){
         Guest guest = mainController.getCurrentUser();
@@ -27,7 +27,7 @@ public class Worker {
             case "Pizza" -> new Pizza(mainController,type);
             case "Doener" -> new Doener(mainController);
             case "Salad" -> new Salad(mainController);
-
+            case "Beverage" -> new Beverage(mainController, type);
             default -> throw new IllegalStateException("Unexpected type: " + orderType);
         },isFav);
 
