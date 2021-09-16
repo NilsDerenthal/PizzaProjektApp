@@ -35,6 +35,8 @@ public class Worker {
         if(!isFav) prepareFood(guest);
     }
 
+    public void addToLastOrders(){ mainController.getCurrentUser().addToLastOrders(); }
+
     public void orderFavMeal(){ mainController.getCurrentUser().orderFavMeal(); }
 
 

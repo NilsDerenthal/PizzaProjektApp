@@ -37,13 +37,6 @@ public class Guest {
     public void reduceBudget(double price) { budget -= price; }
 
     public void makeNewOrder(){
-        Order[] tmpNewOrders = new Order[lastOrders.length + 1];
-
-        for (int i = 0; i < lastOrders.length; i++)
-            tmpNewOrders[i] = lastOrders[i];
-
-        tmpNewOrders[lastOrders.length] = order;
-        lastOrders = tmpNewOrders;
         order = new Order();
     }
 
@@ -94,5 +87,15 @@ public class Guest {
 
     public void orderFavMeal(){
         order=favoriteMeal;
+    }
+
+    public void addToLastOrders(){
+        Order[] tmpNewOrders = new Order[lastOrders.length + 1];
+
+        for (int i = 0; i < lastOrders.length; i++)
+            tmpNewOrders[i] = lastOrders[i];
+
+        tmpNewOrders[lastOrders.length] = order;
+        lastOrders = tmpNewOrders;
     }
 }
