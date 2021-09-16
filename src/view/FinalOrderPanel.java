@@ -1,8 +1,11 @@
 package view;
 
 import control.ViewController;
+import model.food.Doener;
 import model.food.Meal;
 import model.Beverage;
+import model.food.Pizza;
+import model.food.Salad;
 import model.people.Guest;
 
 import javax.swing.*;
@@ -52,9 +55,15 @@ public class FinalOrderPanel extends ViewPanel{
         Guest currentUser = viewController.getMainController().getCurrentUser();
 
         if(currentUser.getOrder(false)!=null) {
+            String inOrderI;
             Meal[] currentOrder = currentUser.getOrder(false);
             for (int i = 1; i < currentOrder.length; i++) {
-                textPane1.setText(textPane1.getText() + currentOrder[i] + "\n");
+                if(viewController.getMainController().getCurrentUser().getOrder(i,false) instanceof Pizza){
+                    textPane1.setText(textPane1.getText() + currentOrder[i] + "\n");
+                }else {
+                    inOrderI = setInOrderI(i);
+                    textPane1.setText(textPane1.getText() + inOrderI + "\n");
+                }
             }
         }
         if(currentUser.getBeverageOrder(false)!=null) {
@@ -64,6 +73,12 @@ public class FinalOrderPanel extends ViewPanel{
             }
         }
         textPane1.setText(textPane1.getText() + "\n" + "Price: " + currentUser.getOrderPrice(isFav()) );
+    }
+
+    private String setInOrderI(int i){
+        if( viewController.getMainController().getCurrentUser().getOrder(i,false) instanceof Doener) return "Doener";
+        if( viewController.getMainController().getCurrentUser().getOrder(i,false) instanceof Salad) return "Salad";
+        return "";
     }
 
     public JPanel getMainPanel() {
