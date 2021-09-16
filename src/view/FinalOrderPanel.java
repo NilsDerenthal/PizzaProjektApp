@@ -50,6 +50,7 @@ public class FinalOrderPanel extends ViewPanel{
 
     private void setOrderText(){
 
+        textPane1.setText(null);
         textPane1.setEditable(false);
 
         Guest currentUser = viewController.getMainController().getCurrentUser();
