@@ -18,13 +18,12 @@ public class ProgressPanel extends ViewPanel{
 
     public ProgressPanel(ViewController viewController){
         super(viewController);
-        progressOfOrder();
         menueButton.addActionListener(e -> viewController.setPanel("menuePanel"));
     }
 
     private int checkDuration(){
         for(int i=0;i<viewController.getMainController().getCurrentUser().getOrder(false).length;i++){
-            if(viewController.getMainController().getCurrentUser().getOrder(i,false) instanceof Pizza) return 30000;
+            if(viewController.getMainController().getCurrentUser().getOrder(i,false) instanceof Pizza) return 3000;
         }
         return 1000;
     }
@@ -61,6 +60,7 @@ public class ProgressPanel extends ViewPanel{
             @Override
             protected void done() {
                 // Wird aufgerufen wenn fertig -> "Ihre bestellung ist fertig"?
+                JOptionPane.showMessageDialog(null,"Your Order is finished");
             }
 
         }.execute();
@@ -68,6 +68,8 @@ public class ProgressPanel extends ViewPanel{
 
     public JPanel getMainPanel(){
         processDuration=checkDuration();
+        progressOfOrder();
+        System.out.println(processDuration);
         return progressPanel;
     }
 }
