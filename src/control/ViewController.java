@@ -7,7 +7,7 @@ public class ViewController {
     private final App mainController;
     private final MainWindow frame;
 
-    private ViewPanel[] panels;
+    private final ViewPanel[] panels;
 
     public ViewController(App mainController) {
         frame = new MainWindow(mainController);

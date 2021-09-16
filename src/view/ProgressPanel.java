@@ -1,12 +1,8 @@
 package view;
 
-import control.App;
 import control.ViewController;
 import model.food.Pizza;
-
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 public class ProgressPanel extends ViewPanel{

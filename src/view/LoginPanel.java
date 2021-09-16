@@ -4,7 +4,6 @@ import control.LogInController;
 import control.ViewController;
 
 import javax.swing.*;
-import java.awt.event.*;
 
 public class LoginPanel extends ViewPanel{
 
@@ -39,9 +38,7 @@ public class LoginPanel extends ViewPanel{
 
         backButton.addActionListener(e -> viewController.setPanel("startPanel"));
 
-        passwordField.addActionListener(e -> {
-            logInButton.doClick();
-        });
+        passwordField.addActionListener(e -> logInButton.doClick());
     }
 
     public JPanel getMainPanel() {

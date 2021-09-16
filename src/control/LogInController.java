@@ -86,7 +86,7 @@ public class LogInController {
      * Adds a user to the database in case that the username as well as the password are valid
      * @param username the username of the new user
      * @param password the password for this user. Stored as a char array for security reasons.
-     * @return
+     * @return [tag description can't be empty -Nils-]
      */
     public boolean addUser (String username, char[] password) {
 
@@ -146,7 +146,7 @@ public class LogInController {
      * Checks if the login is successful for the given user and password.
      * @param username the username
      * @param password the password to be tested for the user
-     * @return
+     * @return [tag description can't be empty -Nils-]
      */
     public boolean checkLogIn (String username, char[] password) {
         String errorText = null;

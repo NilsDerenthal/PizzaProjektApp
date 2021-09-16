@@ -41,8 +41,7 @@ public class FinalOrderPanel extends ViewPanel{
     }
 
     private boolean orderIsEmty(){
-        if(viewController.getMainController().getCurrentUser().getOrder(false).length<2) return true;
-        return false;
+        return viewController.getMainController().getCurrentUser().getOrder(false).length < 2;
     }
 
     private boolean isFav(){

@@ -29,8 +29,7 @@ public class Order {
     public void addMeal(Meal newMeal){
         Meal[] tmpNewMeals = new Meal[mealsInOrder.length + 1];
 
-        for (int i = 0; i < mealsInOrder.length; i++)
-            tmpNewMeals[i] = mealsInOrder[i];
+        System.arraycopy(mealsInOrder, 0, tmpNewMeals, 0, mealsInOrder.length);
 
         tmpNewMeals[mealsInOrder.length] = newMeal;
         mealsInOrder = tmpNewMeals;
@@ -39,8 +38,7 @@ public class Order {
     public void addBeverage(Beverage newBeverage){
         Beverage[] tmpNewBeverages = new Beverage[beveragesInOrder.length + 1];
 
-        for (int i = 0; i < beveragesInOrder.length; i++)
-            tmpNewBeverages[i] = beveragesInOrder[i];
+        System.arraycopy(beveragesInOrder, 0, tmpNewBeverages, 0, beveragesInOrder.length);
 
         tmpNewBeverages[beveragesInOrder.length] = newBeverage;
         beveragesInOrder = tmpNewBeverages;
