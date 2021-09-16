@@ -2,8 +2,8 @@ package model;
 
 public class Beverage {
 
-    private double price;
-    private String typOfBeverage;
+    private final double price;
+    private final String typOfBeverage;
 
     public Beverage(String type){
         this.typOfBeverage = type;

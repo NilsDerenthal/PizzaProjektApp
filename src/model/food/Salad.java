@@ -1,7 +1,6 @@
 package model.food;
 
 import control.App;
-import model.utility.Storage;
 
 public class Salad extends Meal {
 

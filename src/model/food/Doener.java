@@ -4,8 +4,6 @@ import control.App;
 public class Doener extends Meal {
 
     private double skewerPercentage = 1;
-    //hardcoded value (25€)
-    private final double skewerPrice = 25.00;
 
     public Doener (App app) {
         super(app);
@@ -17,6 +15,8 @@ public class Doener extends Meal {
         // hardcoded value (1.5%)
         if(skewerPercentage > 0.015){
             skewerPercentage = 1;
+            //hardcoded value (25€)
+            double skewerPrice = 25.00;
             mainController.addMoney(-skewerPrice);
         }
 

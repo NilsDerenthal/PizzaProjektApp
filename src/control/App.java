@@ -32,10 +32,6 @@ public class App {
 
     public void addMoney(double amount){ money += amount; }
 
-    public double getMoney () {
-        return money;
-    }
-
     public void setCurrentUser(Guest currentUser) {
         this.currentUser = currentUser;
     }

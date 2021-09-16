@@ -3,13 +3,12 @@ package model.people;
 import control.App;
 import model.Beverage;
 import model.food.Doener;
-import model.food.Meal;
 import model.food.Pizza;
 import model.food.Salad;
 
 public class Worker {
 
-    private App mainController;
+    private final App mainController;
 
     public Worker(App mainController){
         this.mainController = mainController;
