@@ -21,4 +21,6 @@ public class OrderController {
     public void addFoodToOrder (String orderType, String type, boolean isFav){ mainController.getTheWorker().addFoodToOrder(orderType,type,isFav); }
 
     public void orderFavMeal(){ mainController.getTheWorker().orderFavMeal(); }
+
+    public void addTolastOrders(){ mainController.getTheWorker().addToLastOrders(); }
 }
