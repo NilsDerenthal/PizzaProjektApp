@@ -6,7 +6,7 @@ public class Beverage {
     private String typOfBeverage;
 
     public Beverage(String type){
-        this.typOfBeverage=type;
+        this.typOfBeverage = type;
         price = 2;
     }
 
