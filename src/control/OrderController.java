@@ -22,6 +22,8 @@ public class OrderController {
 
     public void orderFavMeal(){ mainController.getTheWorker().orderFavMeal(); }
 
+    public void addTolastOrders(){ mainController.getTheWorker().addToLastOrders(); }
+
     public String[] getOrderTypes(String meal) {
         return switch (meal) {
             case "Pizza" -> new String[]{
