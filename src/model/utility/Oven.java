@@ -26,10 +26,20 @@ public class Oven {
 
         if (baking || pizza == null)
             return false;
+
         baking = true;
+        //TODO actually bake Pizza
         return true;
     }
+    public void makePizza(){
 
+        if(bakePizza() == false){
+
+            getStart();
+            fiveMinutesTimer();
+
+        }
+    }
     public long fiveMinutesTimer(){
         return System.currentTimeMillis()-start;
     }

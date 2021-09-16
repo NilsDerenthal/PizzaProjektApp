@@ -15,13 +15,9 @@ public class StartPanel extends ViewPanel{
         super(viewController);
 
 
-        logInButton.addActionListener(e -> {
-            viewController.setPanel("logInPanel");
-        });
+        logInButton.addActionListener(e -> viewController.setPanel("logInPanel"));
 
-        signUpButton.addActionListener(e -> {
-            viewController.setPanel("signInPanel");
-        });
+        signUpButton.addActionListener(e -> viewController.setPanel("signInPanel"));
 
     }
 

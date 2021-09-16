@@ -25,17 +25,17 @@ public class LastOrdersPanel extends ViewPanel{
     }
 
     private String getInOrders(int i) {
-        String theString="last order "+i+" : ";
+        StringBuilder theString= new StringBuilder("last order " + i + " : ");
         for (int y = 1; i < 11 && i < viewController.getMainController().getCurrentUser().getLastOrders(i).getMealsInOrder().length + viewController.getMainController().getCurrentUser().getLastOrders(i).getBeveragesInOrder().length-1; i++){
             if(viewController.getMainController().getCurrentUser().getOrder(i,false) instanceof Pizza){
-                theString=theString+textPane1.getText() + viewController.getMainController().getCurrentUser().getLastOrders(i).getMealsInOrder(y);
+                theString.append(textPane1.getText()).append(viewController.getMainController().getCurrentUser().getLastOrders(i).getMealsInOrder(y));
             }else {
                 String inOrderY = setInOrderY(y);
-                theString=theString+inOrderY;
+                theString.append(inOrderY);
             }
             //Todo fix
         }
-        return theString;
+        return theString.toString();
     }
 
     private String setInOrderY(int y){

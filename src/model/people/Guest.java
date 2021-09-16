@@ -6,14 +6,14 @@ import model.Order;
 
 public class Guest {
 
-    private String name;
-    private String password;
+    private final String name;
+    private final String password;
     private Order order = new Order();
     private Order[] lastOrders;
 
     private double budget = 100;
 
-    private Order favoriteMeal = new Order();
+    private final Order favoriteMeal = new Order();
 
     private final byte[] salt;
 
@@ -92,8 +92,7 @@ public class Guest {
     public void addToLastOrders(){
         Order[] tmpNewOrders = new Order[lastOrders.length + 1];
 
-        for (int i = 0; i < lastOrders.length; i++)
-            tmpNewOrders[i] = lastOrders[i];
+        System.arraycopy(lastOrders, 0, tmpNewOrders, 0, lastOrders.length);
 
         tmpNewOrders[lastOrders.length] = order;
         lastOrders = tmpNewOrders;

@@ -2,10 +2,7 @@ package view;
 
 import control.OrderController;
 import control.ViewController;
-
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class SetFavMealPanel extends ViewPanel{
 

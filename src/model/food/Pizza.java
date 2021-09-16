@@ -10,8 +10,8 @@ public class Pizza extends Meal {
     private Oven oven;
 
     // Can be Salami, Margherita, etc.
-    private String typeOfPizza;
-    private Oven[] ovens;
+    private final String typeOfPizza;
+    private final Oven[] ovens;
 
     /**
      * Creates a Pizza with the given type
@@ -55,7 +55,10 @@ public class Pizza extends Meal {
         return "Pizza " + typeOfPizza;
     }
 
+    //this is unused, just making it a comment for now
+    /*
     public void setTopping(String selectedPizzaType) {
         typeOfPizza = selectedPizzaType;
     }
+    */
 }
