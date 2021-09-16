@@ -26,6 +26,7 @@ public class App {
         logInController = new LogInController(this);
         orderController = new OrderController(this);
         viewController = new ViewController(this);
+
         storage = new Storage(this);
         worker = new Worker(this);
     }
