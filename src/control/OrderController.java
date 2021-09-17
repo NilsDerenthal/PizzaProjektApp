@@ -8,11 +8,11 @@ public class OrderController {
         this.mainController = mainController;
     }
 
-    public void addFoodToOrder (String orderType, String type, boolean isFav){ mainController.getTheWorker().addFoodToOrder(orderType,type,isFav); }
+    public void addFoodToOrder (String orderType, String type, boolean isFav){ mainController.getWorker().addFoodToOrder(orderType,type,isFav); }
 
-    public void orderFavMeal(){ mainController.getTheWorker().orderFavMeal(); }
+    public void orderFavMeal(){ mainController.getWorker().orderFavMeal(); }
 
-    public void addToLastOrders(){ mainController.getTheWorker().addToLastOrders(); }
+    public void addToLastOrders(){ mainController.getWorker().addToLastOrders(); }
 
     public String[] getOrderTypes(String meal) {
         return switch (meal) {
