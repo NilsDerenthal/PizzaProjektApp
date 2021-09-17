@@ -21,6 +21,8 @@ public class OrderController {
      */
     public void addFoodToOrder (String orderType, String type, boolean isFav){ mainController.getWorker().addFoodToOrder(orderType,type,isFav); }
 
+    public void addBeverageToOrder (String type,boolean isFav){ mainController.getWorker().addBeverageToOrder(type,isFav);}
+
     /**
      * Orders the favourite meal
      */
@@ -56,7 +58,8 @@ public class OrderController {
 
             case "Beverage" -> new String[]{
                     "Soda",
-                    "Cola"
+                    "Water",
+                    "Juice"
             };
 
             case "Salad" -> new String[]{
