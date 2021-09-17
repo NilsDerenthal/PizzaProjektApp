@@ -22,18 +22,21 @@ public class LoginPanel extends ViewPanel{
 
         logInButton.addActionListener(e -> {
 
-            boolean success;
+            String response;
 
             if (!signUpPanel)
-                success = logInController.checkLogIn(usernameTextField.getText(), passwordField.getPassword());
+                response = logInController.checkLogIn(usernameTextField.getText(), passwordField.getPassword());
             else
-                success = logInController.addUser(usernameTextField.getText(), passwordField.getPassword());
+                response = logInController.addUser(usernameTextField.getText(), passwordField.getPassword());
 
             passwordField.setText(null);
 
-            if (success) {
+            if (response == null) {
                 usernameTextField.setText(null);
+            } else {
+                JOptionPane.showMessageDialog(null, response);
             }
+
         });
 
         backButton.addActionListener(e -> viewController.setPanel("startPanel"));
