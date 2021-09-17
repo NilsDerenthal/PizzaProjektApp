@@ -275,15 +275,16 @@ public class LogInController {
 
             int m = (l+r)/2;
 
-            int comp = key.compareTo(users[m].getName());
+            int comp = key.compareToIgnoreCase(users[m].getName());
 
-            if (comp == 0)
-                return m;
+            System.out.printf("m:%d l:%d r:%d key:%s comp:%s%n",m,l,r,key,users[m].getName());
 
-            if (comp < 0) {
+            if (comp > 0) {
                 l = m + 1;
-            } else {
+            } else if (comp < 0){
                 r = m - 1;
+            } else {
+                return m;
             }
         }
 
