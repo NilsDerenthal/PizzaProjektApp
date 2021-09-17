@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Arrays;
 
 public class LogInController {
 
@@ -144,7 +145,6 @@ public class LogInController {
      * @return [tag description can't be empty -Nils-]
      */
     public String checkLogIn (String username, char[] password) {
-        String errorText = null;
 
         int index = binarySearch(username);
 
@@ -152,6 +152,11 @@ public class LogInController {
             String correspondingPassword = users[index].getPassword();
 
             boolean pwMatches = correspondingPassword.equals(hash(password, users[index].getSalt()));
+
+            System.out.println(hash(password,users[index].getSalt()));
+            System.out.println(correspondingPassword);
+            System.out.println(Arrays.toString(users[index].getSalt()));
+            System.out.println(users[index]);
 
             if (pwMatches) {
                 mainController.setCurrentUser(users[index]);
@@ -274,7 +279,6 @@ public class LogInController {
 
             if (comp == 0)
                 return m;
-
 
             if (comp < 0) {
                 l = m + 1;
