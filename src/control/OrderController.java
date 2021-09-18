@@ -1,5 +1,9 @@
 package control;
 
+import model.Beverage;
+import model.Order;
+import model.food.Meal;
+
 public class OrderController {
 
     // The main controller, passed down
@@ -70,4 +74,12 @@ public class OrderController {
             default -> throw new IllegalStateException("Unexpected value: " + meal);
         };
     }
+
+    public void clearFavMeal(){ mainController.getWorker().clearFavMeal(); }
+
+    public Order getTheOrder(boolean isFav){ return mainController.getWorker().getOrder(isFav); }
+
+    public Meal getOrder(int i,boolean isFav){ return mainController.getWorker().getOrder(i,isFav); }
+
+    public Beverage[] getBeverageOrder(boolean isFav){ return mainController.getWorker().getBeverageOrder(isFav);}
 }

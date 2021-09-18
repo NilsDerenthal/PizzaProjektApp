@@ -2,7 +2,9 @@ package model.people;
 
 import control.App;
 import model.Beverage;
+import model.Order;
 import model.food.Doener;
+import model.food.Meal;
 import model.food.Pizza;
 import model.food.Salad;
 
@@ -66,5 +68,12 @@ public class Worker {
      */
     public void orderFavMeal(){ mainController.getCurrentUser().orderFavMeal(); }
 
+    public void clearFavMeal(){ mainController.getCurrentUser().makeNewOrder(true);}
+
+    public Order getOrder(boolean isFav){ return mainController.getCurrentUser().getTheOrder(isFav); }
+
+    public Meal getOrder(int i, boolean isFav){ return mainController.getCurrentUser().getOrder(i,isFav);}
+
+    public Beverage[] getBeverageOrder(boolean isFav){ return mainController.getCurrentUser().getBeverageOrder(isFav);}
 
 }

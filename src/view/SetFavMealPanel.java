@@ -29,5 +29,8 @@ public class SetFavMealPanel extends ViewPanel{
         });
     }
 
-    public JPanel getMainPanel(){ return setFaMealPanel; }
+    public JPanel getMainPanel(){
+        viewController.getMainController().getOrderController().clearFavMeal();
+        return setFaMealPanel;
+    }
 }

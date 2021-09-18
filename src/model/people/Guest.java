@@ -13,7 +13,7 @@ public class Guest {
 
     private double budget = 100;
 
-    private final Order favoriteMeal = new Order();
+    private Order favoriteMeal = new Order();
 
     private final byte[] salt;
 
@@ -36,8 +36,9 @@ public class Guest {
 
     public void reduceBudget(double price) { budget -= price; }
 
-    public void makeNewOrder(){
-        order = new Order();
+    public void makeNewOrder(boolean isFav){
+        if(!isFav) order = new Order();
+        if(isFav) favoriteMeal = new Order();
     }
 
     public String getPassword() {
@@ -70,6 +71,11 @@ public class Guest {
     public Meal getOrder(int i,boolean isFav) {
         if(isFav) return favoriteMeal.getMealsInOrder(i);
         return order.getMealsInOrder(i);
+    }
+
+    public Order getTheOrder(boolean isFav){
+        if(isFav) return favoriteMeal;
+        return order;
     }
 
     public Order[] getLastOrders(){ return lastOrders; }
