@@ -77,8 +77,8 @@ public class FinalOrderPanel extends ViewPanel{
     }
 
     private String setInOrderI(int i){
-        if( viewController.getMainController().getCurrentUser().getOrder(i,false) instanceof Doener) return "Doener";
-        if( viewController.getMainController().getCurrentUser().getOrder(i,false) instanceof Salad) return "Salad";
+        if( viewController.getMainController().getOrderController().getOrder(i,false) instanceof Doener) return "Doener";
+        if( viewController.getMainController().getOrderController().getOrder(i,false) instanceof Salad) return "Salad";
         return "";
     }
 
