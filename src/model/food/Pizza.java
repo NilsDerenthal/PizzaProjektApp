@@ -32,6 +32,7 @@ public class Pizza extends Meal {
         super.makeIt();
         int oven=checkOven();
         if(oven >= 0) {
+            ovens[oven].makePizza();
             ovens[oven].setPizza(this);
         }
     }

@@ -18,8 +18,6 @@ public class Order {
         return totalPrice;
     }
 
-    public void increasePrice(double price){ totalPrice = totalPrice + price; }
-
     public Meal[] getMealsInOrder(){ return mealsInOrder; }
 
     public Meal getMealsInOrder(int i){ return mealsInOrder[i]; }
@@ -43,10 +41,5 @@ public class Order {
         tmpNewBeverages[beveragesInOrder.length] = newBeverage;
         beveragesInOrder = tmpNewBeverages;
         totalPrice=totalPrice + newBeverage.getPrice();
-    }
-
-    public void clearOrder(){
-        mealsInOrder = new Meal[1];
-        beveragesInOrder = new Beverage[1];
     }
 }
