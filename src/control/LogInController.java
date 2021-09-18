@@ -153,11 +153,6 @@ public class LogInController {
 
             boolean pwMatches = correspondingPassword.equals(hash(password, users[index].getSalt()));
 
-            System.out.println(hash(password,users[index].getSalt()));
-            System.out.println(correspondingPassword);
-            System.out.println(Arrays.toString(users[index].getSalt()));
-            System.out.println(users[index]);
-
             if (pwMatches) {
                 mainController.setCurrentUser(users[index]);
                 mainController.getViewController().setPanel("menuePanel");
@@ -276,8 +271,6 @@ public class LogInController {
             int m = (l+r)/2;
 
             int comp = key.compareToIgnoreCase(users[m].getName());
-
-            System.out.printf("m:%d l:%d r:%d key:%s comp:%s%n",m,l,r,key,users[m].getName());
 
             if (comp > 0) {
                 l = m + 1;
