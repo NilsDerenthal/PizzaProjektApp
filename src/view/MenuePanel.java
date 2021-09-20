@@ -49,7 +49,7 @@ public class MenuePanel extends ViewPanel{
     private String setJOptionPane(){
         String theString="FavOrder: ";
         for(int i=0;i<viewController.getMainController().getOrderController().getTheOrder(true).getMealsInOrder().length-1;i++) setJOptionPaneI(i,theString);
-        if(viewController.getMainController().getOrderController().getBeverageOrder(true).length>1) theString=theString+viewController.getMainController().getOrderController().getBeverageOrder(true);
+        if(viewController.getMainController().getOrderController().getBeverageOrder(true).length>=1) theString=theString+viewController.getMainController().getOrderController().getBeverageOrder(true);
         return theString;
     }
     //Todo fix
