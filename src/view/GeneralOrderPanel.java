@@ -1,24 +1,23 @@
 package view;
 
 import control.ViewController;
-import model.food.Pizza;
-
 import javax.swing.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-//TODO Fix KeyListener - Escape should make you go back to orderPanel
-public class GeneralOrderPanel extends ViewPanel implements KeyListener {
+//TODO Fix Action - Escape should make you go back to orderPanel
+public class GeneralOrderPanel extends ViewPanel {
 
     private JButton backButton;
     private JComboBox<String> orderTypeSelectionBox;
     private JButton addToCartButton;
     private JPanel mainPanel;
 
+    Action goBack = new GoBack(viewController);
+
     public GeneralOrderPanel (ViewController viewController, String panelType) {
         super(viewController);
 
-        mainPanel.addKeyListener(this);
+        mainPanel.getInputMap().put(KeyStroke.getKeyStroke("e"),"goBack");
+        mainPanel.getActionMap().put("goBack",goBack);
 
         for (String type: viewController.getMainController().getOrderController().getOrderTypes(panelType)) {
             orderTypeSelectionBox.addItem(type);
@@ -35,23 +34,5 @@ public class GeneralOrderPanel extends ViewPanel implements KeyListener {
 
     public JPanel getMainPanel() {
         return mainPanel;
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-        int key = e.getKeyCode();
-        if (key == KeyEvent.VK_ESCAPE) {
-            viewController.setPanel("orderPanel");
-        }
-    }
-
-    //Method needs to be overridden, but is unused here
-    @Override
-    public void keyPressed(KeyEvent e) {
-    }
-
-    //Method needs to be overridden, but is unused here
-    @Override
-    public void keyReleased(KeyEvent e) {
     }
 }
