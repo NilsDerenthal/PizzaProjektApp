@@ -11,10 +11,14 @@ public class Salad extends Meal {
     }
 
     public void makeIt(){
-        super.makeIt();
         if ( mainController.getStorage().getSaladkit() > 0 ) {
             mainController.getStorage().reduceSaladkit();
         }
         mainController.getStorage().reduceDressingTankFill();
+    }
+
+    @Override
+    public String toString() {
+        return "Salad";
     }
 }

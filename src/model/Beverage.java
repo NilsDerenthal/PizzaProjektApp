@@ -19,5 +19,15 @@ public class Beverage extends Meal {
         return price;
     }
 
+    @Override
+    public void makeIt() {
+        //TODO ?
+    }
+
+    @Override
+    public String toString() {
+        return getTypOfBeverage();
+    }
+
     public String getTypOfBeverage() { return typOfBeverage; }
 }

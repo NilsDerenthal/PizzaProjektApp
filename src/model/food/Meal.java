@@ -13,5 +13,8 @@ public abstract class Meal {
 
     public double getPrice(){ return price; }
 
-    public void makeIt(){}
+    public abstract void makeIt();
+
+    @Override
+    public abstract String toString();
 }

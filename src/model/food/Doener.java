@@ -11,7 +11,6 @@ public class Doener extends Meal {
     }
 
     public void makeIt(){
-        super.makeIt();
         // hardcoded value (1.5%)
         if(skewerPercentage > 0.015){
             skewerPercentage = 1;
@@ -26,5 +25,10 @@ public class Doener extends Meal {
         return Doener;
         gotta do stuff in Guest / Order first to be able to do this
         */
+    }
+
+    @Override
+    public String toString() {
+        return "Döner";
     }
 }
