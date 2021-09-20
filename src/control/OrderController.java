@@ -45,7 +45,7 @@ public class OrderController {
     public String[] getOrderTypes(String meal) {
         return switch (meal) {
             case "Pizza" -> new String[]{
-                    "Margerita",
+                    "Margherita",
                     "Salami",
                     "Prosciutto",
                     "Quattro Formaggi",
@@ -56,8 +56,8 @@ public class OrderController {
             };
 
             case "Doener" -> new String[]{
-                    "With sauce",
-                    "without sauce"
+                    "Doener with sauce",
+                    "Doener without sauce"
             };
 
             case "Beverage" -> new String[]{
@@ -67,8 +67,8 @@ public class OrderController {
             };
 
             case "Salad" -> new String[]{
-                    "with dressing",
-                    "without dressing"
+                    "Salad with dressing",
+                    "Salad without dressing"
             };
 
             default -> throw new IllegalStateException("Unexpected value: " + meal);

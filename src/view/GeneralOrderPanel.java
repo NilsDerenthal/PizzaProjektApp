@@ -23,7 +23,7 @@ public class GeneralOrderPanel extends ViewPanel{
 
         addToCartButton.addActionListener(e -> {
             String selectedType = (String) orderTypeSelectionBox.getSelectedItem();
-
+            JOptionPane.showMessageDialog(null, orderTypeSelectionBox.getSelectedItem() + " was added to to the cart");
             viewController.getMainController().getOrderController().addFoodToOrder(panelType, selectedType, false);
         });
     }
