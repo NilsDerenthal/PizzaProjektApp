@@ -16,7 +16,7 @@ public class GeneralOrderPanel extends ViewPanel {
     public GeneralOrderPanel (ViewController viewController, String panelType) {
         super(viewController);
 
-        mainPanel.getInputMap().put(KeyStroke.getKeyStroke("e"),"goBack");
+        mainPanel.getInputMap().put(KeyStroke.getKeyStroke("Escape"),"goBack");
         mainPanel.getActionMap().put("goBack",goBack);
 
         for (String type: viewController.getMainController().getOrderController().getOrderTypes(panelType)) {
