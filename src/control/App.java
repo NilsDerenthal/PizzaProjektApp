@@ -50,7 +50,9 @@ public class App {
 
     // getter + setter
 
-    public void addMoney(double amount){ money += amount; }
+    public void addMoney(double amount){
+        money += amount;
+    }
 
     public void setCurrentUser(Guest currentUser) {
         this.currentUser = currentUser;
