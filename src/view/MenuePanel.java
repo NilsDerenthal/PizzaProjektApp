@@ -22,26 +22,18 @@ public class MenuePanel extends ViewPanel{
         super(viewController);
         logOutButton.addActionListener( e -> viewController.setPanel("startPanel"));
         lastOrdersButton.addActionListener(e -> JOptionPane.showMessageDialog(null, "This Feature isn't implemented, yet",":(",JOptionPane.INFORMATION_MESSAGE));
-        newOrderButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                viewController.setPanel("orderPanel");
-                viewController.getMainController().getCurrentUser().makeNewOrder(false);
-            }
+
+        newOrderButton.addActionListener(e -> {
+            viewController.setPanel("orderPanel");
+            viewController.getMainController().getCurrentUser().makeNewOrder(false);
         });
-        orderFavouriteMealButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                viewController.getMainController().getOrderController().orderFavMeal();
-                viewController.setPanel("finalOrderPanel");
-            }
+
+        orderFavouriteMealButton.addActionListener(e -> {
+            viewController.getMainController().getOrderController().orderFavMeal();
+            viewController.setPanel("finalOrderPanel");
+
         });
-        viewFavMealButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, setJOptionPane());
-            }
-        });
+        viewFavMealButton.addActionListener(e -> JOptionPane.showMessageDialog(null, setJOptionPane()));
         changeFavMealButton.addActionListener( e -> viewController.setPanel("setFavMealPanel"));
     }
 
