@@ -22,7 +22,7 @@ public class MenuePanel extends ViewPanel{
     public MenuePanel(ViewController viewController) {
         super(viewController);
         logOutButton.addActionListener( e -> viewController.setPanel("startPanel"));
-        lastOrdersButton.addActionListener(e -> viewController.setPanel("lastOrdersPanel"));
+        lastOrdersButton.addActionListener(e -> JOptionPane.showMessageDialog(null, "This Feature isn't implemented, yet",":(",JOptionPane.INFORMATION_MESSAGE));
         newOrderButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

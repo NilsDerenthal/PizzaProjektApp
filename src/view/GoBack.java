@@ -7,6 +7,7 @@ import control.ViewController;
 
 public class GoBack extends AbstractAction {
 
+    // Doesn't work
     private ViewController viewController;
 
     public GoBack(ViewController viewController){
