@@ -41,7 +41,7 @@ public class LoginPanel extends ViewPanel{
             if (response == null)
                 usernameTextField.setText(null);
             else
-                JOptionPane.showMessageDialog(null, response);
+                JOptionPane.showMessageDialog(null, response,"Error",JOptionPane.ERROR_MESSAGE);
         });
 
         backButton.addActionListener(e -> viewController.setPanel("startPanel"));
