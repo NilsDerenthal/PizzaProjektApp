@@ -22,7 +22,7 @@ public class LastOrdersPanel extends ViewPanel{
         if(viewController.getMainController().getCurrentUser().getLastOrders().length>1) {
             textPane1.setText("");
             for (int i = 1; i < 11 && i < viewController.getMainController().getCurrentUser().getLastOrders().length; i++)
-                textPane1.setText(textPane1.getText() + getInOrders(i - 1) + "\n");
+                textPane1.setText(textPane1.getText() + getInOrders(i) + "\n");
         }else{
             textPane1.setText("No last Orders");
         }
