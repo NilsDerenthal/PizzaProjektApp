@@ -1,7 +1,6 @@
 package view;
 
 import control.ViewController;
-import model.Beverage;
 import model.food.Doener;
 import model.food.Pizza;
 import model.food.Salad;
@@ -40,30 +39,27 @@ public class MenuePanel extends ViewPanel{
         viewFavMealButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,setJOptionPane());
+                JOptionPane.showMessageDialog(null, setJOptionPane());
             }
         });
         changeFavMealButton.addActionListener( e -> viewController.setPanel("setFavMealPanel"));
     }
 
     private String setJOptionPane(){
-        String theString="FavOrder: ";
-        for(int i=0;i<viewController.getMainController().getOrderController().getTheOrder(true).getMealsInOrder().length-1;i++) setJOptionPaneI(i,theString);
-        if(viewController.getMainController().getOrderController().getBeverageOrder(true).length>=1) theString=theString+viewController.getMainController().getOrderController().getBeverageOrder(true);
-        return theString;
-    }
-    //Todo fix
 
-    private String setJOptionPaneI(int i,String theString){
-        if(viewController.getMainController().getOrderController().getOrder(i,true) instanceof Pizza) {
-            theString=theString+viewController.getMainController().getOrderController().getOrder(i,true)+" , ";
-        }else{
-            theString=theString+setInOrderI(i)+" , ";
-        }
-        return theString;
+        StringBuilder string = new StringBuilder();
+        string.append("Favourite Order:\n");
+        for(int i=0;i < viewController.getMainController().getOrderController().getTheOrder(true).getMealsInOrder().length - 1; i++)
+            string.append(viewController.getMainController().getOrderController().getTheOrder(true).getMealsInOrder()[i + 1]).append('\n');
+
+        //TODO Beverage is always null
+        //if(viewController.getMainController().getOrderController().getBeverageOrder(true).length >= 1)
+            //string.append(viewController.getMainController().getOrderController().getBeverageOrder(true)[0]);
+
+        return string.toString();
     }
 
-    private String setInOrderI(int i){
+    private String setInOrder(int i){
         if( viewController.getMainController().getOrderController().getOrder(i,false) instanceof Doener) return "Doener";
         if( viewController.getMainController().getOrderController().getOrder(i,false) instanceof Salad) return "Salad";
         return "";

@@ -1,6 +1,7 @@
 package view;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLaf;
 import control.App;
 import javax.swing.*;
 import java.awt.*;
