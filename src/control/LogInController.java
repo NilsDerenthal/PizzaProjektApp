@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Arrays;
 
 public class LogInController {
 
@@ -88,28 +89,23 @@ public class LogInController {
      * @param password the password for this user. Stored as a char array for security reasons.
      * @return [tag description can't be empty -Nils-]
      */
-    public boolean addUser (String username, char[] password) {
+    public String addUser (String username, char[] password) {
 
-        String errorText = null;
         int index = binarySearch(username);
 
         if (!isUserNameValid(username))
-            errorText = "Username is invalid";
+            return "Username is invalid";
         if (!isPasswordValid(password))
-            errorText = "Password is invalid, please make sure it is longer than five characters and does not start with a space";
+            return "Password is invalid, please make sure it is longer than five characters and does not start with a space";
         if (index != -1)
-            errorText = "Username has already been taken";
+            return "Username has already been taken";
 
-        if(errorText == null) {
-            byte[] salt = generateSalt();
-            Guest newUser = new Guest(username, hash(password, salt), salt);
-            addUserToDatabase(newUser);
-            mainController.getViewController().setPanel("setFavMealPanel");
-        }else{
-            JOptionPane.showMessageDialog(null , errorText);
-        }
+        byte[] salt = generateSalt();
+        Guest newUser = new Guest(username, hash(password, salt), salt);
+        addUserToDatabase(newUser);
+        mainController.getViewController().setPanel("setFavMealPanel");
 
-        return errorText == null;
+        return null;
     }
 
     /**
@@ -148,8 +144,7 @@ public class LogInController {
      * @param password the password to be tested for the user
      * @return [tag description can't be empty -Nils-]
      */
-    public boolean checkLogIn (String username, char[] password) {
-        String errorText = null;
+    public String checkLogIn (String username, char[] password) {
 
         int index = binarySearch(username);
 
@@ -162,17 +157,13 @@ public class LogInController {
                 mainController.setCurrentUser(users[index]);
                 mainController.getViewController().setPanel("menuePanel");
             } else {
-                errorText = "Password does not match";
+                return "Password does not match";
             }
         } else {
-            errorText = "Unknown Username";
+            return "Unknown Username";
         }
 
-        if (errorText != null) {
-            JOptionPane.showMessageDialog(null, "Wrong password or username entered");
-        }
-
-        return errorText == null;
+        return null;
     }
 
     /**
@@ -279,16 +270,14 @@ public class LogInController {
 
             int m = (l+r)/2;
 
-            int comp = key.compareTo(users[m].getName());
+            int comp = key.compareToIgnoreCase(users[m].getName());
 
-            if (comp == 0)
-                return m;
-
-
-            if (comp < 0) {
+            if (comp > 0) {
                 l = m + 1;
-            } else {
+            } else if (comp < 0){
                 r = m - 1;
+            } else {
+                return m;
             }
         }
 

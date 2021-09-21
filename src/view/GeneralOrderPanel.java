@@ -1,19 +1,24 @@
 package view;
 
 import control.ViewController;
-import model.food.Pizza;
-
 import javax.swing.*;
 
-public class GeneralOrderPanel extends ViewPanel{
+//TODO Fix Action - Escape should make you go back to orderPanel
+public class GeneralOrderPanel extends ViewPanel {
 
     private JButton backButton;
     private JComboBox<String> orderTypeSelectionBox;
     private JButton addToCartButton;
     private JPanel mainPanel;
 
+    Action goBack = new GoBack(viewController);
+
     public GeneralOrderPanel (ViewController viewController, String panelType) {
         super(viewController);
+
+        mainPanel.getInputMap().put(KeyStroke.getKeyStroke("Esc"),"goBack");
+        mainPanel.getActionMap().put("goBack",goBack);
+
 
         for (String type: viewController.getMainController().getOrderController().getOrderTypes(panelType)) {
             orderTypeSelectionBox.addItem(type);
@@ -23,7 +28,7 @@ public class GeneralOrderPanel extends ViewPanel{
 
         addToCartButton.addActionListener(e -> {
             String selectedType = (String) orderTypeSelectionBox.getSelectedItem();
-
+            JOptionPane.showMessageDialog(null, orderTypeSelectionBox.getSelectedItem() + " was added to to the cart");
             viewController.getMainController().getOrderController().addFoodToOrder(panelType, selectedType, false);
         });
     }
@@ -31,5 +36,4 @@ public class GeneralOrderPanel extends ViewPanel{
     public JPanel getMainPanel() {
         return mainPanel;
     }
-
 }

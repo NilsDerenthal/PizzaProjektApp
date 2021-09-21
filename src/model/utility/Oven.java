@@ -8,7 +8,6 @@ public class Oven {
     private Pizza pizza;
 
     private boolean baking;
-    private double bakingProgress;
     private long start;
 
     public Oven (Pizza pizza) {
@@ -27,20 +26,22 @@ public class Oven {
         if (baking || pizza == null)
             return false;
 
-        baking = true;
-        //TODO actually bake Pizza
         return true;
     }
     public void makePizza(){
 
         if(bakePizza() == false){
 
-            getStart();
-            fiveMinutesTimer();
+            baking = true;
+            start= System.currentTimeMillis();
+            if (fiveMinutesTimer() >= 3000){
+                baking = false;
+            }
+
 
         }
     }
-    public long fiveMinutesTimer(){
+    private long fiveMinutesTimer(){
         return System.currentTimeMillis()-start;
     }
 
@@ -51,6 +52,4 @@ public class Oven {
     public void setPizza (Pizza newPizza) {
         this.pizza = newPizza;
     }
-
-    public long getStart(){ return start; }
 }

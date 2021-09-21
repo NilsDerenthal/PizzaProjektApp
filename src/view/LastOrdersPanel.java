@@ -22,6 +22,7 @@ public class LastOrdersPanel extends ViewPanel{
         for (int i = 1; i < 11 && i < viewController.getMainController().getCurrentUser().getLastOrders().length; i++) {
             //textPane1.setText(textPane1.getText() + getInOrders(i-1) + "\n");
         }
+        //Todo last Orders werden nicht angezeigt
     }
 
     /*private String getInOrders(int i) {
@@ -33,7 +34,6 @@ public class LastOrdersPanel extends ViewPanel{
                 String inOrderY = setInOrderY(y);
                 theString=theString+inOrderY;
             }
-            //Todo fix
         }
         return theString;
     }

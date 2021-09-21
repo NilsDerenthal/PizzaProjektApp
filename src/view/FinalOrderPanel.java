@@ -30,7 +30,7 @@ public class FinalOrderPanel extends ViewPanel{
         if(viewController.getMainController().getCurrentUser().getOrder(false) != null && !orderIsEmty()) {
             if (viewController.getMainController().getCurrentUser().getBudget() >= viewController.getMainController().getCurrentUser().getOrderPrice(false)) {
                 viewController.getMainController().getCurrentUser().reduceBudget(viewController.getMainController().getCurrentUser().getOrderPrice(isFav()));
-                viewController.getMainController().getOrderController().addTolastOrders();
+                viewController.getMainController().getOrderController().addToLastOrders();
                 viewController.setPanel("progressPanel");
             } else {
                 JOptionPane.showMessageDialog(this.getMainPanel(), "You haven't enough money");
@@ -77,8 +77,8 @@ public class FinalOrderPanel extends ViewPanel{
     }
 
     private String setInOrderI(int i){
-        if( viewController.getMainController().getCurrentUser().getOrder(i,false) instanceof Doener) return "Doener";
-        if( viewController.getMainController().getCurrentUser().getOrder(i,false) instanceof Salad) return "Salad";
+        if( viewController.getMainController().getOrderController().getOrder(i,false) instanceof Doener) return "Doener";
+        if( viewController.getMainController().getOrderController().getOrder(i,false) instanceof Salad) return "Salad";
         return "";
     }
 
