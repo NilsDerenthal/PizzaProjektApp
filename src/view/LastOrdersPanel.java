@@ -19,33 +19,27 @@ public class LastOrdersPanel extends ViewPanel{
     }
 
     private void setTextPane1() {
+        textPane1.setText("");
         if(viewController.getMainController().getCurrentUser().getLastOrders().length>1) {
-            textPane1.setText("");
             for (int i = 1; i < 11 && i < viewController.getMainController().getCurrentUser().getLastOrders().length; i++)
-                textPane1.setText(textPane1.getText() + getInOrders(i) + "\n");
+                textPane1.setText(textPane1.getText() + setJOptionPane(i) + "\n");
         }else{
             textPane1.setText("No last Orders");
         }
     }
 
-    //Todo fix
-    private String getInOrders(int i) {
-        String theString="last order "+i+" : ";
-        for (int y = 0;i < viewController.getMainController().getCurrentUser().getLastOrders(i).getMealsInOrder().length + viewController.getMainController().getCurrentUser().getLastOrders(i).getBeveragesInOrder().length-1; i++){
-            if (viewController.getMainController().getCurrentUser().getLastOrders(i).getMealsInOrder(y) instanceof Pizza) {
-                theString = theString + textPane1.getText() + viewController.getMainController().getCurrentUser().getLastOrders(i).getMealsInOrder(y);
-            } else {
-                String inOrderY = setInOrderY(y);
-                theString = theString + inOrderY;
-            }
-        }
-        return theString;
-    }
+    private String setJOptionPane(int i){
 
-    private String setInOrderY(int y){
-        if( viewController.getMainController().getCurrentUser().getOrder(y,false) instanceof Doener) return "Doener";
-        if( viewController.getMainController().getCurrentUser().getOrder(y,false) instanceof Salad) return "Salad";
-        return "";
+        StringBuilder string = new StringBuilder();
+        string.append(" Last Order "+i+" : ");
+        for(int j=0;j < viewController.getMainController().getCurrentUser().getLastOrders(i).getMealsInOrder().length - 1; j++)
+            string.append(viewController.getMainController().getCurrentUser().getLastOrders(i).getMealsInOrder()[j + 1]).append(" , ");
+
+        for(int j=0;j < viewController.getMainController().getCurrentUser().getLastOrders(i).getBeveragesInOrder().length - 1; j++)
+            string.append(viewController.getMainController().getCurrentUser().getLastOrders(i).getBeveragesInOrder()[j + 1]).append(" , ");
+
+        string.append('\n');
+        return string.toString();
     }
 
     public JPanel getMainPanel(){
