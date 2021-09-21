@@ -10,17 +10,8 @@ public class GeneralOrderPanel extends ViewPanel {
     private JButton addToCartButton;
     private JPanel mainPanel;
 
-    /* Doesn't work
-    Action goBack = new GoBack(viewController);
-    */
-
     public GeneralOrderPanel (ViewController viewController, String panelType) {
         super(viewController);
-
-        /* Doesn't work
-        mainPanel.getInputMap().put(KeyStroke.getKeyStroke("Esc"),"goBack");
-        mainPanel.getActionMap().put("goBack",goBack);
-        */
 
         for (String type: viewController.getMainController().getOrderController().getOrderTypes(panelType)) {
             orderTypeSelectionBox.addItem(type);

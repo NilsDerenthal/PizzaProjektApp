@@ -19,29 +19,29 @@ public class LastOrdersPanel extends ViewPanel{
     }
 
     private void setTextPane1() {
-        for (int i = 1; i < 11 && i < viewController.getMainController().getCurrentUser().getLastOrders().length-1; i++) {
-            textPane1.setText(textPane1.getText() + getInOrders(i) + "\n");
+        for (int i = 1; i < 11 && i < viewController.getMainController().getCurrentUser().getLastOrders().length; i++) {
+            //textPane1.setText(textPane1.getText() + getInOrders(i-1) + "\n");
         }
     }
 
-    private String getInOrders(int i) {
-        StringBuilder theString= new StringBuilder("last order " + i + " : ");
-        for (int y = 1; i < 11 && i < viewController.getMainController().getCurrentUser().getLastOrders(i).getMealsInOrder().length + viewController.getMainController().getCurrentUser().getLastOrders(i).getBeveragesInOrder().length-1; i++){
-            if(viewController.getMainController().getCurrentUser().getOrder(i,false) instanceof Pizza){
-                theString.append(textPane1.getText()).append(viewController.getMainController().getCurrentUser().getLastOrders(i).getMealsInOrder(y));
+    /*private String getInOrders(int i) {
+        String theString="last order "+i+" : ";
+        for (int y = 0;i < viewController.getMainController().getCurrentUser().getLastOrders(i).getMealsInOrder().length + viewController.getMainController().getCurrentUser().getLastOrders(i).getBeveragesInOrder().length-1; i++){
+            if(viewController.getMainController().getCurrentUser().getLastOrders(i) instanceof Pizza){
+                theString=theString+textPane1.getText() + viewController.getMainController().getCurrentUser().getLastOrders(i).getMealsInOrder(y);
             }else {
                 String inOrderY = setInOrderY(y);
-                theString.append(inOrderY);
+                theString=theString+inOrderY;
             }
         }
-        return theString.toString();
+        return theString;
     }
 
     private String setInOrderY(int y){
         if( viewController.getMainController().getCurrentUser().getOrder(y,false) instanceof Doener) return "Doener";
         if( viewController.getMainController().getCurrentUser().getOrder(y,false) instanceof Salad) return "Salad";
         return "";
-    }
+    }*/
 
     public JPanel getMainPanel(){
         setTextPane1();
