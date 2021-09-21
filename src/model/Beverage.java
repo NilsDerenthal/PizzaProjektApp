@@ -21,7 +21,7 @@ public class Beverage extends Meal {
 
     @Override
     public void makeIt() {
-        //TODO ?
+
     }
 
     @Override

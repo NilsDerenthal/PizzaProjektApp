@@ -37,7 +37,10 @@ public class Guest {
     public void reduceBudget(double price) { budget -= price; }
 
     public void makeNewOrder(boolean isFav){
-        if(!isFav) order = new Order();
+        if(!isFav) {
+            addToLastOrders();
+            order = new Order();
+        }
         if(isFav) favoriteMeal = new Order();
     }
 
