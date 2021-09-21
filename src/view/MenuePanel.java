@@ -44,9 +44,8 @@ public class MenuePanel extends ViewPanel{
         for(int i=0;i < viewController.getMainController().getOrderController().getTheOrder(true).getMealsInOrder().length - 1; i++)
             string.append(viewController.getMainController().getOrderController().getTheOrder(true).getMealsInOrder()[i + 1]).append('\n');
 
-        //TODO Beverage is always null
-        //if(viewController.getMainController().getOrderController().getBeverageOrder(true).length >= 1)
-            //string.append(viewController.getMainController().getOrderController().getBeverageOrder(true)[0]);
+        if(viewController.getMainController().getOrderController().getBeverageOrder(true).length >= 1)
+            string.append(viewController.getMainController().getOrderController().getBeverageOrder(true)[1]);
 
         return string.toString();
     }
